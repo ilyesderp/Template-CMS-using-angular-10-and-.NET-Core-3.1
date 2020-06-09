@@ -1,0 +1,99 @@
+
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="clear-loading loading-effect-2">
+			<span></span>
+		</div>
+	</div>
+	<div class="topbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="left">
+						<ul>
+							<li><a routerLink="/">Carrière </a></li>
+							<!-- <li><a href="#" class="outils outilsTop">Simulateurs</a></li> -->
+							<li><a href="index.php#map">Notre réseau</a></li>
+							<li ><a class="online" href="https://www.facebook.com/AGB.DZ/" ><fa-icon [icon]="signInIcon"></fa-icon>  Facebook </a></li>
+							<li class="separ"></li>
+							<li><a routerLink="">
+								<img class="flag" src="../../assets/images/img/eur.png" alt="Français" style="vertical-align: middle;"><span style="vertical-align: middle;">&nbsp;&nbsp; 1 € = 139.17 DZD&nbsp;&nbsp; </span><img class="flag" src="../../assets/images/img/dz.png" alt="Français" style="vertical-align: middle;">
+							</a>
+							</li>
+
+
+						</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+
+
+
+
+
+
+
+	<!-- Header -->
+	<!--<div id="header-sticky-wrapper" class="sticky-wrapper" style="height: 65px;">-->
+		<header id="header" class="header header-sticky">
+			<div class="header-wrap" >
+				<div class="header-nav"  style="height: 65px !important;">
+					<div class="container" >
+						<div class="row" >
+							<div class="col-sm-3 col-xs-6">
+								<p id="logo" class="logo">
+									<a routerLink="/" rel="home">
+										<img src="../../assets/images/common/logo.png" alt="brainstorm" width="78%"/>
+									</a>
+								</p><!-- /.logo -->
+							</div>
+							<div class="col-sm-9  col-xs-6">
+								<div class="btn-menu"></div>
+								<nav id="mainnav" class="mainnav">
+	
+									<ul class="menu">
+	
+										<li class="active"><a  onclick="updatefiltre()" routerLink="/">Accueil</a></li>
+										<li><a routerLink="/qui-sommes-nous">Qui Sommes-nous ?</a>
+											<ul class="sub-menu">
+												<li><a href="organisation/presentation.html">Présentation</a></li>
+												<li><a href="organisation/organisation.html">Organisation</a></li>
+												<li><a href="organisation/valeurs.html">Valeurs / Ambition / Vision</a></li>
+												<li><a href="organisation/groupe.html">Nos Actionnaires</a></li>
+											</ul><!-- /.submenu -->
+										</li>
+	
+										<li><a routerLink="produits-et-services">Produits & services </a>
+											<ul class="sub-menu">
+												<li><a onclick="myfonction('part')" href="#NosProduits">Particuliers</a></li>
+												<li><a onclick="myfonction('prof')" href="#NosProduits">Professionnels</a></li>
+												<li><a onclick="myfonction('entrep')" href="#NosProduits">Entreprises</a></li>
+											</ul><!-- /.submenu --></li>
+											<li><a href="#">Contact</a>
+	
+	
+												<ul class="sub-menu">
+													<li><a href='https://mobileapp.agb.dz/#/public/contact'>Contactez-nous</a></li>
+													<li><a href='https://mobileapp.agb.dz/#/public/signaler-problem'>Signaler un problème</a></li>									
+												</ul>
+	
+											</li>
+											<li><a class="online"><fa-icon [icon]="phoneIcon"></fa-icon> 3304 </a></li>
+											<li ><a class="online" href="https://mobileapp.agb.dz/#/public/authentication/login" ><fa-icon [icon]="signInIcon"></fa-icon>  AGB online </a></li>
+	
+										</ul><!-- /.menu -->
+									</nav>
+								</div>
+	
+							</div>
+						</div><!-- /.row -->
+					</div><!-- /.container -->
+	
+				</div><!-- /.header-wrap -->
+			</header><!-- /.header -->
+	<!--</div>-->
+	
