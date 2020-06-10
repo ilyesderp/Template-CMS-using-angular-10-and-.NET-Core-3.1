@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
 using Infrastructure.Data;
+using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,17 +15,17 @@ namespace Infrastructure.Controllers
     [ApiController]
     public class ImageUploadController : ControllerBase
     {
-        private readonly StoreContext _context;
+        private readonly IImageRepository _repo;
 
-        public ImageUploadController(StoreContext context)
+        public ImageUploadController(IImageRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Image>>> GetImages()
         {
-            var images = await _context.Images.ToListAsync();
+            var images = await _repo.GetImagesAsync();
 
             return Ok(images);
         }
@@ -32,7 +33,7 @@ namespace Infrastructure.Controllers
         [HttpGet("{id}")]//just for tests
         public async Task<ActionResult<Image>> GetImage(int id)
         {
-            return await _context.Images.FindAsync(id);
+            return await _repo.GetImageByIdAsync(id);
         }
     }
 }
