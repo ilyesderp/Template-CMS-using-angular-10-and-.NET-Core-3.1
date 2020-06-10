@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.Entities;
-using Infrastructure.Data;
+using API.Data;
+using API.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Controllers
+namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
