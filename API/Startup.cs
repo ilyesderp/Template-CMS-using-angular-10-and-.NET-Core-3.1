@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Data;
-using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,7 +29,6 @@ namespace Infrastructure
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IImageRepository, ImageRepository>();
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => 
                 x.UseSqlServer(_config.GetConnectionString("DefaultConnexion")));
