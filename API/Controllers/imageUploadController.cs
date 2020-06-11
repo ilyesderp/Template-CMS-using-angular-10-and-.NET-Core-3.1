@@ -28,12 +28,17 @@ namespace API.Controllers
         {
             try
             {
-                var file = Request.Form.Files[0];
+                var files = Request.Form.Files;
                 var subFolder = Path.Combine("images", "uploads");
                 var folderName = Path.Combine("wwwroot", subFolder);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-                if(file.Length > 0)
+                if (files.Any(f => f.Length == 0))
+                {
+                    return BadRequest();
+                }
+
+                foreach (var file in files)
                 {
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(pathToSave, fileName);
@@ -50,14 +55,9 @@ namespace API.Controllers
                     
                     image.ImagePath = dbPath;
                     _context.Add(image);
-                    _context.SaveChanges();
-
-                    return Ok(new { dbPath });
+                    _context.SaveChanges();            
                 }
-                else
-                {
-                    return BadRequest();
-                }
+                return Ok("All the files are successfully uploaded.");
             }
             catch(Exception ex)
             {

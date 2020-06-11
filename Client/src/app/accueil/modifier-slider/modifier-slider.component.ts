@@ -10,7 +10,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 })
 export class ModifierSliderComponent implements OnInit {
   
-  fileData: File = null;
+  fileData: File[] = null;
   previewUrl:any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
@@ -24,39 +24,37 @@ export class ModifierSliderComponent implements OnInit {
   }
    
   fileProgress(fileInput: any) {
-      this.fileData = <File>fileInput.target.files[0];
-      this.preview();
+      //this.fileData = <File>fileInput.target.files[0];
+      this.fileData = <File[]>fileInput.target.files;
+
   }
  
-  preview() {
-    // Show preview 
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
- 
-    var reader = new FileReader();      
-    reader.readAsDataURL(this.fileData); 
-    reader.onload = (_event) => { 
-      this.previewUrl = reader.result; 
-    }
-  }
    
   onSubmit() {
-    const formData = new FormData();
-    formData.append('files', this.fileData);
+    let formData = new FormData();
+    
+    if (this.fileData.length === 0) {
+      return;
+    }
+
+    for (let file of this.fileData){
+      formData.append('files', file);
+    }
+      
      
     this.fileUploadProgress = '0%';
  
     this.http.post('https://localhost:44324/api/imageupload', formData, {
       reportProgress: true,
-      observe: 'events'   
+      observe: 'events',
+      responseType: 'text'   
     })
     .subscribe(events => {
       if(events.type === HttpEventType.UploadProgress) {
         this.fileUploadProgress = Math.round(events.loaded / events.total * 100) + '%';
         console.log(this.fileUploadProgress);
       } else if(events.type === HttpEventType.Response) {
+        
         this.fileUploadProgress = '';
         console.log(events.body);         
         alert('SUCCESS !!');
