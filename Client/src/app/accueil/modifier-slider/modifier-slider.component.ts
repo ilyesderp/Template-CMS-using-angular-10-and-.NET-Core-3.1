@@ -49,7 +49,7 @@ export class ModifierSliderComponent implements OnInit {
      
     this.fileUploadProgress = '0%';
  
-    this.http.post('https://us-central1-site-agb-cfee5.cloudfunctions.net/uploadFile', formData, {
+    this.http.post('https://localhost:44324/api/imageupload', formData, {
       reportProgress: true,
       observe: 'events'   
     })
