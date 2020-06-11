@@ -29,7 +29,8 @@ namespace API.Controllers
             try
             {
                 var file = Request.Form.Files[0];
-                var folderName = Path.Combine("wwwroot", "images");
+                var subFolder = Path.Combine("images", "uploads");
+                var folderName = Path.Combine("wwwroot", subFolder);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 if(file.Length > 0)
@@ -37,6 +38,7 @@ namespace API.Controllers
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(pathToSave, fileName);
                     var dbPath = Path.Combine(folderName, fileName);
+                    var image = new Image();
 
                     //sauvgarde du path de l'image dans la bdd à faire, i just need to check [FromBody] cz might help.
                     
@@ -45,6 +47,11 @@ namespace API.Controllers
                     {
                         file.CopyTo(stream);
                     }
+                    
+                    image.ImagePath = dbPath;
+                    _context.Add(image);
+                    _context.SaveChanges();
+
                     return Ok(new { dbPath });
                 }
                 else
@@ -66,10 +73,10 @@ namespace API.Controllers
             return Ok(images);
         }
 
-        [HttpGet("{id}")]//just for tests
+        /*[HttpGet("{id}")]//just for tests
         public async Task<ActionResult<Image>> GetImage(int id)
         {
             return await _context.Images.FindAsync(id);
-        }
+        }*/
     }
 }

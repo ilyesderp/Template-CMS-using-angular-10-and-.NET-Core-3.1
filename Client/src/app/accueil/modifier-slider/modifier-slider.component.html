@@ -20,5 +20,11 @@
                 <button class="btn btn-primary"  (click)="onSubmit()">Submit</button>
             </div>
         </div>
+        <div *ngIf="images.length > 0">
+            <div class="col-md-6 offset-md-6" *ngFor="let image of images">
+                <img [src]="ImagePath(image.imagePath)">
+            </div>
+        </div>
+        
     </div>
 </div>

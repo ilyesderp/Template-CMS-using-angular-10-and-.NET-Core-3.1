@@ -14,14 +14,13 @@ export class ModifierSliderComponent implements OnInit {
   previewUrl:any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
+  images: any[] = [];
   
   constructor(private http: HttpClient) { }
    
   ngOnInit() {
     //this hhtp request is just for testing the .net api, delete after test
-    this.http.get('https://localhost:44324/api/imageupload').subscribe(data => {
-      console.log(data);
-    });
+    this.getUploadedImages();
   }
    
   fileProgress(fileInput: any) {
@@ -59,10 +58,31 @@ export class ModifierSliderComponent implements OnInit {
         console.log(this.fileUploadProgress);
       } else if(events.type === HttpEventType.Response) {
         this.fileUploadProgress = '';
-        console.log(events.body);          
+        console.log(events.body);         
         alert('SUCCESS !!');
+        this.getUploadedImages();
       }
          
     }) 
 }
+
+  getUploadedImages(){
+    this.http.get<any[]>('https://localhost:44324/api/imageupload')
+    .subscribe( data => {
+      this.images = data;
+  
+      
+      console.log("i'm in getUploadedImages() method: ");
+      console.log(this.images);
+    });
+  }
+  
+
+
+  
+ImagePath(serverPath: string){
+  let path2 = serverPath.replace(/\\/g, "/");
+  return 'https://localhost:44324/' + path2;
+}
+
 }
