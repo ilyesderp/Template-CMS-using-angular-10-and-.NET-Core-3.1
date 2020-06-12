@@ -105,12 +105,12 @@ export class SliderComponent implements OnInit, AfterViewInit{
   }
 
 
-  loadScripts(){
+  /*loadScripts(){
     this.dynamicScriptsLoader.load("pluginsJquery", "scriptsJquery", "includeJquery", "revolutionJquery", "toolsJquery", "sliderJquery", "imagesLoadedJquery", "scrollrevealJquery", "venoboxJquery", "isotopeJquery", "mainJquery").then(data => {
       console.log("script loaded successfuly!");
     }).catch(error => console.log(error));
 
-  }
+  }*/
 
 }
 

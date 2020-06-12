@@ -16,10 +16,10 @@ constructor(private dynamicScriptsLoader: DynamicScriptLoaderService){}
     //this.loadScripts();
   }
 
-  loadScripts(){
+  /*loadScripts(){
     this.dynamicScriptsLoader.load("mainJquery", "pluginsJquery", "scriptsJquery", "includeJquery", "revolutionJquery", "toolsJquery", "sliderJquery", "imagesLoadedJquery").then(data => {
       console.log("script loaded successfuly!");
     }).catch(error => console.log(error));
 
-  }
+  }*/
 }

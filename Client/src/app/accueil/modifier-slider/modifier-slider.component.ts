@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { DataSotrageService } from 'src/app/shared/data-storage.service';
 
 
 
@@ -15,16 +16,15 @@ export class ModifierSliderComponent implements OnInit {
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   images: any[] = [];
+
   
-  constructor(private http: HttpClient) { }
+  constructor(private dataStorageService: DataSotrageService, private http: HttpClient) { }
    
   ngOnInit() {
-    //this hhtp request is just for testing the .net api, delete after test
     this.getUploadedImages();
   }
    
   fileProgress(fileInput: any) {
-      //this.fileData = <File>fileInput.target.files[0];
       this.fileData = <File[]>fileInput.target.files;
 
   }
@@ -44,11 +44,7 @@ export class ModifierSliderComponent implements OnInit {
      
     this.fileUploadProgress = '0%';
  
-    this.http.post('https://localhost:44324/api/imageupload', formData, {
-      reportProgress: true,
-      observe: 'events',
-      responseType: 'text'   
-    })
+    this.dataStorageService.postImagesToServer(formData)
     .subscribe(events => {
       if(events.type === HttpEventType.UploadProgress) {
         this.fileUploadProgress = Math.round(events.loaded / events.total * 100) + '%';
@@ -65,13 +61,9 @@ export class ModifierSliderComponent implements OnInit {
 }
 
   getUploadedImages(){
-    this.http.get<any[]>('https://localhost:44324/api/imageupload')
+    this.dataStorageService.getImagesFromServer()
     .subscribe( data => {
       this.images = data;
-  
-      
-      console.log("i'm in getUploadedImages() method: ");
-      console.log(this.images);
     });
   }
   
