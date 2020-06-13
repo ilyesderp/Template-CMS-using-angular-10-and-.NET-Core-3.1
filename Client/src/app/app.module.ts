@@ -14,6 +14,16 @@ import { ModifierSliderComponent } from './accueil/modifier-slider/modifier-slid
 import { DynamicScriptLoaderService } from './shared/dynamic-script-loader.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
+
 
 @NgModule({
   declarations: [
@@ -25,13 +35,21 @@ import { HttpClientModule } from '@angular/common/http';
     ProduitsEtServicesComponent,
     SliderComponent,
     ModifierSliderComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialFileInputModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatPaginatorModule
   ],
   providers: [DynamicScriptLoaderService],
   bootstrap: [AppComponent]

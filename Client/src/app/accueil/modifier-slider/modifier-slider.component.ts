@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
+import {PageEvent} from '@angular/material/paginator';
+
+
+
 
 
 
@@ -16,6 +20,8 @@ export class ModifierSliderComponent implements OnInit {
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
   images: any[] = [];
+  pageEvent: PageEvent;
+  
 
   
   constructor(private dataStorageService: DataSotrageService, private http: HttpClient) { }
@@ -64,6 +70,7 @@ export class ModifierSliderComponent implements OnInit {
     this.dataStorageService.getImagesFromServer()
     .subscribe( data => {
       this.images = data;
+      
     });
   }
   

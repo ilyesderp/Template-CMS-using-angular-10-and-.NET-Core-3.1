@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/css/revolution-slider.css",
               "src/styles.css",
@@ -45,9 +46,9 @@
               "src/assets/js/include.js",
               "src/assets/js/imagesLoaded.pkgd.min.js",
               "src//assets/js/isotope.pkgd.min.js",
-              "src/assets/js/venobox.min.js",             
+              "src/assets/js/venobox.min.js",
               "src//assets/js/scripts.js"
-           ]
+            ]
           },
           "configurations": {
             "production": {
@@ -109,6 +110,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -140,6 +142,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "agb-site"
 }
