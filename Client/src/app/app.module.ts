@@ -10,7 +10,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { QuiSommesNousComponent } from './qui-sommes-nous/qui-sommes-nous.component';
 import { ProduitsEtServicesComponent } from './produits-et-services/produits-et-services.component';
 import { SliderComponent } from './accueil/slider/slider.component';
-import { ModifierSliderComponent } from './accueil/modifier-slider/modifier-slider.component';
+import { ModifierSliderComponent, CustomMatPaginatorIntl } from './accueil/modifier-slider/modifier-slider.component';
 import { DynamicScriptLoaderService } from './shared/dynamic-script-loader.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,7 +20,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 
 
 
@@ -34,7 +34,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     QuiSommesNousComponent,
     ProduitsEtServicesComponent,
     SliderComponent,
-    ModifierSliderComponent
+    ModifierSliderComponent,
     
   ],
   imports: [
@@ -51,7 +51,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatGridListModule,
     MatPaginatorModule
   ],
-  providers: [DynamicScriptLoaderService],
+  providers: [DynamicScriptLoaderService, { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

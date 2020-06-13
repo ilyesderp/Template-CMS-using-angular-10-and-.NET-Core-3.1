@@ -54,8 +54,17 @@ namespace API.Controllers
                     }
                     
                     image.ImagePath = dbPath;
-                    _context.Add(image);
-                    _context.SaveChanges();            
+                    var count = _context.Images.Count();
+                    if (count >= 100)
+                    {
+                        return Ok("over100");
+                    }
+                    else
+                    {
+                        _context.Add(image);
+                        _context.SaveChanges();
+                    }
+                                
                 }
                 return Ok("All the files are successfully uploaded.");
             }

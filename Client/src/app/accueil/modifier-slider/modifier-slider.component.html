@@ -1,11 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6 offset-md-3" style="margin-top: 100px;">
-            <h3>Choisissez une image</h3>
+        <div class="col-md-12" style="margin-top: 100px;">
             
                 <div class="form-group">
                     <mat-form-field>
-                        <ngx-mat-file-input placeholder="Images multiples" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" multiple></ngx-mat-file-input>
+                        <ngx-mat-file-input placeholder="Chargez des images" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" multiple></ngx-mat-file-input>
                         <mat-icon matSuffix>folder</mat-icon>
                       </mat-form-field>
                     <!--<input type="file" name="image" (change)="fileProgress($event)"  multiple />-->
@@ -15,25 +14,28 @@
                 </div>
                  
                 <div class="form-group">
-                    <button mat-raised-button color="primary" (click)="onSubmit()">Envoyer</button>
+                    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="fileData == null">Envoyer</button>
                 </div>
                     
             
         </div>
         
-        <div class="col-md-9" *ngIf="images.length > 0">
-            <div *ngIf="pageEvent">
-                <mat-grid-list cols="3" rowHeight="2:1">
-                    <mat-grid-tile *ngFor="let image of images"><img [src]="ImagePath(image.imagePath)"></mat-grid-tile>
-                </mat-grid-list>
-            </div>               
-                
-                <mat-paginator [length]="100"
-                    [pageSize]="10"
-                    [pageSizeOptions]="[5, 10, 25, 100]"
-                    (page)="pageEvent = $event">
-                </mat-paginator>
-        </div>
+            <div class="col-md-9" *ngIf="images.length > 0">
+                <div>
+                    <mat-grid-list cols="4" rowHeight="2:1">
+                        <mat-grid-tile *ngFor="let image of (images | 
+                         slice: lowValue : highValue)"><img [src]="ImagePath(image.imagePath)"></mat-grid-tile>
+                    </mat-grid-list>
+                </div>               
+                    
+                    <mat-paginator [length]="images.length"
+                        [pageSize]="12"
+                        showFirstLastButtons="true"  
+                        (page)="getPaginatorData($event)">
+                    </mat-paginator>
+            </div>
+     
+        
         
     </div>
 </div>
