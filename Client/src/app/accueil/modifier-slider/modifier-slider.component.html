@@ -1,41 +1,64 @@
+
+
+
+
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-12" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-md-12">
+                
+                    <div class="form-group">
+                        <mat-form-field>
+                            <ngx-mat-file-input placeholder="Chargez des images" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" multiple></ngx-mat-file-input>
+                            <mat-icon matSuffix>folder</mat-icon>
+                          </mat-form-field>
+                    </div>
+                    <div *ngIf="fileUploadProgress">
+                        Upload progress: {{ fileUploadProgress }}
+                    </div>
+                     
+                    <div class="form-group">
+                        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="fileData == null">Envoyer</button>
+                    </div>
+                        
+                
+            </div>
+        </div>
+        <div class="row" *ngIf="images.length > 0">
+            <div class="col-md-12">
             
-                <div class="form-group">
-                    <mat-form-field>
-                        <ngx-mat-file-input placeholder="Chargez des images" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" multiple></ngx-mat-file-input>
-                        <mat-icon matSuffix>folder</mat-icon>
-                      </mat-form-field>
-                    <!--<input type="file" name="image" (change)="fileProgress($event)"  multiple />-->
+                        <mat-grid-list cols="4" rowHeight="1:1">
+                            <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (images | 
+                             slice: lowValue : highValue)">
+                             
+                             
+                             
+                             
+                             
+                             <mat-card tabindex="0" class="example-card">
+                                <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
+                                
+                                <mat-card-actions id="matBoutons" [align]="'start'">                                     
+                                    <button mat-raised-button (click)="openDialog()">Selectionner</button>
+                                    <button mat-icon-button color="warn">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    
+                                </mat-card-actions>
+                              </mat-card>
+                             </mat-grid-tile>
+                        </mat-grid-list>
+                                   
+                        
+                        <mat-paginator [length]="images.length"
+                            [pageSize]="8"
+                            showFirstLastButtons="true"  
+                            (page)="getPaginatorData($event)">
+                        </mat-paginator>
                 </div>
-                <div *ngIf="fileUploadProgress">
-                    Upload progress: {{ fileUploadProgress }}
-                </div>
-                 
-                <div class="form-group">
-                    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="fileData == null">Envoyer</button>
-                </div>
-                    
+         
+            
             
         </div>
-        
-            <div class="col-md-9" *ngIf="images.length > 0">
-                <div>
-                    <mat-grid-list cols="4" rowHeight="2:1">
-                        <mat-grid-tile *ngFor="let image of (images | 
-                         slice: lowValue : highValue)"><img [src]="ImagePath(image.imagePath)"></mat-grid-tile>
-                    </mat-grid-list>
-                </div>               
-                    
-                    <mat-paginator [length]="images.length"
-                        [pageSize]="12"
-                        showFirstLastButtons="true"  
-                        (page)="getPaginatorData($event)">
-                    </mat-paginator>
-            </div>
-     
-        
-        
-    </div>
+    
 </div>

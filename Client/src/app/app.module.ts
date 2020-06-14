@@ -21,6 +21,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
+import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PopupElementsComponent } from './accueil/modifier-slider/popup-elements/popup-elements.component';
 
 
 
@@ -35,6 +38,7 @@ import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginato
     ProduitsEtServicesComponent,
     SliderComponent,
     ModifierSliderComponent,
+    PopupElementsComponent,
     
   ],
   imports: [
@@ -49,7 +53,9 @@ import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginato
     MatIconModule,
     MatButtonModule,
     MatGridListModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [DynamicScriptLoaderService, { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}],
   bootstrap: [AppComponent]

@@ -2,6 +2,9 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import {PageEvent, MatPaginatorIntl} from '@angular/material/paginator';
+import {MatDialog} from '@angular/material/dialog';
+import { PopupElementsComponent } from './popup-elements/popup-elements.component';
+
 
 
 
@@ -43,24 +46,28 @@ export class ModifierSliderComponent implements OnInit{
 
   //pagination properties
   lowValue: number = 0;
-  highValue: number = 12;
+  highValue: number = 8;
  
   
 
   
-  constructor(private dataStorageService: DataSotrageService, private http: HttpClient) { }
+  constructor(private dataStorageService: DataSotrageService, private http: HttpClient, public dialog: MatDialog) { }
    
   ngOnInit() {
     this.getUploadedImages();
   }
+
+
+  openDialog() {
+    this.dialog.open(PopupElementsComponent);
+  }
+
    
   fileProgress(fileInput: any) {
       this.fileData = <File[]>fileInput.target.files;
 
   }
 
- 
- 
    
   onSubmit() {
     let formData = new FormData();
