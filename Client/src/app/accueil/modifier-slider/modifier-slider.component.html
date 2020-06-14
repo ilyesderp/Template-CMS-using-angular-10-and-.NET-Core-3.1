@@ -5,7 +5,7 @@
 
 <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 col-sm-12 col-lg-12">
                 
                     <div class="form-group">
                         <mat-form-field>
@@ -39,7 +39,7 @@
                                 <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
                                 
                                 <mat-card-actions id="matBoutons" [align]="'start'">                                     
-                                    <button mat-raised-button (click)="openDialog()">Selectionner</button>
+                                    <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath))">Selectionner</button>
                                     <button mat-icon-button color="warn">
                                         <mat-icon>delete</mat-icon>
                                     </button>

@@ -51,15 +51,15 @@ export class ModifierSliderComponent implements OnInit{
   
 
   
-  constructor(private dataStorageService: DataSotrageService, private http: HttpClient, public dialog: MatDialog) { }
+  constructor(private dataStorageService: DataSotrageService, public dialog: MatDialog) { }
    
   ngOnInit() {
     this.getUploadedImages();
   }
 
 
-  openDialog() {
-    this.dialog.open(PopupElementsComponent);
+  openDialog(imgPath: string) {
+    this.dialog.open(PopupElementsComponent, {data: imgPath});
   }
 
    

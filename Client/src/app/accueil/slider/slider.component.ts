@@ -1,6 +1,14 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { DynamicScriptLoaderService } from 'src/app/shared/dynamic-script-loader.service';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
+import { Slides } from '../modifier-slider/slides.interface';
+import { SlidesService } from '../modifier-slider/slides.service';
+
+
+
+
+
 
 
 declare var $: any;
@@ -15,8 +23,13 @@ export class SliderComponent implements OnInit, AfterViewInit{
 
   arrowRightSlider = faChevronRight;// not used yet, may delete later
   arrowLeftSlider = faChevronLeft; // net used yet, may delete later
+  
+  slide1: string;
+  slide2: string;
+  slide3: string;
+  slide4: string;
 
-  constructor(private dynamicScriptsLoader: DynamicScriptLoaderService) { }
+  constructor(private dynamicScriptsLoader: DynamicScriptLoaderService, private slidesService: SlidesService) { } //Ce service DynamicScriptLoaderService n'est pas utilisé pour le moment
   
   
   ngOnInit(): void {
@@ -102,6 +115,14 @@ export class SliderComponent implements OnInit, AfterViewInit{
         fullScreenOffsetContainer: ""
     });
 });
+  }
+
+
+  setSlidesValues(slidesPaths: Slides){
+    this.slide1 = slidesPaths.slide1;
+    this.slide2 = slidesPaths.slide2;
+    this.slide3 = slidesPaths.slide3;
+    this.slide4 = slidesPaths.slide4;
   }
 
 
