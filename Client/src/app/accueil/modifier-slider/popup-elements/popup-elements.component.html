@@ -1,5 +1,26 @@
-<h1 mat-dialog-title>Popup avec des elements</h1>
-<div mat-dialog-content><img [src]="data"></div>
+<div>
+  <h1 mat-dialog-title>Popup avec des elements</h1>
+  <div mat-dialog-content>
+  <img [src]="data">
+  <div class="btns-container">
+    <div class="col-md-2">
+      <button mat-raised-button color="primary">Slide 1</button>
+    </div>
+    <div class="col-md-2">
+      <button mat-raised-button color="primary">Slide 2</button>
+    </div>
+    <div class="col-md-2">
+      <button mat-raised-button color="primary">Slide 3</button>
+    </div>
+    <div class="col-md-2">
+      <button mat-raised-button color="primary">Slide 4</button>
+    </div>
+  </div>
+  
+</div>
+
+
+</div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Fermer</button>
+  <button mat-stroked-button mat-dialog-close>Fermer</button>
 </div>

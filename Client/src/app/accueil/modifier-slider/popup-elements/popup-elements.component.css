@@ -1,0 +1,17 @@
+
+.btns-container{
+    display: block !important;
+    text-align: center !important;
+}
+
+.btns-container div{
+    display: inline !important;
+    
+}
+
+img{
+    max-width: 700px;
+    max-height: 300px;
+    min-width: 700px;
+    min-height: 300px;
+}
