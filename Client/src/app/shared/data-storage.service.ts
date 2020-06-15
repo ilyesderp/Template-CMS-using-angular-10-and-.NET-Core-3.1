@@ -25,4 +25,9 @@ export class DataSotrageService{
     }
 
 
+    postSlideToServer(slide: string){
+        return this.http.post('https://localhost:44324/api/slidescontroller', slide);
+    }
+
+
 }

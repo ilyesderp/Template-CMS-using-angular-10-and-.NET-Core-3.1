@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import {PageEvent, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatDialog} from '@angular/material/dialog';
@@ -47,6 +47,12 @@ export class ModifierSliderComponent implements OnInit{
   //pagination properties
   lowValue: number = 0;
   highValue: number = 8;
+  slide1: string;
+  slide2: string;
+  slide3: string;
+  slide4: string;
+  slectedSlide: string;
+
  
   
 
@@ -127,5 +133,6 @@ public getPaginatorData(event: PageEvent): PageEvent {
   this.highValue = this.lowValue + event.pageSize;
   return event;
 }
+
 
 }

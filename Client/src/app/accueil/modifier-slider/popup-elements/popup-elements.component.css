@@ -1,13 +1,10 @@
-
-.btns-container{
-    display: block !important;
-    text-align: center !important;
+#btns-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
-.btns-container div{
-    display: inline !important;
-    
-}
+
+
 
 img{
     max-width: 700px;

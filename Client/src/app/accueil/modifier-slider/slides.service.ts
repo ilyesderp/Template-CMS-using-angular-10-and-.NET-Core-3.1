@@ -9,8 +9,11 @@ export class SlidesService{
 
     subjectSldierImage = new Subject<Slides>();
 
-    getSlides(slides: Slides){
+    
+    send(slides: Slides){
         this.subjectSldierImage.next(slides);
     }
+    
+
     
 }

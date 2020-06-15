@@ -1,24 +1,32 @@
-<div>
-  <h1 mat-dialog-title>Popup avec des elements</h1>
+<div class="conteneur">
+  <h1 mat-dialog-title>Image selectionnée</h1>
   <div mat-dialog-content>
-  <img [src]="data">
-  <div class="btns-container">
-    <div class="col-md-2">
-      <button mat-raised-button color="primary">Slide 1</button>
-    </div>
-    <div class="col-md-2">
-      <button mat-raised-button color="primary">Slide 2</button>
-    </div>
-    <div class="col-md-2">
-      <button mat-raised-button color="primary">Slide 3</button>
-    </div>
-    <div class="col-md-2">
-      <button mat-raised-button color="primary">Slide 4</button>
-    </div>
-  </div>
+    <img [src]="data">
+    <br>
+    
+    <br>
+    <p>Veuillez selectionner le slide dans lequel cette image sera inserée :</p>
+    <br>
+    <div id="btns-container">
+      <div class="col-md-2">
+        <button mat-raised-button color="primary" (click)="attributionSlide1(data)">Slide 1</button>
+      </div>
+      <div class="col-md-2">
+        <button mat-raised-button color="primary" (click)="attributionSlide2(data)">Slide 2</button>
+      </div>
+      <div class="col-md-2">
+        <button mat-raised-button color="primary" (click)="attributionSlide3(data)">Slide 3</button>
+      </div>
+      <div class="col-md-2">
+        <button mat-raised-button color="primary" (click)="attributionSlide4(data)">Slide 4</button>
+      </div>
+      <div class="col-md-2">
+        <button mat-raised-button color="primary" (click)="attributionSlide5(data)">Slide 5</button>
+      </div>
+      </div>
   
-</div>
-
+  </div>
+<br>
 
 </div>
 <div mat-dialog-actions>

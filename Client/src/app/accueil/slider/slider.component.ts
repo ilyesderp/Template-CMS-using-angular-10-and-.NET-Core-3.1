@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { DynamicScriptLoaderService } from 'src/app/shared/dynamic-script-loader.service';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { Subject } from 'rxjs';
 import { Slides } from '../modifier-slider/slides.interface';
 import { SlidesService } from '../modifier-slider/slides.service';
 
@@ -24,21 +23,23 @@ export class SliderComponent implements OnInit, AfterViewInit{
   arrowRightSlider = faChevronRight;// not used yet, may delete later
   arrowLeftSlider = faChevronLeft; // net used yet, may delete later
   
-  slide1: string;
+  slide1: string = '../../../assets/images/img/agb-4.jpg';
   slide2: string;
   slide3: string;
   slide4: string;
+  slide5: string;
 
   constructor(private dynamicScriptsLoader: DynamicScriptLoaderService, private slidesService: SlidesService) { } //Ce service DynamicScriptLoaderService n'est pas utilisé pour le moment
   
   
   ngOnInit(): void {
-    
   }
   
   ngAfterViewInit(){
     //this.loadScripts();
+    this.getSelectedSlide();
     this.startSlider();
+    
   }
   
 
@@ -118,11 +119,20 @@ export class SliderComponent implements OnInit, AfterViewInit{
   }
 
 
-  setSlidesValues(slidesPaths: Slides){
-    this.slide1 = slidesPaths.slide1;
-    this.slide2 = slidesPaths.slide2;
-    this.slide3 = slidesPaths.slide3;
-    this.slide4 = slidesPaths.slide4;
+
+
+  getSelectedSlide(){
+  
+    this.slidesService.subjectSldierImage.subscribe(
+        (slides: Slides) => {
+          console.log("dna sslider component:");
+          this.slide1 = slides.slide1;
+          console.log("slide1 = "+slides.slide1);
+          this.slide2 = slides.slide2;
+          this.slide3 = slides.slide3;
+          this.slide4 = slides.slide4;
+  
+    });
   }
 
 

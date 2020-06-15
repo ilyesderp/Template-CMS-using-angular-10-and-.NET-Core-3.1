@@ -3,4 +3,5 @@ export interface Slides{
     slide2: string;
     slide3: string;
     slide4: string;
+    slide5: string;
   }

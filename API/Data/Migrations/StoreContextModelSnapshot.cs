@@ -32,6 +32,21 @@ namespace API.Data.Migrations
 
                     b.ToTable("Images");
                 });
+
+            modelBuilder.Entity("API.Entities.Slide", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Slides");
+                });
 #pragma warning restore 612, 618
         }
     }
