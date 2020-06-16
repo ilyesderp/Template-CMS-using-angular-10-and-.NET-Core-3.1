@@ -30,16 +30,16 @@ export class DataSotrageService{
         return this.http.put('https://localhost:44324/api/slides', { "IdSlideNumber": "Slide1", "Path": slidePath }, {responseType: 'text'});
     }
     postSlide2ToServer(slidePath: string){
-        return this.http.put('https://localhost:44324/api/slides/2', slidePath, {"responseType": 'text'});
+        return this.http.put('https://localhost:44324/api/slides/2', { "IdSlideNumber": "Slide2", "Path": slidePath }, {responseType: 'text'});
     }
     postSlide3ToServer(slidePath: string){
-        return this.http.put('https://localhost:44324/api/slides/3', slidePath, {"responseType": 'text'});
+        return this.http.put('https://localhost:44324/api/slides/3', { "IdSlideNumber": "Slide3", "Path": slidePath }, {responseType: 'text'});
     }
     postSlide4ToServer(slidePath: string){
-        return this.http.put('https://localhost:44324/api/slides/4', slidePath, {"responseType": 'text'});
+        return this.http.put('https://localhost:44324/api/slides/4', { "IdSlideNumber": "Slide4", "Path": slidePath }, {responseType: 'text'});
     }
     postSlide5ToServer(slidePath: string){
-        return this.http.put('https://localhost:44324/api/slides/5', slidePath, {"responseType": 'text'});
+        return this.http.put('https://localhost:44324/api/slides/5', { "IdSlideNumber": "Slide5", "Path": slidePath }, {responseType: 'text'});
     }
 
     getSlidesFromServer(){

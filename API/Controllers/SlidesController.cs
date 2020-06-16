@@ -37,7 +37,7 @@ namespace API.Controllers
                 _context.Add(slide);
                 _context.SaveChanges();
 
-                return Ok("requete put aboutie avec succes!");
+                return Ok("requete put aboutie avec succès!");
             }
             catch (Exception ex)
             {

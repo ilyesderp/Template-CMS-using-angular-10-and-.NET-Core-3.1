@@ -19,13 +19,13 @@ declare var $: any;
 export class SliderComponent implements OnInit, AfterViewInit{
 
   arrowRightSlider = faChevronRight;// not used yet, may delete later
-  arrowLeftSlider = faChevronLeft; // net used yet, may delete later
+  arrowLeftSlider = faChevronLeft; // not used yet, may delete later
   
   slide1: string = '../../../assets/images/img/agb-4.jpg';
-  slide2: string;
-  slide3: string;
-  slide4: string;
-  slide5: string;
+  slide2: string = '../../../assets/images/img/Professionels.jpg';
+  slide3: string = '../../../assets/images/img/BackgroundParis.jpg';
+  slide4: string = '../../../assets/images/img/EpargneSmart.jpg';
+  slide5: string = '../../../assets/images/img/AGBPro.jpg';
 
   constructor(private dataStorageService: DataSotrageService) { }
   
