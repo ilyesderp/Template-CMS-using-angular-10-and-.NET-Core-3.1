@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace API.Controllers
 {
@@ -25,17 +26,32 @@ namespace API.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult<List<Slide>> UploadSlides()
+
+        [HttpPut]
+        public IActionResult UploadSlides([FromBody] Slide slide)
         {
 
-            var slide = HttpContext.Request.Body;
+            try
+            {
 
-            _context.Add(slide);
-            _context.SaveChanges();
+                _context.Add(slide);
+                _context.SaveChanges();
 
-            return Ok("requete aboutie avec succes!");
+                return Ok("requete put aboutie avec succes!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
 
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Slide>>> GetSlides()
+        {
+            var slides = await _context.Slides.ToListAsync();
+
+            return Ok(slides);
         }
 
     }

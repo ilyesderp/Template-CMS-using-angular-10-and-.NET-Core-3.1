@@ -9,7 +9,8 @@ namespace API.Entities
     {
 
         public int Id { get; set; }
- 
+
+        public string SlideNumber { get; set; }
 
         public string Path { get; set; }
     }

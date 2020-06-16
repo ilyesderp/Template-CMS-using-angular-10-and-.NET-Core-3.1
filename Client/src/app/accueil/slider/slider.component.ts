@@ -1,8 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import { DynamicScriptLoaderService } from 'src/app/shared/dynamic-script-loader.service';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { Slides } from '../modifier-slider/slides.interface';
-import { SlidesService } from '../modifier-slider/slides.service';
+import { DataSotrageService } from 'src/app/shared/data-storage.service';
 
 
 
@@ -29,15 +27,14 @@ export class SliderComponent implements OnInit, AfterViewInit{
   slide4: string;
   slide5: string;
 
-  constructor(private dynamicScriptsLoader: DynamicScriptLoaderService, private slidesService: SlidesService) { } //Ce service DynamicScriptLoaderService n'est pas utilisé pour le moment
+  constructor(private dataStorageService: DataSotrageService) { }
   
   
   ngOnInit(): void {
   }
   
   ngAfterViewInit(){
-    //this.loadScripts();
-    this.getSelectedSlide();
+    this.getSlides();
     this.startSlider();
     
   }
@@ -121,30 +118,18 @@ export class SliderComponent implements OnInit, AfterViewInit{
 
 
 
-  getSelectedSlide(){
+  getSlides(){
   
-    this.slidesService.subjectSldierImage.subscribe(
-        (slides: Slides) => {
-          console.log("dna sslider component:");
-          this.slide1 = slides.slide1;
-          console.log("slide1 = "+slides.slide1);
-          this.slide2 = slides.slide2;
-          this.slide3 = slides.slide3;
-          this.slide4 = slides.slide4;
-  
+    this.dataStorageService.getSlidesFromServer().subscribe( donnee => {
+      console.log(donnee);
+      this.slide1 = donnee[0].path;
+      this.slide2 = donnee[1].path;
+      this.slide3 = donnee[2].path;
+      this.slide4 = donnee[3].path;
+      this.slide5 = donnee[4].path;
     });
   }
 
 
-  /*loadScripts(){
-    this.dynamicScriptsLoader.load("pluginsJquery", "scriptsJquery", "includeJquery", "revolutionJquery", "toolsJquery", "sliderJquery", "imagesLoadedJquery", "scrollrevealJquery", "venoboxJquery", "isotopeJquery", "mainJquery").then(data => {
-      console.log("script loaded successfuly!");
-    }).catch(error => console.log(error));
-
-  }*/
-
 }
 
-/*"node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js", these are declarations in angular.json in scripts
-               this is in style*/

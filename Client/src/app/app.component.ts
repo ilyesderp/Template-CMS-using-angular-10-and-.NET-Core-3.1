@@ -13,13 +13,7 @@ export class AppComponent implements OnInit{
 constructor(private dynamicScriptsLoader: DynamicScriptLoaderService){}
 
   ngOnInit(){
-    //this.loadScripts();
+    
   }
 
-  /*loadScripts(){
-    this.dynamicScriptsLoader.load("mainJquery", "pluginsJquery", "scriptsJquery", "includeJquery", "revolutionJquery", "toolsJquery", "sliderJquery", "imagesLoadedJquery").then(data => {
-      console.log("script loaded successfuly!");
-    }).catch(error => console.log(error));
-
-  }*/
 }

@@ -70,7 +70,7 @@ namespace API.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex}");
+                return StatusCode(500, $"Erreur serveur interne: {ex}");
             }
         }
 
