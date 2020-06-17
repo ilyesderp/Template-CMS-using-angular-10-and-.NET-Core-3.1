@@ -29,12 +29,25 @@ namespace API.Controllers
 
         [HttpPut]
         public IActionResult UploadSlides([FromBody] Slide slide)
-        {
-
+        { 
             try
             {
+                if (slide == null)
+                {
+                    return BadRequest("Slide object is null");
+                }
 
-                _context.Add(slide);
+                var dbSlide = _context.Slides.FirstOrDefault(s => s.SlideNumber.Equals(slide.SlideNumber));
+
+                if (dbSlide == null)
+                {
+                    _context.Add(slide);
+                }
+                else
+                {
+                    dbSlide.Path = slide.Path;
+                }
+
                 _context.SaveChanges();
 
                 return Ok("requete put aboutie avec succès!");

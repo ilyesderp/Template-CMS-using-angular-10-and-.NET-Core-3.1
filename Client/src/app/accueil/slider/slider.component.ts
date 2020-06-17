@@ -23,14 +23,17 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   slider: KeenSlider = null;
   opacities: number[] = [];
   
-  slide1: string = '../../../assets/images/img/agb-4.jpg';
-  slide2: string = '../../../assets/images/img/Professionels.jpg';
-  slide3: string = '../../../assets/images/img/BackgroundParis.jpg';
-  slide4: string = '../../../assets/images/img/EpargneSmart.jpg';
-  slide5: string = '../../../assets/images/img/AGBPro.jpg';
+  slide1: string;
+  slide2: string;
+  slide3: string;
+  slide4: string;
+  slide5: string;
 
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>;
+  
+  images: String[];
 
+  
 
   constructor(private dataStorageService: DataSotrageService) { }
   
@@ -39,8 +42,9 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
     this.getSlides();
   }
   
-  ngAfterViewInit(){  
-    this.startSlider();   
+  ngAfterViewInit(){ 
+    this.startSlider();
+    
   }
   
 
@@ -88,6 +92,13 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
           }
   
         }
+        this.images = [
+          this.slide1,
+          this.slide2,
+          this.slide3,
+          this.slide4,
+          this.slide5
+        ]; 
       }
       else{
         console.log("Aucune donnée n'est encore disponible pour le moment");
