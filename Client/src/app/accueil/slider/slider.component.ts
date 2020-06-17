@@ -22,6 +22,8 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   //declarations pour le slider
   slider: KeenSlider = null;
   opacities: number[] = [];
+  currentSlide: number = 1;
+  dotHelper: Array<Number> = [];
   
   slide1: string;
   slide2: string;
@@ -51,13 +53,18 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   startSlider () {
     setTimeout(() => {
       this.slider = new KeenSlider(this.sliderRef.nativeElement, {
+        initial: this.currentSlide,
         slides: 5,
         loop: true,
-        duration: 1000,
+        duration: 1500,
+        slideChanged: s => {
+          this.currentSlide = s.details().relativeSlide;
+        },
         move: s => {
           this.opacities = s.details().positions.map(slide => slide.portion);
         }
       });
+      this.dotHelper = [...Array(this.slider.details().size).keys()];
     });
   }
 
