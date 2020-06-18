@@ -55,14 +55,24 @@ namespace API.Controllers
                     
                     image.ImagePath = dbPath;
                     var count = _context.Images.Count();
-                    if (count >= 100)
+                    if (count < 100)
                     {
-                        return Ok("over100");
+                        var dbImage = _context.Images.FirstOrDefault(i => i.ImagePath.Equals(image.ImagePath));
+                        if (dbImage == null)
+                        {
+                            _context.Add(image);
+                        }
+                        else
+                        {
+                            dbImage.ImagePath = image.ImagePath;
+                        }
+                        
+                        _context.SaveChanges();
                     }
                     else
                     {
-                        _context.Add(image);
-                        _context.SaveChanges();
+                        return Ok("over100");
+                        
                     }
                                 
                 }
@@ -80,6 +90,57 @@ namespace API.Controllers
             var images = await _context.Images.ToListAsync();
 
             return Ok(images);
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteImage(int id)
+        {
+            if (id == null)
+            {
+                return BadRequest("id value is null");
+            }
+
+            try
+            {
+                var dbImage = _context.Images.FirstOrDefault(i => i.Id.Equals(id));
+
+                if(dbImage != null)
+                {
+                
+                    string imgPath = dbImage.ImagePath.Replace("\\", "/");
+                    string imgPathFinal =  "https://localhost:44324/" + imgPath;
+
+                    //var findInSlides = _context.Slides.FirstOrDefault(s => s.Path.Equals(dbImage.ImagePath));
+                    var findInSlides = _context.Slides.FirstOrDefault(s => s.Path.Equals(imgPathFinal));
+
+                    if (findInSlides == null)
+                    {
+                        if (System.IO.File.Exists(dbImage.ImagePath)) //delete image from wwwroot
+                        {
+                            System.IO.File.Delete(dbImage.ImagePath);
+                        }
+
+                        _context.Images.Remove(dbImage);
+                        _context.SaveChanges();
+                    }
+                    else
+                    {
+                        return Ok(findInSlides.SlideNumber);// return slide as text exp: "slide 1" to use it in client.
+                    }
+                }
+                else
+                {
+                    StatusCode(500, $"Internal server error");
+                }
+
+            }
+            catch(Exception e)
+            {
+                return StatusCode(500, $"Erreurlors de la suppresion de l'image: {e}");
+            }
+
+                return Ok("Suppression réussie!");
         }
 
         /*[HttpGet("{id}")]//just for tests

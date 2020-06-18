@@ -22,35 +22,35 @@ export class PopupElementsComponent implements OnInit {
     this.dataStorageService.postSlide1ToServer(data).subscribe(response => {
       console.log(response);
     });
-    alert("L'image selectinnée a été insérée dans le slide 1 !");
+    alert("L'image selectionnée a été insérée dans le slide 1 !");
   }
   attributionSlide2(data: string){
 
     this.dataStorageService.postSlide2ToServer(data).subscribe(response => {
       console.log(response);
     });
-    alert("L'image selectinnée a été insérée dans le slide 2 !");
+    alert("L'image selectionnée a été insérée dans le slide 2 !");
   }
   attributionSlide3(data: string){
 
     this.dataStorageService.postSlide3ToServer(data).subscribe(response => {
       console.log(response);
     });
-    alert("L'image selectinnée a été insérée dans le slide 3 !");
+    alert("L'image selectionnée a été insérée dans le slide 3 !");
   }
   attributionSlide4(data: string){
 
     this.dataStorageService.postSlide4ToServer(data).subscribe(response => {
       console.log(response);
     });
-    alert("L'image selectinnée a été insérée dans le slide 4 !");
+    alert("L'image selectionnée a été insérée dans le slide 4 !");
   }
   attributionSlide5(data: string){
 
     this.dataStorageService.postSlide5ToServer(data).subscribe(response => {
       console.log(response);
     });
-    alert("L'image selectinnée a été insérée dans le slide 5 !");
+    alert("L'image selectionnée a été insérée dans le slide 5 !");
   }
 
 }

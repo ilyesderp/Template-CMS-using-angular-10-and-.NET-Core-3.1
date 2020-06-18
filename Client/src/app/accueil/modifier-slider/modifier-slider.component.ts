@@ -4,6 +4,7 @@ import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import {PageEvent, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatDialog} from '@angular/material/dialog';
 import { PopupElementsComponent } from './popup-elements/popup-elements.component';
+import { PopupDeleteComponent } from './popup-delete/popup-delete.component';
 
 
 
@@ -47,11 +48,7 @@ export class ModifierSliderComponent implements OnInit{
   //pagination properties
   lowValue: number = 0;
   highValue: number = 8;
-  slide1: string;
-  slide2: string;
-  slide3: string;
-  slide4: string;
-  slectedSlide: string;
+
 
  
   
@@ -61,6 +58,29 @@ export class ModifierSliderComponent implements OnInit{
    
   ngOnInit() {
     this.getUploadedImages();
+  }
+
+  supprimerImage(imgPath: string){
+    const dialogDelete = this.dialog.open(PopupDeleteComponent, {data: imgPath});
+    dialogDelete.afterClosed().subscribe(result => {
+      if(result === true){
+            for (const image of this.images) {
+              if(this.ImagePath(image.imagePath) === imgPath){ //find id of the image to be deleted and send it through delete request.
+                this.dataStorageService.deleteImageInService(image.id).subscribe(response => {
+                  
+                  if(response == 'Slide1' || response =='Slide2' || response =='Slide3' || response =='Slide4' || response =='Slide5'){
+                    alert("Vous ne pouvez pas supprimer cette image car elle est utilisée dans: "+ response +", vous devez devez d'abord changer l'image utilisée.");
+                  }else{
+                    this.getUploadedImages();
+                  }
+                  
+                  
+              });
+              }
+            }
+      }
+    });
+    
   }
 
 
@@ -114,8 +134,7 @@ export class ModifierSliderComponent implements OnInit{
   getUploadedImages(){
     this.dataStorageService.getImagesFromServer()
     .subscribe( data => {
-      this.images = data;
-      
+      this.images = data;     
     });
   }
   

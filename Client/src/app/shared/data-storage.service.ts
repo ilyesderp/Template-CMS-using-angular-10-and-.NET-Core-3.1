@@ -46,5 +46,10 @@ export class DataSotrageService{
         return this.http.get<any[]>('https://localhost:44324/api/slides');
     }
 
+    deleteImageInService(id: any){
+        console.log("id = "+ id);
+        return this.http.delete(`https://localhost:44324/api/imageupload/${id}`, {responseType: 'text'});
+    }
+
 
 }

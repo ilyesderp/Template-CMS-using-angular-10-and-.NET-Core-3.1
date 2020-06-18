@@ -3,7 +3,7 @@
 
 
 
-<div class="container">
+<div class="container" style="margin-top: 30px;">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-lg-12">
                 
@@ -35,12 +35,12 @@
                              
                              
                              
-                             <mat-card tabindex="0" class="example-card">
+                             <mat-card class="example-card">
                                 <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
                                 
                                 <mat-card-actions id="matBoutons" [align]="'start'">                                     
                                     <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath))">Selectionner</button>
-                                    <button mat-icon-button color="warn">
+                                    <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath))">
                                         <mat-icon>delete</mat-icon>
                                     </button>
                                     

@@ -24,6 +24,7 @@ import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginato
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PopupElementsComponent } from './accueil/modifier-slider/popup-elements/popup-elements.component';
+import { PopupDeleteComponent } from './accueil/modifier-slider/popup-delete/popup-delete.component';
 
 
 
@@ -39,6 +40,7 @@ import { PopupElementsComponent } from './accueil/modifier-slider/popup-elements
     SliderComponent,
     ModifierSliderComponent,
     PopupElementsComponent,
+    PopupDeleteComponent,
     
   ],
   imports: [
