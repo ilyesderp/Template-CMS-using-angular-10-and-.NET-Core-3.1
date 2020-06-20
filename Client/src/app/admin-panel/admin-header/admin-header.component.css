@@ -1,6 +1,9 @@
 #menu-admin a:hover, #menu-admin button:hover{
     color: white;
-    
+}
+
+#yellow-btn:hover{
+    background-color: transparent;
 }
 
 #btn-jaune:hover{

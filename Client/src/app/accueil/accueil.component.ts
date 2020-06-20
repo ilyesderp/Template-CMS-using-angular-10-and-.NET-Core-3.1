@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DynamicScriptLoaderService } from '../shared/dynamic-script-loader.service';
+
 
 @Component({
   selector: 'app-accueil',
@@ -9,7 +9,7 @@ import { DynamicScriptLoaderService } from '../shared/dynamic-script-loader.serv
 })
 export class AccueilComponent implements OnInit {
 
-  constructor(private dynamicScriptsLoader: DynamicScriptLoaderService) { }
+  constructor() { }
 
   ngOnInit(): void {
     

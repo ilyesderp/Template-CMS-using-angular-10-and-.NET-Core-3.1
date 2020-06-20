@@ -1,0 +1,17 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+  
+        <h3>Modification Slider</h3>
+        <a mat-list-item [routerLink]="'modifier-slider'"> Modifier les images </a>
+        <a mat-list-item [routerLink]="'/create-account'"> Modifier le texte </a>
+        
+  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

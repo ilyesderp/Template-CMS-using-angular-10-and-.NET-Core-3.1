@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { faSignInAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   signInIcon = faSignInAlt;
   phoneIcon = faPhoneAlt;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }

@@ -2,16 +2,16 @@
 
 <mat-toolbar color="primary" id="menu-admin">
     <mat-toolbar-row>
-      <button mat-icon-button>
+      <button mat-icon-button id="yellow-btn">
         <mat-icon [class.active]="toggleActive" (click)="toggleRightSidenav()">menu</mat-icon>
       </button>
       
       <span class="menu-spacer"></span>
       <div>
-        <a mat-raised-button href="https://www.agb.dz/" color="accent" id="btn-jaune"> Revenir vers le site </a>
-        <a mat-button [routerLink]="'/modifier-slider'"> Modifier le Slider </a>
-        <a mat-button [routerLink]="'/modifier-qui-sommes-nous'"> Modifier Qui Sommes Nous? </a>
-        <a mat-button [routerLink]="'/'"> Modifier Produits & Services </a>
+        <a mat-raised-button [routerLink]="''" color="accent" id="btn-jaune"> Revenir vers le site </a>
+        <a mat-button [routerLink]="'modifier-accueil'"> Modifier Accueil </a>
+        <a mat-button [routerLink]="'modifier-qui-sommes-nous'"> Modifier Qui Sommes Nous? </a>
+        <a mat-button [routerLink]="'modifier-produits-et-services'"> Modifier Produits & Services </a>
       </div>
         <span id="separation-menu"></span>
       <div>
