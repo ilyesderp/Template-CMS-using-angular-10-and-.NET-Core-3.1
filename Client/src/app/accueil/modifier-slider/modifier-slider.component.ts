@@ -51,7 +51,6 @@ export class ModifierSliderComponent implements OnInit{
 
 
  
-  
 
   
   constructor(private dataStorageService: DataSotrageService, public dialog: MatDialog) { }

@@ -1,14 +1,11 @@
 .fader {
-  height: 50vw;
+  height: 700px;
+  width: 100%;
   position: relative;
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .fader {
-    height: 700px;
-  }
-}
+
 
 .fader__slide {
   width: 100%;
@@ -18,8 +15,10 @@
 }
 
 .fader img {
-  width: 1920px;
-  height: 700px;
+  width: 100%;
+  height: 100%;
+  min-width: 1920px !important;
+  min-height: 700px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -44,7 +43,7 @@
 
 .dots {
   display: flex;
-  padding: 10px 0;
+  padding: 5px 0;
   justify-content: center;
 }
 

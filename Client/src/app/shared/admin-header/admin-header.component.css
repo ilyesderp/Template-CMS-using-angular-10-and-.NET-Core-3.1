@@ -1,0 +1,30 @@
+#menu-admin a:hover, #menu-admin button:hover{
+    color: white;
+    
+}
+
+#btn-jaune:hover{
+    color: rgba(0,0,0,.87) !important;
+}
+
+#btn-jaune:visited{
+    color: rgba(0,0,0,.87) !important;
+}
+
+#menu-admin a:active{
+    color: white;
+}
+
+#menu-admin a:focus{
+    color: white;
+}
+
+#separation-menu{
+    /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto !important;
+}
+
+.menu-spacer{
+    width: 2vw;
+}

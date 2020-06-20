@@ -25,6 +25,13 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PopupElementsComponent } from './accueil/modifier-slider/popup-elements/popup-elements.component';
 import { PopupDeleteComponent } from './accueil/modifier-slider/popup-delete/popup-delete.component';
+import { AdminHeaderComponent } from './shared/admin-header/admin-header.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { SideNav } from './shared/side-nav/side-nav.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+
 
 
 
@@ -41,6 +48,9 @@ import { PopupDeleteComponent } from './accueil/modifier-slider/popup-delete/pop
     ModifierSliderComponent,
     PopupElementsComponent,
     PopupDeleteComponent,
+    AdminHeaderComponent,
+    SideNav,
+    AdminPanelComponent
     
   ],
   imports: [
@@ -57,7 +67,10 @@ import { PopupDeleteComponent } from './accueil/modifier-slider/popup-delete/pop
     MatGridListModule,
     MatPaginatorModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [DynamicScriptLoaderService, { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}],
   bootstrap: [AppComponent]
