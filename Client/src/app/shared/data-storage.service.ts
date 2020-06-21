@@ -42,6 +42,8 @@ export class DataSotrageService{
         return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide5", "Path": slidePath }, {responseType: 'text'});
     }
 
+
+    //get accueil slides from db:
     getSlidesFromServer(){
         return this.http.get<any[]>('https://localhost:44324/api/slides');
     }
@@ -49,6 +51,11 @@ export class DataSotrageService{
     deleteImageInService(id: any){
         console.log("id = "+ id);
         return this.http.delete(`https://localhost:44324/api/imageupload/${id}`, {responseType: 'text'});
+    }
+
+
+    saveTextPosition(x,y){
+        //return this.http.post("url", {x,y});
     }
 
 

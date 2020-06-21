@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-modifier-accueil',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModifierAccueilComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.navigateTo();
+  }
+
+  navigateTo(){
+    this.router.navigate(['modifier-slider'], {relativeTo: this.route, skipLocationChange: true});
   }
 
 }

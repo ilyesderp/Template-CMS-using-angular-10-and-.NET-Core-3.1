@@ -1,18 +1,18 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HeaderService } from '../shared/navbar.service';
 
 
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css'],
-  encapsulation : ViewEncapsulation.None
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  constructor(public headerService: HeaderService) { }
 
   ngOnInit(): void {
-    
+    this.headerService.show();
   }
 
   

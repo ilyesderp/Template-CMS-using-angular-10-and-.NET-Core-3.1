@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderService } from '../shared/navbar.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminPanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(public headerService: HeaderService) { }
 
   ngOnInit(): void {
+    this.headerService.hide();
   }
 
 }

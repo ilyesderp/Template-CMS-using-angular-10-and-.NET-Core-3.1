@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { faSignInAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
+import { HeaderService } from '../shared/navbar.service';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +13,8 @@ export class HeaderComponent implements OnInit {
   signInIcon = faSignInAlt;
   phoneIcon = faPhoneAlt;
 
-  constructor(public router: Router) { }
+  constructor(public headerService: HeaderService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

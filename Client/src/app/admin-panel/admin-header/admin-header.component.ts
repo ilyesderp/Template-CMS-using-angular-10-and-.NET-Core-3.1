@@ -22,8 +22,6 @@ export class AdminHeaderComponent implements OnInit {
 	toggleRightSidenav() {
 		this.toggleActive = !this.toggleActive;
 		this.sidenav.toggle();
-
-    console.log('Clicked');
 	}
 
 }

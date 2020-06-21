@@ -11,7 +11,6 @@ declare var $: any;
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css'],
-  encapsulation : ViewEncapsulation.None
 })
 export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 

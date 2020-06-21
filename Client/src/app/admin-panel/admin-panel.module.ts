@@ -1,7 +1,4 @@
 import {NgModule} from '@angular/core';
-import { ModifierSliderComponent, CustomMatPaginatorIntl } from '../accueil/modifier-slider/modifier-slider.component';
-import { PopupElementsComponent } from '../accueil/modifier-slider/popup-elements/popup-elements.component';
-import { PopupDeleteComponent } from '../accueil/modifier-slider/popup-delete/popup-delete.component';
 import { AdminHeaderComponent } from '../admin-panel/admin-header/admin-header.component';
 import { AdminPanelComponent } from './admin-panel.component';
 import { CommonModule } from '@angular/common';
@@ -24,6 +21,12 @@ import { SideNav } from './admin-header/side-nav/side-nav.component';
 import { ModifierAccueilComponent } from './modifier-accueil/modifier-accueil.component';
 import { ModifierQuiSommesNousComponent } from './modifier-qui-sommes-nous/modifier-qui-sommes-nous.component';
 import { ModifierProduitsEtServicesComponent } from './modifier-produits-et-services/modifier-produits-et-services.component';
+import { ModifierTexteSlideComponent } from './modifier-texte-slide/modifier-texte-slide.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { PopupTextSlideComponent } from './modifier-texte-slide/popup-text-slide/popup-text-slide.component';
+import { ModifierSliderComponent, CustomMatPaginatorIntl } from './modifier-slider/modifier-slider.component';
+import { PopupElementsComponent } from './modifier-slider/popup-elements/popup-elements.component';
+import { PopupDeleteComponent } from './modifier-slider/popup-delete/popup-delete.component';
 
 
 
@@ -31,7 +34,8 @@ import { ModifierProduitsEtServicesComponent } from './modifier-produits-et-serv
 const adminRoutes: Routes = [
     {path: 'admin-panel', component: AdminPanelComponent, children: [
         {path: 'modifier-accueil', component: ModifierAccueilComponent, children: [
-            {path: 'modifier-slider', component: ModifierSliderComponent}
+            {path: 'modifier-slider', component: ModifierSliderComponent},
+            {path: 'modifier-texte-slider', component: ModifierTexteSlideComponent}
         ]},
         {path: 'modifier-qui-sommes-nous', component: ModifierQuiSommesNousComponent},
         {path: 'modifier-produits-et-services', component: ModifierProduitsEtServicesComponent}
@@ -49,7 +53,9 @@ const adminRoutes: Routes = [
         AdminPanelComponent,
         ModifierAccueilComponent,
         ModifierQuiSommesNousComponent,
-        ModifierProduitsEtServicesComponent
+        ModifierProduitsEtServicesComponent,
+        ModifierTexteSlideComponent,
+        PopupTextSlideComponent
     ],
     imports: [
         CommonModule,
@@ -67,7 +73,8 @@ const adminRoutes: Routes = [
         MatDialogModule,
         MatToolbarModule,
         MatSidenavModule,
-        MatListModule
+        MatListModule,
+        DragDropModule
     ],
 
     providers: [{ provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}]
