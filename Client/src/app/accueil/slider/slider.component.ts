@@ -30,6 +30,8 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   slide4: string;
   slide5: string;
 
+  imageTexts: string[];
+
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>;
   
   images: String[];
@@ -113,6 +115,14 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
       
     });
   }
+
+
+  getImagesTexts(){
+    this.dataStorageService.getTextImagesFromServer().subscribe( (result) => {
+      //this.imageTexts = result;
+    });
+  }
+
 
   ngOnDestroy() {
     if (this.slider) this.slider.destroy();

@@ -55,17 +55,11 @@ export class PopupTextSlideComponent implements OnInit {
   }
 
   fileProgress(fileInput: any) {
-    
-    /*let reader = new FileReader();
-    reader.readAsDataURL(<File>fileInput.target.files[0]);
-
-    reader.onload = (e: any) => {
-
-      this.fileData = e.target.result;
-    } */
-    
     this.fileData = <File>fileInput.target.files[0];
 
 }
+
+
+
 
 }

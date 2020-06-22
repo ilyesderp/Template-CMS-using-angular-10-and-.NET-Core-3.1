@@ -67,4 +67,8 @@ export class DataSotrageService{
     }
 
 
+    getTextImagesFromServer(){
+        return this.http.get("https://localhost:44324/api/ImageText");
+    }
+
 }

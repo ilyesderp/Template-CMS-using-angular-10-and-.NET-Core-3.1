@@ -89,5 +89,14 @@ namespace API.Controllers
                 return StatusCode(500, $"Erreur serveur interne: {ex}");
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<ImageText>>> GetImages()
+        {
+            var images = await _context.ImageTexts.ToListAsync();
+
+            return Ok(images);
+        }
     }
+
 }
