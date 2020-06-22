@@ -17,5 +17,7 @@ namespace API.Data
 
         public DbSet<Slide> Slides { get; set; }
 
+        public DbSet<ImageText> ImageTexts { get; set; }
+
     }
 }

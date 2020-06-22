@@ -6,6 +6,9 @@
             <ngx-mat-file-input placeholder="Chargez votre image" name="image" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
             <mat-icon matSuffix>folder</mat-icon>
         </mat-form-field>
+        <div class="form-group">
+          <button mat-raised-button color="primary" (click)="onSubmitUpload()">Envoyer</button>
+      </div>
       </div>
     </div>
 </div>
