@@ -54,8 +54,16 @@ export class DataSotrageService{
     }
 
 
-    saveTextPosition(x,y){
-        //return this.http.post("url", {x,y});
+    postTextImagesToServer(formData: FormData){
+
+        console.log("content of formData");
+        console.log(formData);
+
+        return this.http.post("https://localhost:44324/api/ImageText", formData, {
+            reportProgress: true,
+            observe: 'events',
+            responseType: 'text'   
+          });
     }
 
 

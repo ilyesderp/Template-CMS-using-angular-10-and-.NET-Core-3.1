@@ -13,7 +13,7 @@
                             <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="image.path">
                             
                             <mat-card-actions id="matBoutons" [align]="'start'">                                     
-                                <button mat-flat-button color="accent" (click)="openDialog(image.path)">Selectionner</button>
+                                <button mat-flat-button color="accent" (click)="openDialog(image.path, 'Slide' + (i+1))">Selectionner</button>
                                                       
                             </mat-card-actions>
                           </mat-card>

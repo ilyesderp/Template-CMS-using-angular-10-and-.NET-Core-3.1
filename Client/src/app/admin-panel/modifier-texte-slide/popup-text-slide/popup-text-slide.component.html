@@ -1,14 +1,35 @@
-<div class="example-boundary"  [ngStyle]="{'background-image': 'url('+ dataText +')'}">
-    <div class="example-box" cdkDragBoundary=".example-boundary" (cdkDragEnded)="onDragEnded($event)" cdkDrag>
-      <br>
-      <div class="form-group">
-        <mat-form-field>
-            <ngx-mat-file-input placeholder="Chargez votre image" name="image" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
-            <mat-icon matSuffix>folder</mat-icon>
-        </mat-form-field>
-        <div class="form-group">
-          <button mat-raised-button color="primary" (click)="onSubmitUpload()">Envoyer</button>
-      </div>
-      </div>
+<div class="example-boundary"  [ngStyle]="{'background-image': 'url('+ dataText.path +')'}">
+    <div class="example-box" disabled="dragActive" cdkDragBoundary=".example-boundary" (cdkDragEnded)="onDragEnded($event)" cdkDrag>
+      Veuillez charger une image
     </div>
 </div>
+
+<br><br>
+<div id="container-popBtn">
+  <div class="row" id="popupBtn">
+    <div class="form-group col-md-4 external-btn">
+      <mat-form-field class="col-md-7">
+          <ngx-mat-file-input placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
+          <mat-icon matSuffix>folder</mat-icon>
+      </mat-form-field>
+      <div class="form-group col-md-3">
+        <button mat-raised-button color="primary" (click)="onSubmitUpload(dataText.slide)">Envoyer</button>
+    </div>
+    </div>
+    
+    <!--<div class="col-md-2 external-btn">
+      <button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
+    </div>-->
+    <div class="col-md-2 external-btn">
+      <button mat-raised-button color="warn">Supprimer Image</button>
+    </div>
+    <div class="col-md-2 external-btn">
+      <button mat-raised-button color="accent">Enregistrer</button>
+    </div>
+  </div>
+  
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Fermer</button>
+  </div>
+</div>
+

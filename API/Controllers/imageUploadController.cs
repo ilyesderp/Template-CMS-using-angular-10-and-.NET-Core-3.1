@@ -45,7 +45,7 @@ namespace API.Controllers
                     var dbPath = Path.Combine(folderName, fileName);
                     var image = new Image();
 
-                    //sauvgarde du path de l'image dans la bdd à faire, i just need to check [FromBody] cz might help.
+                    
                     
 
                     using(var stream = new FileStream(fullPath, FileMode.Create))

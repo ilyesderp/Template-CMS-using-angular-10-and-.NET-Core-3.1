@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-popup-text-slide',
@@ -8,10 +9,10 @@ import { DataSotrageService } from 'src/app/shared/data-storage.service';
   styleUrls: ['./popup-text-slide.component.css']
 })
 export class PopupTextSlideComponent implements OnInit {
-  fileData: File = null;
+  fileData: string = null;
   fileUploadProgress: string = null;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dataText: string, private dataStorageService: DataSotrageService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string}, private dataStorageService: DataSotrageService) { }
 
   ngOnInit(): void {
   }
@@ -23,19 +24,20 @@ export class PopupTextSlideComponent implements OnInit {
     console.log("y = " + event.distance.y);
   }
 
-  onSubmitUpload(){
+
+  onSubmitUpload(slide: string){
     let formData = new FormData();
-    
     if (this.fileData === null) {
       return;
     }
 
       var file = this.fileData;
-      formData.append('file', file);
+      formData.append('Image', file);
+      formData.append('NumSlide', slide);
 
       this.fileUploadProgress = '0%';
  
-    /*this.dataStorageService.postImagesToServer(formData)
+    this.dataStorageService.postTextImagesToServer(formData)
     .subscribe(events => {
       if(events.type === HttpEventType.UploadProgress) {
         this.fileUploadProgress = Math.round(events.loaded / events.total * 100) + '%';
@@ -45,11 +47,25 @@ export class PopupTextSlideComponent implements OnInit {
           this.fileUploadProgress = '';
           console.log(events.body);         
           alert('SUCCESS !!');
-          this.getUploadedImages();
+          //this.getUploadedImages();
         
       }
          
-    }); */
+    });
   }
+
+  fileProgress(fileInput: any) {
+    
+    let reader = new FileReader();
+    reader.readAsDataURL(<File>fileInput.target.files[0]);
+
+    reader.onload = (e: any) => {
+
+      this.fileData = e.target.result;
+    } 
+    
+    //this.fileData = <File>fileInput.target.files[0];
+
+}
 
 }

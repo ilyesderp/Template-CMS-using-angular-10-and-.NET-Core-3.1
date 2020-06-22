@@ -27,8 +27,8 @@ export class ModifierTexteSlideComponent implements OnInit {
   }
 
 
-  openDialog(imgPath: string) {
-    this.dialog.open(PopupTextSlideComponent, {data: imgPath});
+  openDialog(imgPath: string, numSlide: string) {
+    this.dialog.open(PopupTextSlideComponent, {data: {path: imgPath, slide: numSlide}});
   }
 
 }
