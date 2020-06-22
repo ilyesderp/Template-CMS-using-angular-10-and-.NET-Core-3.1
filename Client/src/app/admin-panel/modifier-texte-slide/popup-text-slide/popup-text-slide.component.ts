@@ -9,7 +9,7 @@ import { HttpEventType } from '@angular/common/http';
   styleUrls: ['./popup-text-slide.component.css']
 })
 export class PopupTextSlideComponent implements OnInit {
-  fileData: string = null;
+  fileData: File = null;
   fileUploadProgress: string = null;
 
   constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string}, private dataStorageService: DataSotrageService) { }
@@ -56,15 +56,15 @@ export class PopupTextSlideComponent implements OnInit {
 
   fileProgress(fileInput: any) {
     
-    let reader = new FileReader();
+    /*let reader = new FileReader();
     reader.readAsDataURL(<File>fileInput.target.files[0]);
 
     reader.onload = (e: any) => {
 
       this.fileData = e.target.result;
-    } 
+    } */
     
-    //this.fileData = <File>fileInput.target.files[0];
+    this.fileData = <File>fileInput.target.files[0];
 
 }
 

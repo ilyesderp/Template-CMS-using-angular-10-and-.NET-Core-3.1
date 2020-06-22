@@ -8,7 +8,7 @@ namespace API.Data
 {
     public class ImageTextRequestFormat
     {
-        public string Image { get; set; }
+        public List<IFormFile> Image { get; set; }
 
         public string NumSlide { get; set; }
     }

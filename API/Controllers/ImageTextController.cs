@@ -29,17 +29,29 @@ namespace API.Controllers
         {
             try
             {
-                //var file = Request.Form.Files[0];
-                var file = imageTextClient.Image;
+                var file = imageTextClient.Image[0];
+                //var imageBase64 = imageTextClient.Image;
+
+                //byte[] bytes = Convert.FromBase64String(imageBase64);
+
+
                 var subFolder = Path.Combine("images", "uploads");
                 var folderName = Path.Combine("wwwroot", subFolder);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+
+                /*using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    Image pic = Image.FromStream(ms);
+
+                    pic.Save(DefaultImagePath);
+                }*/
+
 
                 if (file == null)
                 {
                     return BadRequest();
                 }
-
                 
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(pathToSave, fileName);
