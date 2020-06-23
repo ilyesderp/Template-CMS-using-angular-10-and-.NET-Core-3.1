@@ -97,6 +97,26 @@ namespace API.Controllers
 
             return Ok(images);
         }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteImageText(int id)
+        {
+
+            var dbImage = _context.ImageTexts.FirstOrDefault(i => i.Id.Equals(id));
+
+            if(dbImage != null)
+            {
+                _context.ImageTexts.Remove(dbImage);
+                _context.SaveChanges();
+            }
+            else
+            {
+                StatusCode(500, $"Internal server error");
+            }
+
+            return Ok("Suppression image texte réussie!");
+        }
     }
 
 }

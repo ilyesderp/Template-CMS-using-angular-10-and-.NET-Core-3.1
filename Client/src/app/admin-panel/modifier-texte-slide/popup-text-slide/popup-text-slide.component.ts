@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import { HttpEventType } from '@angular/common/http';
 import { ImageText } from 'src/app/accueil/slider/slider.component';
+import { PopupDeleteComponent } from '../../modifier-slider/popup-delete/popup-delete.component';
 
 @Component({
   selector: 'app-popup-text-slide',
@@ -21,7 +22,7 @@ export class PopupTextSlideComponent implements OnInit {
 
   imgTxtUrl: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string}, private dataStorageService: DataSotrageService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string}, private dataStorageService: DataSotrageService, public dialog: MatDialog) {
     this.getTextImage();
    }
 
@@ -59,13 +60,29 @@ export class PopupTextSlideComponent implements OnInit {
           this.fileUploadProgress = '';
           console.log(events.body);         
           alert('SUCCESS !!');
-          //this.getUploadedImages();
+
           this.getTextImage();
           this.getDesiredImageText(slide);
       }
          
     });
     
+  }
+
+  supprimerImageText(id: any, slide: string){
+    console.log("id = " + id);
+    const dialogDelete = this.dialog.open(PopupDeleteComponent);
+    dialogDelete.afterClosed().subscribe( arg => {
+      if(arg === true){
+        this.dataStorageService.deleteTextImageFromServer(id).subscribe( result => {
+          console.log(result);
+          alert("Suppression réussie !");
+          //this.getTextImage();
+          this.getDesiredImageText(slide);
+          console.log("finished!");
+        });
+      }
+  });
   }
 
   fileProgress(fileInput: any) {
@@ -93,27 +110,31 @@ getTextImage(){
       else if(res != null && res.slideName == "Slide5"){
         this.imgTxt5= res;
       }
-
     }
   });
 }
 
-getDesiredImageText(numSlide: string){
+getDesiredImageText(numSlide: string): any{
   
   if(this.imgTxt1 != null && this.imgTxt1.slideName == numSlide){
-    return this.ImagePath(this.imgTxt1.imageTextPath);
+    //return this.ImagePath(this.imgTxt1.imageTextPath);
+    return this.imgTxt1;
   }
   else if(this.imgTxt2 != null && this.imgTxt2.slideName == numSlide){
-    return this.ImagePath(this.imgTxt2.imageTextPath);
+    //return this.ImagePath(this.imgTxt2.imageTextPath);
+    return this.imgTxt2;
   }
   else if(this.imgTxt3 != null && this.imgTxt3.slideName == numSlide){
-    return this.ImagePath(this.imgTxt3.imageTextPath);
+    //return this.ImagePath(this.imgTxt3.imageTextPath);
+    return this.imgTxt3;
   }
   else if(this.imgTxt4 != null && this.imgTxt4.slideName == numSlide){
-    return this.ImagePath(this.imgTxt4.imageTextPath);
+    //return this.ImagePath(this.imgTxt4.imageTextPath);
+    return this.imgTxt4;
   }
   else if(this.imgTxt5 != null && this.imgTxt5.slideName == numSlide){
-    return this.ImagePath(this.imgTxt5.imageTextPath);
+    //return this.ImagePath(this.imgTxt5.imageTextPath);
+    return this.imgTxt5;
   }
   else return '';
 

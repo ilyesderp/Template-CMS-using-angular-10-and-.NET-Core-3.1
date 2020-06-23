@@ -96,10 +96,6 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteImage(int id)
         {
-            if (id == null)
-            {
-                return BadRequest("id value is null");
-            }
 
             try
             {

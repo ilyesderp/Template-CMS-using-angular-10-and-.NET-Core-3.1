@@ -72,4 +72,8 @@ export class DataSotrageService{
         return this.http.get<any[]>("https://localhost:44324/api/ImageText");
     }
 
+    deleteTextImageFromServer(id){
+        return this.http.delete(`https://localhost:44324/api/ImageText/${id}`, {responseType: 'text'});
+    }
+
 }

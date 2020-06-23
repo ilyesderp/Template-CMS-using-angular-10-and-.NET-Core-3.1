@@ -12,7 +12,7 @@
               </div>
             </ng-template>
             <ng-template #contenu_pas_bon>
-              <div class="example-box" [ngStyle]="{'background': 'url('+ getDesiredImageText(dataText.slide) +') no-repeat'}" 
+              <div class="example-box" [ngStyle]="{'background': 'url('+ ImagePath(getDesiredImageText(dataText.slide).imageTextPath) +') no-repeat'}" 
                 cdkDragBoundary=".example-boundary" 
                 (cdkDragEnded)="onDragEnded($event)" cdkDrag>
               </div>
@@ -38,7 +38,7 @@
       <button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
     </div>-->
     <div class="col-md-2 external-btn">
-      <button mat-raised-button color="warn">Supprimer Image</button>
+      <button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide).id, dataText.slide)">Supprimer Image</button>
     </div>
     <div class="col-md-2 external-btn">
       <button mat-raised-button color="accent">Enregistrer</button>
