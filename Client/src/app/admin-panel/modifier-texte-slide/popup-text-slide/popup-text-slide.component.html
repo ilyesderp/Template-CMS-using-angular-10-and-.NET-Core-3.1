@@ -1,7 +1,24 @@
 <div class="example-boundary"  [ngStyle]="{'background-image': 'url('+ dataText.path +')'}">
-    <div class="example-box" disabled="dragActive" cdkDragBoundary=".example-boundary" (cdkDragEnded)="onDragEnded($event)" cdkDrag>
-      Veuillez charger une image
-    </div>
+    
+
+          <div *ngIf="getDesiredImageText(dataText.slide) == ''; then contenu_bon else contenu_pas_bon"></div>
+            <ng-template #contenu_bon>
+              <div class="example-box" 
+                    cdkDragBoundary=".example-boundary" 
+                    (cdkDragEnded)="onDragEnded($event)" cdkDrag>
+              <p>
+              Veuillez charger une image
+              </p>
+              </div>
+            </ng-template>
+            <ng-template #contenu_pas_bon>
+              <div class="example-box" [ngStyle]="{'background': 'url('+ getDesiredImageText(dataText.slide) +') no-repeat'}" 
+                cdkDragBoundary=".example-boundary" 
+                (cdkDragEnded)="onDragEnded($event)" cdkDrag>
+              </div>
+            </ng-template>
+          
+          
 </div>
 
 <br><br>
@@ -29,7 +46,7 @@
   </div>
   
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Fermer</button>
+    <button mat-button mat-dialog-close style="background: rgb(233, 232, 232);">Fermer</button>
   </div>
 </div>
 

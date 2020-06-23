@@ -3,7 +3,13 @@ import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import KeenSlider from "keen-slider";
 
-
+export interface ImageText{
+  id: number;
+  imageTextPath: string;
+  slideName: string;
+  positionX: number;
+  positionY: number;
+}
 
 declare var $: any;
 
@@ -30,7 +36,11 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   slide4: string;
   slide5: string;
 
-  imageTexts: string[];
+  imgTxt1: ImageText;
+  imgTxt2: ImageText;
+  imgTxt3: ImageText;
+  imgTxt4: ImageText;
+  imgTxt5: ImageText;
 
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>;
   
@@ -117,11 +127,34 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
 
-  getImagesTexts(){
-    this.dataStorageService.getTextImagesFromServer().subscribe( (result) => {
-      //this.imageTexts = result;
+  /*getImagesTexts(){
+    this.dataStorageService.getTextImagesFromServer().subscribe( (results) => {
+      for (const res of results) {
+        switch (res.SlideName) {
+          case "Slide1":
+            this.imgTxt1 = res;
+            break;
+
+          case "Slide2":
+            this.imgTxt2 = res;
+            break;
+
+          case "Slide3":
+            this.imgTxt3 = res;
+            break;
+
+          case "Slide4":
+            this.imgTxt4 = res;
+            break;
+
+          case "Slide5":
+            this.imgTxt5 = res;
+            break;
+        }
+      }
+
     });
-  }
+  }*/
 
 
   ngOnDestroy() {

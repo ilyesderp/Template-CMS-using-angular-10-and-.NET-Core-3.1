@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ImageText } from '../accueil/slider/slider.component';
 
 
 
@@ -68,7 +69,7 @@ export class DataSotrageService{
 
 
     getTextImagesFromServer(){
-        return this.http.get("https://localhost:44324/api/ImageText");
+        return this.http.get<any[]>("https://localhost:44324/api/ImageText");
     }
 
 }
