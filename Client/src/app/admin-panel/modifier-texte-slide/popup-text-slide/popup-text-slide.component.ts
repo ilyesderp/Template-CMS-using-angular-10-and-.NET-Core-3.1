@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import { HttpEventType } from '@angular/common/http';
 import { ImageText } from 'src/app/accueil/slider/slider.component';
 import { PopupDeleteComponent } from '../../modifier-slider/popup-delete/popup-delete.component';
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-popup-text-slide',
@@ -20,21 +21,37 @@ export class PopupTextSlideComponent implements OnInit {
   imgTxt4: ImageText;
   imgTxt5: ImageText;
 
-  imgTxtUrl: string;
+  posX: number = 0;
+  posY: number = 0;
+
+
+  validate: boolean = true;
 
   constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string}, private dataStorageService: DataSotrageService, public dialog: MatDialog) {
-    this.getTextImage();
+    
    }
 
   ngOnInit(): void {
 
+    this.getTextImage();
+    
   }
 
 
-  onDragEnded(event){
+  onDragEnded(event: CdkDragEnd){
     //this.dataStorageService.saveTextPosition(event.x, event.y);
-    console.log("x = " + event.distance.x);
-    console.log("y = " + event.distance.y);
+    console.log("x = " + event.source.getFreeDragPosition().x);
+    console.log("y = " + event.source.getFreeDragPosition().y);
+
+    this.posX = event.source.getFreeDragPosition().x;
+    this.posY = event.source.getFreeDragPosition().y;
+  }
+
+  onSubmitPosition(position: {Image: any, PosX: number, PosY: number, NumSlide: string}){
+    this.dataStorageService.updatePosition(position).subscribe(result => {
+      alert("Position enregistée");
+      this.dialog.closeAll();
+    });
   }
 
 
@@ -63,6 +80,7 @@ export class PopupTextSlideComponent implements OnInit {
 
           this.getTextImage();
           this.getDesiredImageText(slide);
+          this.validate = true;
       }
          
     });
@@ -77,9 +95,7 @@ export class PopupTextSlideComponent implements OnInit {
         this.dataStorageService.deleteTextImageFromServer(id).subscribe( result => {
           console.log(result);
           alert("Suppression réussie !");
-          //this.getTextImage();
-          this.getDesiredImageText(slide);
-          console.log("finished!");
+          this.dialog.closeAll();
         });
       }
   });
@@ -93,7 +109,6 @@ export class PopupTextSlideComponent implements OnInit {
 getTextImage(){
   this.dataStorageService.getTextImagesFromServer().subscribe(results => {
 
-    console.log(results)
     for (const res of results) {
       if(res != null && res.slideName == "Slide1"){
         this.imgTxt1 = res;
@@ -118,25 +133,33 @@ getDesiredImageText(numSlide: string): any{
   
   if(this.imgTxt1 != null && this.imgTxt1.slideName == numSlide){
     //return this.ImagePath(this.imgTxt1.imageTextPath);
+    this.validate = true;
     return this.imgTxt1;
   }
   else if(this.imgTxt2 != null && this.imgTxt2.slideName == numSlide){
     //return this.ImagePath(this.imgTxt2.imageTextPath);
+    this.validate = true;
     return this.imgTxt2;
   }
   else if(this.imgTxt3 != null && this.imgTxt3.slideName == numSlide){
     //return this.ImagePath(this.imgTxt3.imageTextPath);
+    this.validate = true;
     return this.imgTxt3;
   }
   else if(this.imgTxt4 != null && this.imgTxt4.slideName == numSlide){
     //return this.ImagePath(this.imgTxt4.imageTextPath);
+    this.validate = true;
     return this.imgTxt4;
   }
   else if(this.imgTxt5 != null && this.imgTxt5.slideName == numSlide){
     //return this.ImagePath(this.imgTxt5.imageTextPath);
+    this.validate = true;
     return this.imgTxt5;
   }
-  else return '';
+  else {
+    this.validate = false;
+    return '';
+  }
 
 }
 

@@ -67,6 +67,10 @@ namespace API.Controllers
 
                     imageText.ImageTextPath = dbPath;
                     imageText.SlideName = imageTextClient.NumSlide;
+                    //imageText.PositionX = imageTextClient.PosX;
+                    //imageText.PositionY = imageTextClient.PosY;
+
+                    
 
                         var dbImagetext = _context.ImageTexts.FirstOrDefault(i => i.SlideName.Equals(imageText.SlideName));
                         if (dbImagetext == null)
@@ -89,6 +93,30 @@ namespace API.Controllers
                 return StatusCode(500, $"Erreur serveur interne: {ex}");
             }
         }
+
+
+        [HttpPut]
+        public IActionResult UpdatePosition([FromBody] ImageTextRequestFormat posClient)
+        {
+            try
+            {
+                var dbImagetext = _context.ImageTexts.FirstOrDefault(i => i.SlideName.Equals(posClient.NumSlide));
+
+                if(dbImagetext != null)
+                {
+                    dbImagetext.PositionX = posClient.PosX;
+                    dbImagetext.PositionY = posClient.PosY;
+                    _context.SaveChanges();
+                }
+                return Ok("Mise à jour de la position réussie");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, $"Erreur serveur interne: {e}");
+            }
+            
+        }
+
 
         [HttpGet]
         public async Task<ActionResult<List<ImageText>>> GetImages()

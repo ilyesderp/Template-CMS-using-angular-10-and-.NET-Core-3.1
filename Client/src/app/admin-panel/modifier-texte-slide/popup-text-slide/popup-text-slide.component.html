@@ -41,7 +41,7 @@
       <button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide).id, dataText.slide)">Supprimer Image</button>
     </div>
     <div class="col-md-2 external-btn">
-      <button mat-raised-button color="accent">Enregistrer</button>
+      <button mat-raised-button color="accent" (click)="onSubmitPosition({Image: null, PosX: posX, PosY: posY, NumSlide: dataText.slide})" [disabled]="!validate">Enregistrer</button>
     </div>
   </div>
   

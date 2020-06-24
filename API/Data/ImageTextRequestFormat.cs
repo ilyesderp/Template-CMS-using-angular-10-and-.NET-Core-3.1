@@ -11,5 +11,9 @@ namespace API.Data
         public List<IFormFile> Image { get; set; }
 
         public string NumSlide { get; set; }
+
+        public int PosX { get; set; }
+
+        public int PosY { get; set; }
     }
 }
