@@ -10,6 +10,15 @@
         *ngFor="let src of images; let idx = index"
       >
         <img [src]="src" />
+
+
+        <!-- <div *ngIf="idx == 0" [ngStyle]="{'background': 'url(' + this.imgTxt1.imageTextPath + ')'}"></div>
+        <div *ngIf="idx == 1" [ngStyle]="{'background': 'url(' + this.imgTxt2.imageTextPath + ')'}"></div>
+        <div *ngIf="idx == 2" [ngStyle]="{'background': 'url(' + this.imgTxt3.imageTextPath + ')'}"></div>
+        <div *ngIf="idx == 3" [ngStyle]="{'background': 'url(' + this.imgTxt4.imageTextPath + ')'}"></div>
+        <div *ngIf="idx == 4" [ngStyle]="{'background': 'url(' + this.imgTxt5.imageTextPath + ')'}"></div>-->
+      
+
       </div>
       <svg
       [ngClass]="'arrow arrow--left ' + ( currentSlide === 0 ? 'arrow--disabled' : '')"
@@ -39,11 +48,5 @@
         [class]="'dot ' + (i === currentSlide ? 'active' : '')"
       ></button>
     </div>
-
-  <p>contenu slide1 = {{ slide1 }}</p>
-  <p>contenu slide2 = {{ slide2 }}</p>
-  <p>contenu slide3 = {{ slide3 }}</p>
-  <p>contenu slide4 = {{ slide4 }}</p>
-  <p>contenu slide5 = {{ slide5 }}</p>
   
 </div>

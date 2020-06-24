@@ -30,11 +30,11 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   currentSlide: number = 1;
   dotHelper: Array<Number> = [];
   
-  slide1: string;
-  slide2: string;
-  slide3: string;
-  slide4: string;
-  slide5: string;
+  slide1: any;
+  slide2: any;
+  slide3: any;
+  slide4: any;
+  slide5: any;
 
   imgTxt1: ImageText;
   imgTxt2: ImageText;
@@ -45,6 +45,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>;
   
   images: String[];
+  imgTexts: ImageText[];
 
   
 
@@ -53,6 +54,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   
   ngOnInit(): void {
     this.getSlides();
+    //this.getImagesTexts();
   }
   
   ngAfterViewInit(){ 
@@ -90,19 +92,19 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
         for (const elt of donnee) {
           switch (elt.slideNumber) {
             case "Slide1":
-              this.slide1 = elt.path;
+              this.slide1 = elt;
               break;
             case "Slide2":
-              this.slide2 = elt.path;
+              this.slide2 = elt;
               break;
             case "Slide3":
-              this.slide3 = elt.path;
+              this.slide3 = elt;
               break;
             case "Slide4":
-              this.slide4 = elt.path;
+              this.slide4 = elt;
               break;
             case "Slide5":
-              this.slide5 = elt.path;
+              this.slide5 = elt;
               break;
           
             default: console.log("Erreur dans le SlideNumber");
@@ -111,11 +113,11 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   
         }
         this.images = [
-          this.slide1,
-          this.slide2,
-          this.slide3,
-          this.slide4,
-          this.slide5
+          this.slide1.path,
+          this.slide2.path,
+          this.slide3.path,
+          this.slide4.path,
+          this.slide5.path,
         ]; 
       }
       else{
@@ -127,34 +129,47 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
 
-  /*getImagesTexts(){
+  getImagesTexts(){
     this.dataStorageService.getTextImagesFromServer().subscribe( (results) => {
-      for (const res of results) {
-        switch (res.SlideName) {
-          case "Slide1":
-            this.imgTxt1 = res;
-            break;
+      console.log(results);
+      
+      for (let res of results) {
 
-          case "Slide2":
-            this.imgTxt2 = res;
-            break;
+        console.log(res.path);
+        console.log(res.slideNumber);
 
-          case "Slide3":
-            this.imgTxt3 = res;
-            break;
-
-          case "Slide4":
-            this.imgTxt4 = res;
-            break;
-
-          case "Slide5":
-            this.imgTxt5 = res;
-            break;
-        }
+        if(res != null){
+          switch (res.slideName) {
+            case "Slide1":
+              this.imgTxt1.imageTextPath = res.path;
+              this.imgTxt1.slideName = res.slideNumber;
+              break;
+  
+            case "Slide2":
+              this.imgTxt2.imageTextPath = res.path;
+              this.imgTxt2.slideName = res.slideNumber;
+              break;
+  
+            case "Slide3":
+              this.imgTxt3.imageTextPath = res.path;
+              this.imgTxt3.slideName = res.slideNumber;
+              break;
+  
+            case "Slide4":
+              this.imgTxt4.imageTextPath = res.path;
+              this.imgTxt4.slideName = res.slideNumber;
+              break;
+  
+            case "Slide5":
+              this.imgTxt5.imageTextPath = res.path;
+              this.imgTxt5.slideName = res.slideNumber;
+              break;
+          }
+        }       
       }
 
     });
-  }*/
+  }
 
 
   ngOnDestroy() {
