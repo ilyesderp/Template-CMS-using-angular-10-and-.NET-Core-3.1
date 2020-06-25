@@ -12,11 +12,42 @@
         <img [src]="src" />
 
 
-        <!-- <div *ngIf="idx == 0" [ngStyle]="{'background': 'url(' + this.imgTxt1.imageTextPath + ')'}"></div>
-        <div *ngIf="idx == 1" [ngStyle]="{'background': 'url(' + this.imgTxt2.imageTextPath + ')'}"></div>
-        <div *ngIf="idx == 2" [ngStyle]="{'background': 'url(' + this.imgTxt3.imageTextPath + ')'}"></div>
-        <div *ngIf="idx == 3" [ngStyle]="{'background': 'url(' + this.imgTxt4.imageTextPath + ')'}"></div>
-        <div *ngIf="idx == 4" [ngStyle]="{'background': 'url(' + this.imgTxt5.imageTextPath + ')'}"></div>-->
+          <div *ngIf="idx == 0 && imgTxtObs | async as imgtxts" style="max-width: 561px; max-height: 389px; z-index: 100;">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide1'">
+                <img  [src]="ImagePath(img.imageTextPath)" style="z-index: 100; width: 100%; height: 100%;">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 1 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide2'">
+                <img  [src]="ImagePath(img.imageTextPath)" style="z-index: 100;">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 2 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide3'">
+                <img  [src]="ImagePath(img.imageTextPath)" style="z-index: 100;">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 3 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide4'">
+                <img  [src]="ImagePath(img.imageTextPath)" style="z-index: 100;">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 4 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide5'">
+                <img  [src]="ImagePath(img.imageTextPath)" style="z-index: 100;">
+              </div>
+            </div>
+          </div>
+
       
 
       </div>

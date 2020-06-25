@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewEncapsulation, ViewChild, Element
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import KeenSlider from "keen-slider";
+import { Observable } from 'rxjs';
 
 export interface ImageText{
   id: number;
@@ -47,6 +48,8 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   images: String[];
   imgTexts: ImageText[];
 
+  imgTxtObs: Observable<ImageText[]>;
+
   
 
   constructor(private dataStorageService: DataSotrageService) { }
@@ -54,7 +57,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   
   ngOnInit(): void {
     this.getSlides();
-    //this.getImagesTexts();
+    this.getImagesTexts();
   }
   
   ngAfterViewInit(){ 
@@ -130,47 +133,54 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 
 
   getImagesTexts(){
-    this.dataStorageService.getTextImagesFromServer().subscribe( (results) => {
+    this.imgTxtObs = this.dataStorageService.getTextImagesFromServer();
+
+    /*this.dataStorageService.getTextImagesFromServer().subscribe( (results) => {
       console.log(results);
       
       for (let res of results) {
 
-        console.log(res.path);
-        console.log(res.slideNumber);
+        console.log(res.imageTextPath);
+        console.log(res.slideName);
 
         if(res != null){
           switch (res.slideName) {
             case "Slide1":
-              this.imgTxt1.imageTextPath = res.path;
-              this.imgTxt1.slideName = res.slideNumber;
+              this.imgTxt1.imageTextPath = res.imageTextPath;
+              this.imgTxt1.slideName = res.slideName;
               break;
   
             case "Slide2":
-              this.imgTxt2.imageTextPath = res.path;
-              this.imgTxt2.slideName = res.slideNumber;
+              this.imgTxt2.imageTextPath = res.imageTextPath;
+              this.imgTxt2.slideName = res.slideName;
               break;
   
             case "Slide3":
-              this.imgTxt3.imageTextPath = res.path;
+              this.imgTxt3.imageTextPath = res.imageTextPath;
               this.imgTxt3.slideName = res.slideNumber;
               break;
   
             case "Slide4":
-              this.imgTxt4.imageTextPath = res.path;
+              this.imgTxt4.imageTextPath = res.imageTextPath;
               this.imgTxt4.slideName = res.slideNumber;
               break;
   
             case "Slide5":
-              this.imgTxt5.imageTextPath = res.path;
+              this.imgTxt5.imageTextPath = res.imageTextPath;
               this.imgTxt5.slideName = res.slideNumber;
               break;
           }
         }       
       }
 
-    });
+    });*/
   }
 
+
+  ImagePath(serverPath: string){
+    let path2 = serverPath.replace(/\\/g, "/");
+    return 'https://localhost:44324/' + path2;
+  }
 
   ngOnDestroy() {
     if (this.slider) this.slider.destroy();
