@@ -76,7 +76,7 @@ export class DataSotrageService{
         return this.http.delete(`https://localhost:44324/api/ImageText/${id}`, {responseType: 'text'});
     }
 
-    updatePosition(position: {Image: any, PosX: number, PosY: number, NumSlide: string}){
+    updatePosition(position: {Image: any, PosX: any, PosY: any, NumSlide: string}){
         return this.http.put("https://localhost:44324/api/ImageText" , position, {responseType: 'text'});
     }
 

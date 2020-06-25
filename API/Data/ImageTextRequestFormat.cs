@@ -12,8 +12,8 @@ namespace API.Data
 
         public string NumSlide { get; set; }
 
-        public int PosX { get; set; }
+        public double PosX { get; set; }
 
-        public int PosY { get; set; }
+        public double PosY { get; set; }
     }
 }

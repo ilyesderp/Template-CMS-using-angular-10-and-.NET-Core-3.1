@@ -1,6 +1,6 @@
 .example-box {
-    width: 500px;
-    height: 400px;
+    width: 450px;
+    height: 300px;
     border: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
     cursor: move;
@@ -21,6 +21,7 @@
                 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 
     opacity: 0.9;
+    background-size: 100% 100% !important;
   }
   
   .example-box:active {

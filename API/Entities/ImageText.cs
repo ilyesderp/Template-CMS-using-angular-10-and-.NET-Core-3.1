@@ -15,8 +15,8 @@ namespace API.Entities
 
         public string SlideName { get; set; }
 
-        public int PositionX { get; set; }
+        public double PositionX { get; set; }
 
-        public int PositionY { get; set; }
+        public double PositionY { get; set; }
     }
 }

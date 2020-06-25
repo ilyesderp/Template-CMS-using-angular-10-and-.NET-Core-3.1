@@ -21,8 +21,8 @@ export class PopupTextSlideComponent implements OnInit {
   imgTxt4: ImageText;
   imgTxt5: ImageText;
 
-  posX: number = 0;
-  posY: number = 0;
+  posX: any = 0;
+  posY: any = 0;
 
 
   validate: boolean = true;
@@ -47,7 +47,7 @@ export class PopupTextSlideComponent implements OnInit {
     this.posY = event.source.getFreeDragPosition().y;
   }
 
-  onSubmitPosition(position: {Image: any, PosX: number, PosY: number, NumSlide: string}){
+  onSubmitPosition(position: {Image: any, PosX: any, PosY: any, NumSlide: string}){
     this.dataStorageService.updatePosition(position).subscribe(result => {
       alert("Position enregistée");
       this.dialog.closeAll();
@@ -129,7 +129,7 @@ getTextImage(){
   });
 }
 
-getDesiredImageText(numSlide: string): any{
+getDesiredImageText(numSlide: string): ImageText{
   
   if(this.imgTxt1 != null && this.imgTxt1.slideName == numSlide){
     //return this.ImagePath(this.imgTxt1.imageTextPath);
@@ -158,7 +158,7 @@ getDesiredImageText(numSlide: string): any{
   }
   else {
     this.validate = false;
-    return '';
+    return null;
   }
 
 }
