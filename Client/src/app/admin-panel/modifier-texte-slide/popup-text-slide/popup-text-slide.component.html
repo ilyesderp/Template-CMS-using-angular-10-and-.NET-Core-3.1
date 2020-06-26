@@ -26,7 +26,7 @@
 <br><br>
 <div id="container-popBtn">
   <div class="row" id="popupBtn">
-    <div class="form-group col-md-4 external-btn">
+    <div class="form-group col-md-4 external-btn" *ngIf="!validate">
       <mat-form-field class="col-md-7">
           <ngx-mat-file-input placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
           <mat-icon matSuffix>folder</mat-icon>

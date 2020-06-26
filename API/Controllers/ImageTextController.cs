@@ -79,7 +79,8 @@ namespace API.Controllers
                         }
                         else
                         {
-                            dbImagetext.ImageTextPath = imageText.ImageTextPath;
+                    //dbImagetext.ImageTextPath = imageText.ImageTextPath;
+                    Ok("Image text is already set");
                         }
 
                         _context.SaveChanges();
