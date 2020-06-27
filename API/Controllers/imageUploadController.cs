@@ -65,6 +65,8 @@ namespace API.Controllers
                         else
                         {
                             dbImage.ImagePath = image.ImagePath;
+
+                            //return Ok("exist");
                         }
                         
                         _context.SaveChanges();

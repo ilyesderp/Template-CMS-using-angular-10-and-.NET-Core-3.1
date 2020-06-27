@@ -1,4 +1,4 @@
-<div class="example-boundary"  [ngStyle]="{'background-image': 'url('+dataText.path+')'}">
+<div class="example-boundary"  [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
     
 
           <div *ngIf="getDesiredImageText(dataText.slide) == null; then contenu_bon else contenu_pas_bon"></div>
@@ -12,7 +12,7 @@
               </div>
             </ng-template>
             <ng-template #contenu_pas_bon>
-              <div class="example-box" [ngStyle]="{'background': 'url('+ ImagePath(getDesiredImageText(dataText.slide).imageTextPath) +')'}" 
+              <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(getDesiredImageText(dataText.slide).imageTextPath) +'\')'}" 
                 cdkDragBoundary=".example-boundary" 
                 (cdkDragEnded)="onDragEnded($event)"
                 [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide).positionX, y: getDesiredImageText(dataText.slide).positionY}"

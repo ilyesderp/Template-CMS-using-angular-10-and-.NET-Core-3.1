@@ -168,10 +168,4 @@ ImagePath(serverPath: string){
   return 'https://localhost:44324/' + path2;
 }
 
-/*cleanURL(path){
-  let path2 = path.replace(/ /g, "%20");
-  let path3 = path2.replace(/'/g, "\'");
-  return path3;
-}*/
-
 }

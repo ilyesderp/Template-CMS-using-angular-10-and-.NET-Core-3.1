@@ -115,15 +115,22 @@ export class ModifierSliderComponent implements OnInit{
         console.log(this.fileUploadProgress);
       } else if(events.type === HttpEventType.Response) {
         
-        if(events.body !== "over100"){
+        if(events.body !== "over100" && events.body !== "exist"){
           this.fileUploadProgress = '';
           console.log(events.body);         
           alert('SUCCESS !!');
           this.getUploadedImages();
         }
-        else{
+        else if(events.body === "over100"){
+          this.fileUploadProgress = '';
           alert("Vous avez dépassé 100 images chargées, vous devez supprimer quelques images avant d'en rajouter de nouvelles!");
         }
+
+        /*else if(events.body === "exist"){
+          this.fileUploadProgress = '';
+          alert("Une des images chargées existe déja!");
+          this.getUploadedImages();
+        }*/
         
       }
          
