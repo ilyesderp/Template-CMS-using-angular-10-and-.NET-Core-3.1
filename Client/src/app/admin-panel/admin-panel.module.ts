@@ -3,7 +3,6 @@ import { AdminHeaderComponent } from '../admin-panel/admin-header/admin-header.c
 import { AdminPanelComponent } from './admin-panel.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,12 +20,12 @@ import { SideNav } from './admin-header/side-nav/side-nav.component';
 import { ModifierAccueilComponent } from './modifier-accueil/modifier-accueil.component';
 import { ModifierQuiSommesNousComponent } from './modifier-qui-sommes-nous/modifier-qui-sommes-nous.component';
 import { ModifierProduitsEtServicesComponent } from './modifier-produits-et-services/modifier-produits-et-services.component';
-import { ModifierTexteSlideComponent } from './modifier-texte-slide/modifier-texte-slide.component';
+import { ModifierTexteSlideComponent } from './modifier-accueil/modifier-texte-slide/modifier-texte-slide.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import { PopupTextSlideComponent } from './modifier-texte-slide/popup-text-slide/popup-text-slide.component';
-import { ModifierSliderComponent, CustomMatPaginatorIntl } from './modifier-slider/modifier-slider.component';
-import { PopupElementsComponent } from './modifier-slider/popup-elements/popup-elements.component';
-import { PopupDeleteComponent } from './modifier-slider/popup-delete/popup-delete.component';
+import { PopupTextSlideComponent } from './modifier-accueil/modifier-texte-slide/popup-text-slide/popup-text-slide.component';
+import { ModifierSliderComponent, CustomMatPaginatorIntl } from './modifier-accueil/modifier-slider/modifier-slider.component';
+import { PopupElementsComponent } from './modifier-accueil/modifier-slider/popup-elements/popup-elements.component';
+import { PopupDeleteComponent } from './modifier-accueil/modifier-slider/popup-delete/popup-delete.component';
 
 
 
@@ -61,7 +60,7 @@ const adminRoutes: Routes = [
         CommonModule,
         RouterModule.forChild(adminRoutes),
         FormsModule,
-        HttpClientModule,
+
         MaterialFileInputModule,
         BrowserAnimationsModule,
         MatFormFieldModule,

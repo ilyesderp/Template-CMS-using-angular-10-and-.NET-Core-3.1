@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, AfterViewInit, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { DataSotrageService } from 'src/app/shared/data-storage.service';
+import { DataSotrageService } from '../../../../shared/data-storage.service';
 import { HttpEventType } from '@angular/common/http';
-import { ImageText } from 'src/app/accueil/slider/slider.component';
-import { PopupDeleteComponent } from '../../modifier-slider/popup-delete/popup-delete.component';
+import { ImageText } from '../../../../accueil/slider/slider.component';
+import { PopupDeleteComponent } from '../../../modifier-accueil/modifier-slider/popup-delete/popup-delete.component';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 
 @Component({

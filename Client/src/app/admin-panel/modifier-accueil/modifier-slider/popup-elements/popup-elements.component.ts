@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DataSotrageService } from 'src/app/shared/data-storage.service';
+import { DataSotrageService } from '../../../../shared/data-storage.service';
 
 @Component({
   selector: 'app-popup-elements',

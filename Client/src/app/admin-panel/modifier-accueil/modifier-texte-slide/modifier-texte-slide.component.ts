@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSotrageService } from 'src/app/shared/data-storage.service';
+import { DataSotrageService } from '../../../shared/data-storage.service';
 import { PopupTextSlideComponent } from './popup-text-slide/popup-text-slide.component';
 import { MatDialog } from '@angular/material/dialog';
 

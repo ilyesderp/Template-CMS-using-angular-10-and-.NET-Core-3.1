@@ -12,7 +12,9 @@ import { ProduitsEtServicesComponent } from './produits-et-services/produits-et-
 import { SliderComponent } from './accueil/slider/slider.component';
 import { AdminPanelModule } from './admin-panel/admin-panel.module';
 import { AuthentificationComponent } from './authentification/authentification.component';
+import { HttpClientModule } from '@angular/common/http';
 
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -33,7 +35,10 @@ import { AuthentificationComponent } from './authentification/authentification.c
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    AdminPanelModule
+    AdminPanelModule,
+    HttpClientModule,
+    MatDialogModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
