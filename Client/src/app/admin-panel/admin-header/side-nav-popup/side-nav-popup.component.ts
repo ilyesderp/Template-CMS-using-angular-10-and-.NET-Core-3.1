@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { SidenavService } from 'src/app/shared/side-nav.service';
 
-
 @Component({
-  selector: 'app-side-nav',
-  templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.css']
+  selector: 'app-side-nav-popup',
+  templateUrl: './side-nav-popup.component.html',
+  styleUrls: ['./side-nav-popup.component.css']
 })
-export class SideNav implements OnInit, AfterViewInit {
+export class SideNavPopupComponent implements OnInit {
 
   @ViewChild('sidenav') public sidenav: MatSidenav;
 
@@ -21,5 +20,5 @@ export class SideNav implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.sidenavService.setSidenav(this.sidenav);
   }
-  
+
 }

@@ -8,7 +8,7 @@ import { Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 })
 export class ModifierAccueilComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.navigateTo();

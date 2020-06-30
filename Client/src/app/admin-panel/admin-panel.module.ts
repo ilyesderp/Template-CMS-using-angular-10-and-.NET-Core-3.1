@@ -26,12 +26,22 @@ import { PopupTextSlideComponent } from './modifier-accueil/modifier-texte-slide
 import { ModifierSliderComponent, CustomMatPaginatorIntl } from './modifier-accueil/modifier-slider/modifier-slider.component';
 import { PopupElementsComponent } from './modifier-accueil/modifier-slider/popup-elements/popup-elements.component';
 import { PopupDeleteComponent } from './modifier-accueil/modifier-slider/popup-delete/popup-delete.component';
+import { ModifierPopupAccueilComponent } from './modifier-popup-accueil/modifier-popup-accueil.component';
+import { SideNavPopupComponent } from './admin-header/side-nav-popup/side-nav-popup.component';
+import { YoutubeVidComponent } from './modifier-popup-accueil/youtube-vid/youtube-vid.component';
+import { CustomVidComponent } from './modifier-popup-accueil/custom-vid/custom-vid.component';
+import { CustomImgComponent } from './modifier-popup-accueil/custom-img/custom-img.component';
 
 
 
 //routing is integrated in AdminPanelModule file not like in AppModule
 const adminRoutes: Routes = [
     {path: 'admin-panel', component: AdminPanelComponent, children: [
+        {path: 'modifier-popup', component: ModifierPopupAccueilComponent, children: [
+            {path: 'modifier-popup-yt-video', component: YoutubeVidComponent},
+            {path: 'modifier-popup-image', component: CustomImgComponent},
+            {path: 'modifier-popup-video', component: CustomVidComponent}
+        ]},
         {path: 'modifier-accueil', component: ModifierAccueilComponent, children: [
             {path: 'modifier-slider', component: ModifierSliderComponent},
             {path: 'modifier-texte-slider', component: ModifierTexteSlideComponent}
@@ -54,7 +64,12 @@ const adminRoutes: Routes = [
         ModifierQuiSommesNousComponent,
         ModifierProduitsEtServicesComponent,
         ModifierTexteSlideComponent,
-        PopupTextSlideComponent
+        PopupTextSlideComponent,
+        ModifierPopupAccueilComponent,
+        SideNavPopupComponent,
+        YoutubeVidComponent,
+        CustomVidComponent,
+        CustomImgComponent
     ],
     imports: [
         CommonModule,

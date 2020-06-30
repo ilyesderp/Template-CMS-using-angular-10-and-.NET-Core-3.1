@@ -15,6 +15,7 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { PopupAccueilComponent } from './popup-accueil/popup-accueil.component';
 
 
 
@@ -28,7 +29,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     QuiSommesNousComponent,
     ProduitsEtServicesComponent,
     SliderComponent,
-    AuthentificationComponent
+    AuthentificationComponent,
+    PopupAccueilComponent
     
   ],
   imports: [
