@@ -207,7 +207,7 @@ input[type="submit"]:focus {
 	opacity: 1;
 	background: none;
 }
-select,
+/*select,
 textarea,
 input[type="text"],
 input[type="password"],
@@ -233,7 +233,7 @@ input[type="color"] {
 	-ms-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-}
+}*/
 select.error,
 textarea.error,
 .contact-form .textarea-message textarea.error,

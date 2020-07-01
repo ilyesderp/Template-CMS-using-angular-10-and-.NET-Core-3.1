@@ -79,4 +79,20 @@ export class DataSotrageService{
         return this.http.put("https://localhost:44324/api/ImageText" , position, {responseType: 'text'});
     }
 
+
+    postYoutubeLink(ytId: string){
+        return this.http.post("https://localhost:44324/api/YoutubeLink", {Nom: "YoutubeLink", YoutubeId: ytId}, {responseType: 'text'});
+    }
+
+    getYoutubeLink(){
+        return this.http.get<{id: number, nom: string, youtubeId: string}[]>("https://localhost:44324/api/YoutubeLink", {
+            reportProgress: true,
+            observe: 'events'   
+          });
+    }
+
+    deleteYoutubeLink(){
+        return this.http.delete("https://localhost:44324/api/YoutubeLink", {responseType: 'text'});
+    }
+
 }

@@ -1,1 +1,22 @@
-<p>popup-accueil works!</p>
+
+    <div class="container">
+    
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12 text-center">
+
+                <youtube-player [videoId]="link"
+                suggestedQuality="highres"
+                [height]="600"
+                [width]="1080"
+                [startSeconds]="0"></youtube-player>
+            </div>
+        </div>
+    
+    </div>
+
+    
+
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Fermer</button>
+</mat-dialog-actions>

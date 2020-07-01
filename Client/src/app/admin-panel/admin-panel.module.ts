@@ -31,6 +31,10 @@ import { SideNavPopupComponent } from './admin-header/side-nav-popup/side-nav-po
 import { YoutubeVidComponent } from './modifier-popup-accueil/youtube-vid/youtube-vid.component';
 import { CustomVidComponent } from './modifier-popup-accueil/custom-vid/custom-vid.component';
 import { CustomImgComponent } from './modifier-popup-accueil/custom-img/custom-img.component';
+import {YouTubePlayerModule} from '@angular/youtube-player';
+import {MatInputModule} from '@angular/material/input';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 
 
@@ -88,7 +92,10 @@ const adminRoutes: Routes = [
         MatToolbarModule,
         MatSidenavModule,
         MatListModule,
-        DragDropModule
+        DragDropModule,
+        YouTubePlayerModule,
+        MatInputModule,
+        MatProgressBarModule
     ],
 
     providers: [{ provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}]

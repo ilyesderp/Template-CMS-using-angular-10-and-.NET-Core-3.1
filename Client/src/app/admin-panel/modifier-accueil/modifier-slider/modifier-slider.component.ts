@@ -41,13 +41,14 @@ export class ModifierSliderComponent implements OnInit{
   
   fileData: File[] = null;
   previewUrl:any = null;
-  fileUploadProgress: string = null;
+  fileUploadProgress: number = null;
   uploadedFilePath: string = null;
   images: any[] = [];
 
   //pagination properties
   lowValue: number = 0;
   highValue: number = 8;
+  value = '';
 
 
  
@@ -106,23 +107,25 @@ export class ModifierSliderComponent implements OnInit{
     }
       
      
-    this.fileUploadProgress = '0%';
+    this.fileUploadProgress = 0;
  
     this.dataStorageService.postImagesToServer(formData)
     .subscribe(events => {
       if(events.type === HttpEventType.UploadProgress) {
-        this.fileUploadProgress = Math.round(events.loaded / events.total * 100) + '%';
+        this.fileUploadProgress = Math.round(events.loaded / events.total * 100);
         console.log(this.fileUploadProgress);
       } else if(events.type === HttpEventType.Response) {
         
         if(events.body !== "over100" && events.body !== "exist"){
-          this.fileUploadProgress = '';
+          this.fileUploadProgress = 0;
           console.log(events.body);         
           alert('SUCCESS !!');
+          
           this.getUploadedImages();
+          this.value = '';
         }
         else if(events.body === "over100"){
-          this.fileUploadProgress = '';
+          this.fileUploadProgress = 0;
           alert("Vous avez dépassé 100 images chargées, vous devez supprimer quelques images avant d'en rajouter de nouvelles!");
         }
 

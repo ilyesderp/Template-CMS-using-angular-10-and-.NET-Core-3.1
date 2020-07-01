@@ -19,5 +19,7 @@ namespace API.Data
 
         public DbSet<ImageText> ImageTexts { get; set; }
 
+        public DbSet<YoutubeLink> YoutubeLinks { get; set; }
+
     }
 }

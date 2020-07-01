@@ -13,9 +13,11 @@ import { SliderComponent } from './accueil/slider/slider.component';
 import { AdminPanelModule } from './admin-panel/admin-panel.module';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupAccueilComponent } from './popup-accueil/popup-accueil.component';
+import {YouTubePlayerModule} from '@angular/youtube-player';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
@@ -40,7 +42,9 @@ import { PopupAccueilComponent } from './popup-accueil/popup-accueil.component';
     AdminPanelModule,
     HttpClientModule,
     MatDialogModule,
-
+    YouTubePlayerModule,
+    MatButtonModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
