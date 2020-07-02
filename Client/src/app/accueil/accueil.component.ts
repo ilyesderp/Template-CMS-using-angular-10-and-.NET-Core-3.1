@@ -2,7 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HeaderService } from '../shared/navbar.service';
 import { DataSotrageService } from '../shared/data-storage.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PopupAccueilComponent } from '../popup-accueil/popup-accueil.component';
+import { PopupAccueilComponent } from './popup-accueil/popup-accueil.component';
+import { PopupAcceuilImgComponent } from './popup-acceuil-img/popup-acceuil-img.component';
 import { HttpEventType } from '@angular/common/http';
 
 
@@ -17,11 +18,11 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerService.show();
-    this.showPopup();
+    this.showPopupYoutubeVideo();
   }
 
 
-  showPopup(){
+  showPopupYoutubeVideo(){
     this.dataStorageService.getYoutubeLink().subscribe( result => {
      if(result.type === HttpEventType.Response){
       if(result.body[0] != null){
@@ -32,6 +33,13 @@ export class AccueilComponent implements OnInit {
     });
   }
 
+
+  showPopupImage(){
+    this.dataStorageService.getCustomImage().subscribe( result => {
+      this.dialog.open(PopupAcceuilImgComponent, {data: result.path, width: '80vw',
+      maxHeight: '90vh'});
+    })
+  }
   
 
 }

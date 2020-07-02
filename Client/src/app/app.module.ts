@@ -15,9 +15,10 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { PopupAccueilComponent } from './popup-accueil/popup-accueil.component';
+import { PopupAccueilComponent } from './accueil/popup-accueil/popup-accueil.component';
 import {YouTubePlayerModule} from '@angular/youtube-player';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { PopupAcceuilImgComponent } from './accueil/popup-acceuil-img/popup-acceuil-img.component';
 
 
 
@@ -32,7 +33,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     ProduitsEtServicesComponent,
     SliderComponent,
     AuthentificationComponent,
-    PopupAccueilComponent
+    PopupAccueilComponent,
+    PopupAcceuilImgComponent
     
   ],
   imports: [

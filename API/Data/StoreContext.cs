@@ -23,5 +23,7 @@ namespace API.Data
 
         public DbSet<CustomImage> CustomImages { get; set; }
 
+        public DbSet<ChoixPopup> ChoixPopups { get; set; }
+
     }
 }

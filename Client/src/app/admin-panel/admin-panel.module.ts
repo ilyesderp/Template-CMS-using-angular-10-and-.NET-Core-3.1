@@ -34,6 +34,7 @@ import { CustomImgComponent } from './modifier-popup-accueil/custom-img/custom-i
 import {YouTubePlayerModule} from '@angular/youtube-player';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ChoixPopupComponent } from './modifier-popup-accueil/choix-popup/choix-popup.component';
 
 
 
@@ -44,7 +45,8 @@ const adminRoutes: Routes = [
         {path: 'modifier-popup', component: ModifierPopupAccueilComponent, children: [
             {path: 'modifier-popup-yt-video', component: YoutubeVidComponent},
             {path: 'modifier-popup-image', component: CustomImgComponent},
-            {path: 'modifier-popup-video', component: CustomVidComponent}
+            {path: 'modifier-popup-video', component: CustomVidComponent},
+            {path: 'choix-popup', component: ChoixPopupComponent}
         ]},
         {path: 'modifier-accueil', component: ModifierAccueilComponent, children: [
             {path: 'modifier-slider', component: ModifierSliderComponent},
@@ -73,7 +75,8 @@ const adminRoutes: Routes = [
         SideNavPopupComponent,
         YoutubeVidComponent,
         CustomVidComponent,
-        CustomImgComponent
+        CustomImgComponent,
+        ChoixPopupComponent
     ],
     imports: [
         CommonModule,
