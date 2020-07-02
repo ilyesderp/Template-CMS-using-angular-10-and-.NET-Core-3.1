@@ -21,5 +21,7 @@ namespace API.Data
 
         public DbSet<YoutubeLink> YoutubeLinks { get; set; }
 
+        public DbSet<CustomImage> CustomImages { get; set; }
+
     }
 }

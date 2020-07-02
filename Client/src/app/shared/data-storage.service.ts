@@ -95,4 +95,20 @@ export class DataSotrageService{
         return this.http.delete("https://localhost:44324/api/YoutubeLink", {responseType: 'text'});
     }
 
+
+    postCustomImage(formData: FormData){
+        return this.http.post("https://localhost:44324/api/CustomImage", formData, {
+            reportProgress: true,
+            observe: 'events', 
+            responseType: 'text'
+        });
+    }
+
+    getCustomImage(){
+        return this.http.get<{id: any, nom: string, path: string}>("https://localhost:44324/api/CustomImage");
+    }
+
+    deleteCustomImage(){
+        return this.http.delete("https://localhost:44324/api/CustomImage", {responseType: 'text'});
+    }
 }

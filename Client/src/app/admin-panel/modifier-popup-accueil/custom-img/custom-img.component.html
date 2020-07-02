@@ -1,1 +1,35 @@
-<p>custom-img works!</p>
+<br><br>
+<div class="container" mat-dialog-content>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2>Image utilisée pour le popup de la page d'accueil</h2>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="!imgPath">
+        <div class="col-md-12 col-sm-12 col-lg-12 text-center">
+            <img src="../../../../assets/images/image-placeholder.jpg" width="50%" style="max-height: 30%;">
+        </div>
+    </div>
+    <div class="row" *ngIf="imgPath">
+        <div class="col-md-12 col-sm-12 col-lg-12 text-center">
+            <img [src]="imgPath" width="50%" style="max-height: 30%;">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12 text-center">
+            <mat-form-field>
+                <ngx-mat-file-input [(ngModel)]="value" placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" #uploader></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="warn" (click)="onDelete()" [disabled]="!imgPath">Supprimer image</button>&nbsp;&nbsp;
+            <button mat-raised-button color="primary" (click)="onSubmitUpload()" [disabled]="(uploader.value == null) || imgPath !=''">Envoyer</button>
+            
+            <br><br>
+        </div>
+    </div>
+
+</div>
+

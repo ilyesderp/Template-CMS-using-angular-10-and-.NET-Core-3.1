@@ -72,7 +72,7 @@ export class YoutubeVidComponent implements OnInit, AfterViewInit {
 
       } else if(events.type === HttpEventType.Response) {
         
-        if(events.body !== null){
+        if(typeof events.body[0] !== 'undefined'){
           this.progress = 0;
           this.ytLink = events.body[0].youtubeId;
          
