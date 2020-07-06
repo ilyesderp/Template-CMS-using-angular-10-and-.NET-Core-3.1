@@ -14,11 +14,24 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class AccueilComponent implements OnInit {
 
+  choix: string;
+
+
   constructor(public headerService: HeaderService, private dataStorageService: DataSotrageService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.headerService.show();
-    this.showPopupYoutubeVideo();
+
+    this.dataStorageService.getChoixPopup().subscribe( data => {
+      console.log(data);
+      this.choix = data;
+      if(this.choix == "ytvid"){
+        this.showPopupYoutubeVideo();
+      }
+      else if(this.choix == "customImg"){
+        this.showPopupImage();
+      }
+    });  
   }
 
 
@@ -37,8 +50,8 @@ export class AccueilComponent implements OnInit {
   showPopupImage(){
     this.dataStorageService.getCustomImage().subscribe( result => {
       this.dialog.open(PopupAcceuilImgComponent, {data: result.path, width: '80vw',
-      maxHeight: '90vh'});
-    })
+      maxHeight: '100vh'});
+    });
   }
   
 

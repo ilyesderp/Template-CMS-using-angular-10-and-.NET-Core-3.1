@@ -111,4 +111,12 @@ export class DataSotrageService{
     deleteCustomImage(){
         return this.http.delete("https://localhost:44324/api/CustomImage", {responseType: 'text'});
     }
+
+    postChoixPopup(monChoix: string){
+        return this.http.post("https://localhost:44324/api/ChoixPopup", {choix: monChoix}, {responseType: 'text'});
+    }
+
+    getChoixPopup(){
+        return this.http.get("https://localhost:44324/api/ChoixPopup", {responseType: 'text'});
+    }
 }

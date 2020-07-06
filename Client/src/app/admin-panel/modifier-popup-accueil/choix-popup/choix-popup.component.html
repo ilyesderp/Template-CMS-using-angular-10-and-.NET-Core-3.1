@@ -1,14 +1,22 @@
 <div class="container">
-    <br><br>
+    <br><br><br><br><br>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-lg-12 text-center">
             <h2>Choisissez quel popup vous voullez affichez à l'accueil du site</h2>
         </div>
         <br>
         <div class="col-md-12 col-sm-12 col-lg-12 text-center">
-            <button mat-raised-button color="warn" (click)="chooseYoutube()">Vidéo youtube</button>&nbsp;&nbsp;
-            <button mat-raised-button color="primary" (click)="chooseImage()">Image</button>
+            <button mat-raised-button color="warn" (click)="chooseYoutube()" [disabled]="disableYt">Vidéo youtube</button>&nbsp;&nbsp;
+            <button mat-raised-button color="primary" (click)="chooseImage()" [disabled]="disableImg">Image</button>
             <!--<button mat-raised-button color="accent">Vidéo personnalisée</button>-->
         </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12 text-center">
+            <h1>Popup affiché actuelement:</h1>
+            <p style="color: red; font-size: medium;"><strong>{{ actuel }}</strong></p>
+        </div>
+        
     </div>
 </div>

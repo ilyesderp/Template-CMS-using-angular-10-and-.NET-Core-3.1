@@ -24,14 +24,17 @@ namespace API.Controllers
 
 
         [HttpPost]
-        public IActionResult PostChoix([FromBody] string choix)
+        public IActionResult PostChoix([FromBody] ChoixRequestModel request)
         {
+
             try
             {
-                if (choix != null)
+                if (request == null)
                 {
                     return BadRequest("Mauvaise requete!");
                 }
+
+                var choix = request.choix;
                 var dbChoix = _context.ChoixPopups.FirstOrDefault(i => i.Nom.Equals("only"));
 
                 if (dbChoix != null)

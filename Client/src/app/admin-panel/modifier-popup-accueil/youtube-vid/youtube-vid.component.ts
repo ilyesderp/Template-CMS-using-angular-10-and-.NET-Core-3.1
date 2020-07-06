@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
-import { ResolveStart } from '@angular/router';
 import { HttpEventType } from '@angular/common/http';
 
 @Component({
