@@ -11,6 +11,7 @@ export class ChoixPopupComponent implements OnInit {
   actuel: string = '';
   disableYt: boolean = false;
   disableImg: boolean = false;
+  disableAucun: boolean = false;
 
 
   constructor(private dataStorageService: DataSotrageService) { }
@@ -25,11 +26,19 @@ export class ChoixPopupComponent implements OnInit {
         this.actuel = "popup video youtube";
         this.disableYt = true;
         this.disableImg= false;
+        this.disableAucun = false;
       }
       else if(data == "customImg"){
         this.actuel = "popup image";
         this.disableYt = false;
         this.disableImg= true;
+        this.disableAucun = false;
+      }
+      else if(data == "aucun"){
+        this.actuel= "aucun popup";
+        this.disableYt = false;
+        this.disableImg= false;
+        this.disableAucun = true;
       }
     });
   }
@@ -50,6 +59,14 @@ export class ChoixPopupComponent implements OnInit {
       this.getCurrentPopup();
     });
     
+  }
+
+  aucun(){
+    this.dataStorageService.postChoixPopup("aucun").subscribe(result => {
+      console.log(result);
+      alert("le popup de la page d'accueil a été enlevé!");
+      this.getCurrentPopup();
+    });
   }
 
 }

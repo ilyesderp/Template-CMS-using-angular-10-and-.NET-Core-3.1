@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LoadingBarService } from '@ngx-loading-bar/core';
 
 @Component({
   selector: 'app-popup-accueil',
@@ -10,10 +11,11 @@ export class PopupAccueilComponent implements OnInit, AfterViewInit {
 
   link: string = '';
 
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {id: any, nom: string, youtubeId: string}) { }
+  loader = this.loadingBar.useRef();
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {id: any, nom: string, youtubeId: string}, private loadingBar: LoadingBarService) { }
 
   ngOnInit(): void {
+    this.loader.start();
     this.setYoutubeLinkToView();
   }
 

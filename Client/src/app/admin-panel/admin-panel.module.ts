@@ -35,6 +35,10 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ChoixPopupComponent } from './modifier-popup-accueil/choix-popup/choix-popup.component';
+// for HttpClient import:
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+// for Core import:
+import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 
 
@@ -98,7 +102,9 @@ const adminRoutes: Routes = [
         DragDropModule,
         YouTubePlayerModule,
         MatInputModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        LoadingBarHttpClientModule,
+        LoadingBarModule
     ],
 
     providers: [{ provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}]

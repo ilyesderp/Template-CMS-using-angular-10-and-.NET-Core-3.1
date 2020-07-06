@@ -1,28 +1,30 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import { HttpEventType } from '@angular/common/http';
+import { LoadingBarService } from '@ngx-loading-bar/core';
+
 
 @Component({
   selector: 'app-youtube-vid',
   templateUrl: './youtube-vid.component.html',
   styleUrls: ['./youtube-vid.component.css']
 })
-export class YoutubeVidComponent implements OnInit, AfterViewInit {
+export class YoutubeVidComponent implements OnInit{
 
   value = '';
   ytLink: string;
   progress: number = 0;
   
-
-  constructor(private dataStorageService: DataSotrageService) { }
+  loader = this.loadingBar.useRef();
+  constructor(private dataStorageService: DataSotrageService, private loadingBar: LoadingBarService) { }
 
   ngOnInit(): void {
+    this.loader.start();
     this.initYoutubeVideoAPI();
     this.getYoutubeLink();
+    
   }
 
-  ngAfterViewInit(){
-  }
 
   initYoutubeVideoAPI(){
     //code to insert balise script in body for youtube api
@@ -30,6 +32,7 @@ export class YoutubeVidComponent implements OnInit, AfterViewInit {
 
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
+    
   }
 
 
@@ -74,11 +77,13 @@ export class YoutubeVidComponent implements OnInit, AfterViewInit {
         if(typeof events.body[0] !== 'undefined'){
           this.progress = 0;
           this.ytLink = events.body[0].youtubeId;
-         
         }
       }
+      
     });
   }
+
+
 
   onDelete(){
     this.dataStorageService.deleteYoutubeLink().subscribe(result => {

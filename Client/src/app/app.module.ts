@@ -19,6 +19,8 @@ import { PopupAccueilComponent } from './accueil/popup-accueil/popup-accueil.com
 import {YouTubePlayerModule} from '@angular/youtube-player';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PopupAcceuilImgComponent } from './accueil/popup-acceuil-img/popup-acceuil-img.component';
+// for Core import:
+import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 
 
@@ -46,7 +48,8 @@ import { PopupAcceuilImgComponent } from './accueil/popup-acceuil-img/popup-acce
     MatDialogModule,
     YouTubePlayerModule,
     MatButtonModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    LoadingBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
