@@ -3,6 +3,9 @@ import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import KeenSlider from "keen-slider";
 import { Observable } from 'rxjs';
+import { ResizeService } from 'src/app/shared/size-detector/resize.service';
+import { SCREEN_SIZE } from 'src/app/shared/size-detector/screen-size.enum';
+import { delay } from 'rxjs/operators';
 
 export interface ImageText{
   id: number;
@@ -50,11 +53,18 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 
   imgTxtObs: Observable<ImageText[]>;
 
+  size: SCREEN_SIZE;
+
+
+  constructor(private dataStorageService: DataSotrageService, private resizeService: ResizeService) { 
+    this.resizeService.onResize$.pipe(delay(0)).subscribe(x => {
+      this.size = x;
+    });
+  }
+  
   
 
-  constructor(private dataStorageService: DataSotrageService) { }
-  
-  
+
   ngOnInit(): void {
     this.getSlides();
     this.getImagesTexts();
