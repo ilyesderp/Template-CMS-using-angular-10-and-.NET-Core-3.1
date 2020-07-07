@@ -114,7 +114,8 @@ namespace API.Controllers
 
                     if (findInSlides == null)
                     {
-                        if (System.IO.File.Exists(dbImage.ImagePath)) //delete image from wwwroot
+                        var dbImgTxt = _context.ImageTexts.FirstOrDefault(s => s.ImageTextPath.Equals(dbImage.ImagePath));
+                        if (System.IO.File.Exists(dbImage.ImagePath) && dbImgTxt != null) //delete image from wwwroot
                         {
                             System.IO.File.Delete(dbImage.ImagePath);
                         }

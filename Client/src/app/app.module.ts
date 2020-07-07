@@ -21,6 +21,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PopupAcceuilImgComponent } from './accueil/popup-acceuil-img/popup-acceuil-img.component';
 // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { SizeDetectorComponent } from './shared/size-detector/size-detector.component';
 
 
 
@@ -36,7 +37,8 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     SliderComponent,
     AuthentificationComponent,
     PopupAccueilComponent,
-    PopupAcceuilImgComponent
+    PopupAcceuilImgComponent,
+    SizeDetectorComponent
     
   ],
   imports: [
