@@ -1,9 +1,22 @@
-
-
-
 <div class="container" style="margin-top: 30px;">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-lg-12">
+
+    <br>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Choisissez la dimension d'écran:</h1>
+            <p> 
+                <mat-button-toggle-group #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style">
+                  <mat-button-toggle class="btn-device" value="desktop" checked="true">Desktop</mat-button-toggle>
+                  <mat-button-toggle class="btn-device" value="tablette">Tablette</mat-button-toggle>
+                  <mat-button-toggle class="btn-device" value="mobile">Mobile</mat-button-toggle>
+                </mat-button-toggle-group>
+              </p>
+              <p style="color: red;"> {{ group.value }} </p>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12">
                 
                     <div class="form-group">
                         <mat-form-field>
@@ -19,8 +32,8 @@
                     </div>
                         
                 
-            </div>
         </div>
+    </div>
         <div class="row" *ngIf="images.length > 0">
             <div class="col-md-12">
             

@@ -9,7 +9,7 @@
     
     <div class="row" *ngIf="ytLink != null">
         <div class="col-md-12 col-sm-12 col-lg-12 text-center">
-            <ngx-loading-bar></ngx-loading-bar>
+            <ngx-loading-bar ref="ytVid"></ngx-loading-bar>
             <youtube-player (ready)="loader.complete()" [(videoId)]="ytLink"></youtube-player>
         </div>
     </div>

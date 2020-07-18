@@ -15,11 +15,13 @@ export class YoutubeVidComponent implements OnInit{
   ytLink: string;
   progress: number = 0;
   
-  loader = this.loadingBar.useRef();
-  constructor(private dataStorageService: DataSotrageService, private loadingBar: LoadingBarService) { }
+  loader = this.loadingBar.useRef('ytVid');
+  constructor(private dataStorageService: DataSotrageService, private loadingBar: LoadingBarService) {
+    this.loader.start();
+   }
 
   ngOnInit(): void {
-    this.loader.start();
+    
     this.initYoutubeVideoAPI();
     this.getYoutubeLink();
     

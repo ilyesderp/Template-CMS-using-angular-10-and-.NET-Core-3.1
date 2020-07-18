@@ -39,6 +39,7 @@ import { ChoixPopupComponent } from './modifier-popup-accueil/choix-popup/choix-
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 
@@ -104,7 +105,8 @@ const adminRoutes: Routes = [
         MatInputModule,
         MatProgressBarModule,
         LoadingBarHttpClientModule,
-        LoadingBarModule
+        LoadingBarModule,
+        MatButtonToggleModule
     ],
 
     providers: [{ provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}]
