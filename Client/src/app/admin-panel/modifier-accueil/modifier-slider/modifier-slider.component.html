@@ -28,17 +28,19 @@
                     
                      
                     <div class="form-group">
-                        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="fileData == null">Envoyer</button>
+                        <button mat-raised-button color="primary" (click)="onSubmit(group.value)" [disabled]="fileData == null">Envoyer</button>
                     </div>
                         
                 
         </div>
     </div>
-        <div class="row" *ngIf="images.length > 0">
+    <!-- next div will show depending on which device is selected -->
+        <!-- div for desktop -->
+        <div class="row" *ngIf="group.value=='desktop' && imagesDesktop.length > 0">
             <div class="col-md-12">
             
                         <mat-grid-list cols="4" rowHeight="1:1">
-                            <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (images | 
+                            <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesDesktop | 
                              slice: lowValue : highValue)">
                              
                              
@@ -60,15 +62,82 @@
                         </mat-grid-list>
                                    
                         
-                        <mat-paginator [length]="images.length"
+                        <mat-paginator [length]="imagesDesktop.length"
+                            [pageSize]="8"
+                            showFirstLastButtons="true"  
+                            (page)="getPaginatorData($event)">
+                        </mat-paginator>
+                </div> 
+        </div>
+        <!-- en div for desktop -->
+        <!-- div for tablette -->
+        <div class="row" *ngIf="group.value=='tablette' && imagesTablette.length > 0">
+            <div class="col-md-12">
+            
+                        <mat-grid-list cols="4" rowHeight="1:1">
+                            <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesTablette | 
+                             slice: lowValue : highValue)">
+                             
+                             
+                             
+                             
+                             
+                             <mat-card class="example-card">
+                                <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
+                                
+                                <mat-card-actions id="matBoutons" [align]="'start'">                                     
+                                    <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath))">Selectionner</button>
+                                    <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath))">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    
+                                </mat-card-actions>
+                              </mat-card>
+                             </mat-grid-tile>
+                        </mat-grid-list>
+                                   
+                        
+                        <mat-paginator [length]="imagesTablette.length"
                             [pageSize]="8"
                             showFirstLastButtons="true"  
                             (page)="getPaginatorData($event)">
                         </mat-paginator>
                 </div>
-         
-            
-            
         </div>
-    
+        <!-- end div for tablette -->
+        <!-- div for mobile -->
+        <div class="row" *ngIf="group.value=='mobile' && imagesMobile.length > 0">
+            <div class="col-md-12">
+            
+                        <mat-grid-list cols="4" rowHeight="1:1">
+                            <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesMobile | 
+                             slice: lowValue : highValue)">
+                             
+                             
+                             
+                             
+                             
+                             <mat-card class="example-card">
+                                <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
+                                
+                                <mat-card-actions id="matBoutons" [align]="'start'">                                     
+                                    <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath))">Selectionner</button>
+                                    <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath))">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    
+                                </mat-card-actions>
+                              </mat-card>
+                             </mat-grid-tile>
+                        </mat-grid-list>
+                                   
+                        
+                        <mat-paginator [length]="imagesMobile.length"
+                            [pageSize]="8"
+                            showFirstLastButtons="true"  
+                            (page)="getPaginatorData($event)">
+                        </mat-paginator>
+                </div>
+        </div>
+        <!-- end div for mobile -->
 </div>

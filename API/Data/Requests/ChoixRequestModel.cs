@@ -7,6 +7,6 @@ namespace API.Data
 {
     public class ChoixRequestModel
     {
-        public string choix { get; set; }
+        public string Choix { get; set; }
     }
 }

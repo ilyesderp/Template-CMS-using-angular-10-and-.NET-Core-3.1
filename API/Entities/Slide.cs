@@ -15,5 +15,7 @@ namespace API.Entities
         public string SlideNumber { get; set; }
 
         public string Path { get; set; }
+
+        public string Device { get; set; }
     }
 }

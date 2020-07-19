@@ -24,11 +24,11 @@ namespace API.Controllers
         }
 
         [HttpPost, DisableRequestSizeLimit]
-        public IActionResult Upload()
+        public IActionResult Upload([FromForm] ImagesDevicesRequestFormat imageData)
         {
             try
             {
-                var files = Request.Form.Files;
+                var files = imageData.Images;
                 var subFolder = Path.Combine("images", "uploads");
                 var folderName = Path.Combine("wwwroot", subFolder);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
@@ -54,10 +54,13 @@ namespace API.Controllers
                     }
                     
                     image.ImagePath = dbPath;
+                    image.Device = imageData.Device;
+
                     var count = _context.Images.Count();
                     if (count < 100)
                     {
                         var dbImage = _context.Images.FirstOrDefault(i => i.ImagePath.Equals(image.ImagePath));
+
                         if (dbImage == null)
                         {
                             _context.Add(image);

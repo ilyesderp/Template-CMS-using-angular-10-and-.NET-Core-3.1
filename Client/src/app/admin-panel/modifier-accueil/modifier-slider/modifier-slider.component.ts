@@ -43,7 +43,10 @@ export class ModifierSliderComponent implements OnInit{
   previewUrl:any = null;
   fileUploadProgress: number = null;
   uploadedFilePath: string = null;
-  images: any[] = [];
+  images: any[] = []; //will hold all images for all devices
+  imagesDesktop: any[] = [];
+  imagesTablette: any[] = [];
+  imagesMobile: any[] = [];
 
   //pagination properties
   lowValue: number = 0;
@@ -95,7 +98,7 @@ export class ModifierSliderComponent implements OnInit{
   }
 
    
-  onSubmit() {
+  onSubmit(device: string) {
     let formData = new FormData();
     
     if (this.fileData.length === 0) {
@@ -103,7 +106,8 @@ export class ModifierSliderComponent implements OnInit{
     }
 
     for (let file of this.fileData){
-      formData.append('files', file);
+      formData.append('Images', file);
+      formData.append('Device', device);
     }
       
      
@@ -143,7 +147,30 @@ export class ModifierSliderComponent implements OnInit{
   getUploadedImages(){
     this.dataStorageService.getImagesFromServer()
     .subscribe( data => {
-      this.images = data;     
+      // fill images variable with all images then separte them is different variables
+      this.images = data;
+
+      let desktopArray: any[] = [];
+      let tabArray: any[] = [];
+      let mobileArray: any[] = [];
+
+      for (const img of data) {
+        if(img.device == "desktop"){
+          desktopArray.push(img);
+          
+        }
+        else if(img.device == "tablette"){
+          tabArray.push(img);
+          
+        }
+        else if(img.device == "mobile"){
+          mobileArray.push(img);
+          
+        }
+      }
+      this.imagesDesktop = desktopArray;
+      this.imagesTablette = tabArray;
+      this.imagesMobile = mobileArray;
     });
   }
   

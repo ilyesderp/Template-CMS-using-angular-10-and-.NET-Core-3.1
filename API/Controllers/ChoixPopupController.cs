@@ -34,7 +34,7 @@ namespace API.Controllers
                     return BadRequest("Mauvaise requete!");
                 }
 
-                var choix = request.choix;
+                var choix = request.Choix;
                 var dbChoix = _context.ChoixPopups.FirstOrDefault(i => i.Nom.Equals("only"));
 
                 if (dbChoix != null)
