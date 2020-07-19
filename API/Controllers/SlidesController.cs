@@ -37,7 +37,7 @@ namespace API.Controllers
                     return BadRequest("Slide object is null");
                 }
 
-                var dbSlide = _context.Slides.FirstOrDefault(s => s.SlideNumber.Equals(slide.SlideNumber));
+                var dbSlide = _context.Slides.Where(s => s.SlideNumber.Equals(slide.SlideNumber)).Where(s => s.Device.Equals(slide.Device)).FirstOrDefault();
 
                 if (dbSlide == null)
                 {
@@ -45,6 +45,7 @@ namespace API.Controllers
                 }
                 else
                 {
+                    dbSlide.Device = slide.Device;
                     dbSlide.Path = slide.Path;
                 }
 

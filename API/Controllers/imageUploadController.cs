@@ -54,12 +54,13 @@ namespace API.Controllers
                     }
                     
                     image.ImagePath = dbPath;
-                    image.Device = imageData.Device;
+                    
 
                     var count = _context.Images.Count();
                     if (count < 100)
                     {
                         var dbImage = _context.Images.FirstOrDefault(i => i.ImagePath.Equals(image.ImagePath));
+                        dbImage.Device = imageData.Device;
 
                         if (dbImage == null)
                         {

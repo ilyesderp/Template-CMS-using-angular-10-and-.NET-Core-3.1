@@ -15,19 +15,20 @@ export class PopupTextSlideComponent implements OnInit {
   fileData: File = null;
   fileUploadProgress: string = null;
 
-  imgTxt1: ImageText;
-  imgTxt2: ImageText;
-  imgTxt3: ImageText;
-  imgTxt4: ImageText;
-  imgTxt5: ImageText;
+  imgTxtDesktop: ImageText[] = [];
+  imgTxtTab: ImageText[] = [];
+  imgTxtMobile: ImageText[] = [];
 
   posX: any = 0;
   posY: any = 0;
 
 
-  validate: boolean = true;
+  validateDesktop: boolean;
+  validateTab: boolean;
+  validateMobile: boolean;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string}, private dataStorageService: DataSotrageService, public dialog: MatDialog) {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string, device: string}, private dataStorageService: DataSotrageService, public dialog: MatDialog) {
     
    }
 
@@ -47,7 +48,7 @@ export class PopupTextSlideComponent implements OnInit {
     this.posY = event.source.getFreeDragPosition().y;
   }
 
-  onSubmitPosition(position: {Image: any, PosX: any, PosY: any, NumSlide: string}){
+  onSubmitPosition(position: {Image: any, PosX: any, PosY: any, NumSlide: string, Device: string}){
     this.dataStorageService.updatePosition(position).subscribe(result => {
       alert("Position enregistée");
       this.dialog.closeAll();
@@ -55,7 +56,7 @@ export class PopupTextSlideComponent implements OnInit {
   }
 
 
-  onSubmitUpload(slide: string){
+  onSubmitUpload(slide: string, device: string){
     let formData = new FormData();
     if (this.fileData === null) {
       return;
@@ -64,6 +65,7 @@ export class PopupTextSlideComponent implements OnInit {
       var file = this.fileData;
       formData.append('Image', file);
       formData.append('NumSlide', slide);
+      formData.append('Device', device);
 
       this.fileUploadProgress = '0%';
  
@@ -79,8 +81,18 @@ export class PopupTextSlideComponent implements OnInit {
           alert('SUCCESS !!');
 
           this.getTextImage();
-          this.getDesiredImageText(slide);
-          this.validate = true;
+          this.getDesiredImageText(slide, this.dataText.device);
+          console.log("before if:");
+          if(this.dataText.device == "desktop"){
+            this.validateDesktop = true;
+            console.log("validatedesktop = " + this.validateDesktop)
+          }
+          else if(this.dataText.device == "tablette"){
+            this.validateTab = true;
+          }
+          else if(this.dataText.device == "mobile"){
+            this.validateMobile = true;
+          }
       }
          
     });
@@ -110,57 +122,100 @@ getTextImage(){
   this.dataStorageService.getTextImagesFromServer().subscribe(results => {
 
     for (const res of results) {
-      if(res != null && res.slideName == "Slide1"){
-        this.imgTxt1 = res;
+      if(res.device == "desktop"){
+        if(res != null && res.slideName == "Slide1"){
+          this.imgTxtDesktop.push(res);
+        }
+        else if(res != null && res.slideName == "Slide2"){
+          this.imgTxtDesktop.push(res);
+        }
+        else if(res != null && res.slideName == "Slide3"){
+          this.imgTxtDesktop.push(res);
+        }
+        else if(res != null && res.slideName == "Slide4"){
+          this.imgTxtDesktop.push(res);
+        }
+        else if(res != null && res.slideName == "Slide5"){
+          this.imgTxtDesktop.push(res);
+        }
       }
-      else if(res != null && res.slideName == "Slide2"){
-        this.imgTxt2= res;
+      else if(res.device == "tablette"){
+        if(res != null && res.slideName == "Slide1"){
+          this.imgTxtTab.push(res);
+        }
+        else if(res != null && res.slideName == "Slide2"){
+          this.imgTxtTab.push(res);
+        }
+        else if(res != null && res.slideName == "Slide3"){
+          this.imgTxtTab.push(res);
+        }
+        else if(res != null && res.slideName == "Slide4"){
+          this.imgTxtTab.push(res);
+        }
+        else if(res != null && res.slideName == "Slide5"){
+          this.imgTxtTab.push(res);
+        }
       }
-      else if(res != null && res.slideName == "Slide3"){
-        this.imgTxt3= res;
+      else if(res.device == "mobile"){
+        if(res != null && res.slideName == "Slide1"){
+          this.imgTxtMobile.push(res);
+        }
+        else if(res != null && res.slideName == "Slide2"){
+          this.imgTxtMobile.push(res);
+        }
+        else if(res != null && res.slideName == "Slide3"){
+          this.imgTxtMobile.push(res);
+        }
+        else if(res != null && res.slideName == "Slide4"){
+          this.imgTxtMobile.push(res);
+        }
+        else if(res != null && res.slideName == "Slide5"){
+          this.imgTxtMobile.push(res);
+        }
       }
-      else if(res != null && res.slideName == "Slide4"){
-        this.imgTxt4= res;
-      }
-      else if(res != null && res.slideName == "Slide5"){
-        this.imgTxt5= res;
-      }
+      
     }
   });
 }
 
-getDesiredImageText(numSlide: string): ImageText{
+getDesiredImageText(numSlide: string, device: string): ImageText{
   
-  if(this.imgTxt1 != null && this.imgTxt1.slideName == numSlide){
-    //return this.ImagePath(this.imgTxt1.imageTextPath);
-    this.validate = true;
-    return this.imgTxt1;
+  if(device == "desktop"){
+    for (const imgTxt of this.imgTxtDesktop) {
+      if(imgTxt != null && imgTxt.slideName == numSlide){
+        this.validateDesktop = true;
+        return imgTxt;
+      }
+      else {
+        this.validateDesktop = false;
+        return null;
+      }
+    }
   }
-  else if(this.imgTxt2 != null && this.imgTxt2.slideName == numSlide){
-    //return this.ImagePath(this.imgTxt2.imageTextPath);
-    this.validate = true;
-    return this.imgTxt2;
+  if(device == "tablette"){
+    for (const imgTxt of this.imgTxtTab) {
+      if(imgTxt != null && imgTxt.slideName == numSlide){
+        this.validateTab = true;
+        return imgTxt;
+      }
+      else {
+        this.validateTab = false;
+        return null;
+      }
+    }
   }
-  else if(this.imgTxt3 != null && this.imgTxt3.slideName == numSlide){
-    //return this.ImagePath(this.imgTxt3.imageTextPath);
-    this.validate = true;
-    return this.imgTxt3;
+  if(device == "mobile"){
+    for (const imgTxt of this.imgTxtMobile) {
+      if(imgTxt != null && imgTxt.slideName == numSlide){
+        this.validateMobile = true;
+        return imgTxt;
+      }
+      else {
+        this.validateMobile = false;
+        return null;
+      }
+    }
   }
-  else if(this.imgTxt4 != null && this.imgTxt4.slideName == numSlide){
-    //return this.ImagePath(this.imgTxt4.imageTextPath);
-    this.validate = true;
-    return this.imgTxt4;
-  }
-  else if(this.imgTxt5 != null && this.imgTxt5.slideName == numSlide){
-    //return this.ImagePath(this.imgTxt5.imageTextPath);
-    this.validate = true;
-    return this.imgTxt5;
-  }
-  else {
-    this.validate = false;
-    return null;
-  }
-
 }
 
 ImagePath(serverPath: string){

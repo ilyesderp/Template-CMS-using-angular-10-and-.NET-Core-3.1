@@ -87,8 +87,8 @@ export class ModifierSliderComponent implements OnInit{
   }
 
 
-  openDialog(imgPath: string) {
-    this.dialog.open(PopupElementsComponent, {data: imgPath});
+  openDialog(imgPath: string, resolution: string) {
+    this.dialog.open(PopupElementsComponent, {data: {img: imgPath, device: resolution}});
   }
 
    

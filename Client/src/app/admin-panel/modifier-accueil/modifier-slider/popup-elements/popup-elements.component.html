@@ -1,7 +1,7 @@
 <div class="conteneur">
   <h1 mat-dialog-title>Image selectionnée</h1>
   <div mat-dialog-content>
-    <img [src]="data">
+    <img [src]="data.img">
     <br>
     
     <br>
@@ -9,19 +9,19 @@
     <br>
     <div id="btns-container">
       <div class="col-md-2">
-        <button mat-raised-button color="primary" (click)="attributionSlide1(data)">Slide 1</button>
+        <button mat-raised-button color="primary" (click)="attributionSlide1(data.img, data.device)">Slide 1</button>
       </div>
       <div class="col-md-2">
-        <button mat-raised-button color="primary" (click)="attributionSlide2(data)">Slide 2</button>
+        <button mat-raised-button color="primary" (click)="attributionSlide2(data.img, data.device)">Slide 2</button>
       </div>
       <div class="col-md-2">
-        <button mat-raised-button color="primary" (click)="attributionSlide3(data)">Slide 3</button>
+        <button mat-raised-button color="primary" (click)="attributionSlide3(data.img, data.device)">Slide 3</button>
       </div>
       <div class="col-md-2">
-        <button mat-raised-button color="primary" (click)="attributionSlide4(data)">Slide 4</button>
+        <button mat-raised-button color="primary" (click)="attributionSlide4(data.img, data.device)">Slide 4</button>
       </div>
       <div class="col-md-2">
-        <button mat-raised-button color="primary" (click)="attributionSlide5(data)">Slide 5</button>
+        <button mat-raised-button color="primary" (click)="attributionSlide5(data.img, data.device)">Slide 5</button>
       </div>
     </div>
   

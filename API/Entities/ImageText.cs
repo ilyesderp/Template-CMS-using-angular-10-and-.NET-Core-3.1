@@ -18,5 +18,7 @@ namespace API.Entities
         public double PositionX { get; set; }
 
         public double PositionY { get; set; }
+
+        public string Device { get; set; }
     }
 }

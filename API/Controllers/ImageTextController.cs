@@ -72,18 +72,19 @@ namespace API.Controllers
 
                     
 
-                        var dbImagetext = _context.ImageTexts.FirstOrDefault(i => i.SlideName.Equals(imageText.SlideName));
-                        if (dbImagetext == null)
-                        {
+                    var dbImagetext = _context.ImageTexts.Where(i => i.SlideName.Equals(imageText.SlideName)).Where(i => i.Device.Equals(imageText.Device)).FirstOrDefault();
+                    if (dbImagetext == null)
+                    {
+                            imageText.Device = imageTextClient.Device;
                             _context.Add(imageText);
-                        }
-                        else
-                        {
-                    //dbImagetext.ImageTextPath = imageText.ImageTextPath;
-                    Ok("Image text is already set");
-                        }
+                    }
+                     else
+                     {
+                            //dbImagetext.ImageTextPath = imageText.ImageTextPath;
+                            Ok("Image text is already set");
+                     }
 
-                        _context.SaveChanges();
+                     _context.SaveChanges();
                     
                  
                 
@@ -101,7 +102,7 @@ namespace API.Controllers
         {
             try
             {
-                var dbImagetext = _context.ImageTexts.FirstOrDefault(i => i.SlideName.Equals(posClient.NumSlide));
+                var dbImagetext = _context.ImageTexts.Where(i => i.SlideName.Equals(posClient.NumSlide)).Where(i => i.Device.Equals(posClient.Device)).FirstOrDefault();
 
                 if(dbImagetext != null)
                 {

@@ -11,6 +11,9 @@ import { MatDialog } from '@angular/material/dialog';
 export class ModifierTexteSlideComponent implements OnInit {
 
   images: any[];
+  imagesDesktop: any[];
+  imagesTablette: any[];
+  imagesMobile: any[];
 
 
   constructor(private dataStorageService: DataSotrageService, public dialog: MatDialog) { }
@@ -23,12 +26,34 @@ export class ModifierTexteSlideComponent implements OnInit {
   getSlidesAccueil(){
     this.dataStorageService.getSlidesFromServer().subscribe(results => {
       this.images = results;
+
+      let desktopArray: any[] = [];
+      let tabArray: any[] = [];
+      let mobileArray: any[] = [];
+
+      for (const img of results) {
+        if(img.device == "desktop"){
+          desktopArray.push(img);
+          
+        }
+        else if(img.device == "tablette"){
+          tabArray.push(img);
+          
+        }
+        else if(img.device == "mobile"){
+          mobileArray.push(img);
+          
+        }
+      }
+      this.imagesDesktop = desktopArray;
+      this.imagesTablette = tabArray;
+      this.imagesMobile = mobileArray;
     });
   }
 
 
-  openDialog(imgPath: string, numSlide: string) {
-    this.dialog.open(PopupTextSlideComponent, {data: {path: imgPath, slide: numSlide}});
+  openDialog(imgPath: string, numSlide: string, resolution: string) {
+    this.dialog.open(PopupTextSlideComponent, {data: {path: imgPath, slide: numSlide, device: resolution}});
   }
 
 }

@@ -25,21 +25,21 @@ export class DataSotrageService{
     }
 
 
-    postSlide1ToServer(slidePath: string){
+    postSlide1ToServer(slidePath: string, device: string){
         console.log("this is slidePath arg in put req: " + slidePath);
-        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide1", "Path": slidePath }, {responseType: 'text'});
+        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide1", "Path": slidePath, "Device": device }, {responseType: 'text'});
     }
-    postSlide2ToServer(slidePath: string){
-        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide2", "Path": slidePath }, {responseType: 'text'});
+    postSlide2ToServer(slidePath: string, device: string){
+        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide2", "Path": slidePath, "Device": device }, {responseType: 'text'});
     }
-    postSlide3ToServer(slidePath: string){
-        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide3", "Path": slidePath }, {responseType: 'text'});
+    postSlide3ToServer(slidePath: string, device: string){
+        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide3", "Path": slidePath, "Device": device }, {responseType: 'text'});
     }
-    postSlide4ToServer(slidePath: string){
-        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide4", "Path": slidePath }, {responseType: 'text'});
+    postSlide4ToServer(slidePath: string, device: string){
+        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide4", "Path": slidePath, "Device": device }, {responseType: 'text'});
     }
-    postSlide5ToServer(slidePath: string){
-        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide5", "Path": slidePath }, {responseType: 'text'});
+    postSlide5ToServer(slidePath: string, device: string){
+        return this.http.put('https://localhost:44324/api/slides', { "SlideNumber": "Slide5", "Path": slidePath, "Device": device }, {responseType: 'text'});
     }
 
 

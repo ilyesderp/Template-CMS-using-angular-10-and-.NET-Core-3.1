@@ -1,54 +1,161 @@
-<div class="example-boundary"  [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
+<!-- div for desktop --> <p> {{ validateDesktop }} </p>
+<p> {{ validateTab }} </p>
+<p> {{ validateMobile }} </p>
+<div *ngIf="dataText.device == 'desktop'">
+  <div class="example-boundary" [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
     
 
-          <div *ngIf="getDesiredImageText(dataText.slide) == null; then contenu_bon else contenu_pas_bon"></div>
-            <ng-template #contenu_bon>
-              <div class="example-box" 
-                    cdkDragBoundary=".example-boundary" 
-                    (cdkDragEnded)="onDragEnded($event)" cdkDrag>
-              <p>
-              Veuillez charger une image
-              </p>
-              </div>
-            </ng-template>
-            <ng-template #contenu_pas_bon>
-              <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(getDesiredImageText(dataText.slide).imageTextPath) +'\')'}" 
-                cdkDragBoundary=".example-boundary" 
-                (cdkDragEnded)="onDragEnded($event)"
-                [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide).positionX, y: getDesiredImageText(dataText.slide).positionY}"
-                cdkDrag>
-              </div>
-            </ng-template>
-          
-          
+    <div *ngIf="getDesiredImageText(dataText.slide, dataText.device) == null; then contenu_bon else contenu_pas_bon"></div>
+      <ng-template #contenu_bon>
+        <div class="example-box" 
+              cdkDragBoundary=".example-boundary" 
+              (cdkDragEnded)="onDragEnded($event)" cdkDrag>
+        <p>
+        Veuillez charger une image
+        </p>
+        </div>
+      </ng-template>
+      <ng-template #contenu_pas_bon>
+        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(getDesiredImageText(dataText.slide, dataText.device).imageTextPath) +'\')'}" 
+          cdkDragBoundary=".example-boundary" 
+          (cdkDragEnded)="onDragEnded($event)"
+          [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide, dataText.device).positionX, y: getDesiredImageText(dataText.slide, dataText.device).positionY}"
+          cdkDrag>
+        </div>
+      </ng-template>          
 </div>
-
 <br><br>
 <div id="container-popBtn">
-  <div class="row" id="popupBtn">
-    <div class="form-group col-md-4 external-btn" *ngIf="!validate">
-      <mat-form-field class="col-md-7">
-          <ngx-mat-file-input placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
-          <mat-icon matSuffix>folder</mat-icon>
-      </mat-form-field>
-      <div class="form-group col-md-3">
-        <button mat-raised-button color="primary" (click)="onSubmitUpload(dataText.slide)">Envoyer</button>
+<div class="row" id="popupBtn">
+<div class="form-group col-md-4 external-btn" *ngIf="!validateDesktop">
+<mat-form-field class="col-md-7">
+    <ngx-mat-file-input placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
+    <mat-icon matSuffix>folder</mat-icon>
+</mat-form-field>
+<div class="form-group col-md-3">
+  <button mat-raised-button color="primary" (click)="onSubmitUpload(dataText.slide, dataText.device)">Envoyer</button>
+</div>
+</div>
+
+<!--<div class="col-md-2 external-btn">
+<button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
+</div>-->
+<div class="col-md-2 external-btn">
+<button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide, dataText.device).id, dataText.slide)">Supprimer Image</button>
+</div>
+<div class="col-md-2 external-btn">
+<button mat-raised-button color="accent" (click)="onSubmitPosition({Image: null, PosX: posX, PosY: posY, NumSlide: dataText.slide, Device: dataText.device})" [disabled]="!validateDesktop">Enregistrer</button>
+</div>
+</div>
+</div>
+</div>
+<!-- end div for desktop -->
+<!-- div for tablette -->
+<div *ngIf="dataText.device == 'tablette'">
+  <div class="example-boundary" [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
+    
+
+    <div *ngIf="getDesiredImageText(dataText.slide, dataText.device) == null; then contenu_bon else contenu_pas_bon"></div>
+      <ng-template #contenu_bon>
+        <div class="example-box" 
+              cdkDragBoundary=".example-boundary" 
+              (cdkDragEnded)="onDragEnded($event)" cdkDrag>
+        <p>
+        Veuillez charger une image
+        </p>
+        </div>
+      </ng-template>
+      <ng-template #contenu_pas_bon>
+        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(getDesiredImageText(dataText.slide, dataText.device).imageTextPath) +'\')'}" 
+          cdkDragBoundary=".example-boundary" 
+          (cdkDragEnded)="onDragEnded($event)"
+          [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide, dataText.device).positionX, y: getDesiredImageText(dataText.slide, dataText.device).positionY}"
+          cdkDrag>
+        </div>
+      </ng-template> 
+  </div>
+  <br><br>
+  <div id="container-popBtn">
+    <div class="row" id="popupBtn">
+      <div class="form-group col-md-4 external-btn" *ngIf="!validateTab">
+        <mat-form-field class="col-md-7">
+            <ngx-mat-file-input placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
+            <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+        <div class="form-group col-md-3">
+          <button mat-raised-button color="primary" (click)="onSubmitUpload(dataText.slide, dataText.device)">Envoyer</button>
+        </div>
+      </div>
+      
+      <!--<div class="col-md-2 external-btn">
+        <button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
+      </div>-->
+      <div class="col-md-2 external-btn">
+        <button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide, dataText.device).id, dataText.slide)">Supprimer Image</button>
+      </div>
+      <div class="col-md-2 external-btn">
+        <button mat-raised-button color="accent" (click)="onSubmitPosition({Image: null, PosX: posX, PosY: posY, NumSlide: dataText.slide, Device: dataText.device})" [disabled]="!validateTab">Enregistrer</button>
       </div>
     </div>
+</div>
+</div>
+
+<!-- end div for tablette -->
+<!-- div for mobile-->
+<div *ngIf="dataText.device == 'mobile'">
+  <div class="example-boundary" [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
     
-    <!--<div class="col-md-2 external-btn">
-      <button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
-    </div>-->
-    <div class="col-md-2 external-btn">
-      <button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide).id, dataText.slide)">Supprimer Image</button>
-    </div>
-    <div class="col-md-2 external-btn">
-      <button mat-raised-button color="accent" (click)="onSubmitPosition({Image: null, PosX: posX, PosY: posY, NumSlide: dataText.slide})" [disabled]="!validate">Enregistrer</button>
-    </div>
+
+    <div *ngIf="getDesiredImageText(dataText.slide, dataText.device) == null; then contenu_bon else contenu_pas_bon"></div>
+      <ng-template #contenu_bon>
+        <div class="example-box" 
+              cdkDragBoundary=".example-boundary" 
+              (cdkDragEnded)="onDragEnded($event)" cdkDrag>
+        <p>
+        Veuillez charger une image
+        </p>
+        </div>
+      </ng-template>
+      <ng-template #contenu_pas_bon>
+        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(getDesiredImageText(dataText.slide, dataText.device).imageTextPath) +'\')'}" 
+          cdkDragBoundary=".example-boundary" 
+          (cdkDragEnded)="onDragEnded($event)"
+          [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide, dataText.device).positionX, y: getDesiredImageText(dataText.slide, dataText.device).positionY}"
+          cdkDrag>
+        </div>
+      </ng-template>
   </div>
+  <br><br>
+  <div id="container-popBtn">
+    <div class="row" id="popupBtn">
+      <div class="form-group col-md-4 external-btn" *ngIf="!validateMobile">
+        <mat-form-field class="col-md-7">
+            <ngx-mat-file-input placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
+            <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+        <div class="form-group col-md-3">
+          <button mat-raised-button color="primary" (click)="onSubmitUpload(dataText.slide, dataText.device)">Envoyer</button>
+        </div>
+      </div>
+      
+      <!--<div class="col-md-2 external-btn">
+        <button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
+      </div>-->
+      <div class="col-md-2 external-btn">
+        <button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide, dataText.device).id, dataText.slide)">Supprimer Image</button>
+      </div>
+      <div class="col-md-2 external-btn">
+        <button mat-raised-button color="accent" (click)="onSubmitPosition({Image: null, PosX: posX, PosY: posY, NumSlide: dataText.slide, Device: dataText.device})" [disabled]="!validateMobile">Enregistrer</button>
+      </div>
+    </div>
+</div>
+</div>
+
+<!-- end div for mobile -->
+
   
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close style="background: rgb(233, 232, 232);">Fermer</button>
   </div>
-</div>
+
 

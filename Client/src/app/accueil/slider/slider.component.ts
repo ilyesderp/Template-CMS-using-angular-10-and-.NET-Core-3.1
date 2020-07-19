@@ -13,6 +13,7 @@ export interface ImageText{
   slideName: string;
   positionX: number;
   positionY: number;
+  device: string;
 }
 
 declare var $: any;
@@ -48,7 +49,9 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>;
   
-  images: String[];
+  imagesDesktop: String[] = [];
+  imagesTablette: String[] = [];
+  imagesMobile: String[] = [];
   imgTexts: ImageText[];
 
   imgTxtObs: Observable<ImageText[]>;
@@ -103,35 +106,75 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
       console.log(donnee);
       if(donnee != null){
         for (const elt of donnee) {
-          switch (elt.slideNumber) {
-            case "Slide1":
-              this.slide1 = elt;
-              break;
-            case "Slide2":
-              this.slide2 = elt;
-              break;
-            case "Slide3":
-              this.slide3 = elt;
-              break;
-            case "Slide4":
-              this.slide4 = elt;
-              break;
-            case "Slide5":
-              this.slide5 = elt;
-              break;
-          
-            default: console.log("Erreur dans le SlideNumber");
-              break;
+          if(elt.device == "desktop")
+          {
+            switch (elt.slideNumber) {
+              case "Slide1":
+                this.imagesDesktop.push(elt.path);
+                break;
+              case "Slide2":
+                this.imagesDesktop.push(elt.path);
+                break;
+              case "Slide3":
+                this.imagesDesktop.push(elt.path);
+                break;
+              case "Slide4":
+                this.imagesDesktop.push(elt.path);
+                break;
+              case "Slide5":
+                this.imagesDesktop.push(elt.path);
+                break;
+            
+              default: console.log("Erreur dans le SlideNumber");
+                break;
+            }
+          }
+          else if(elt.device == "tablette"){
+            switch (elt.slideNumber) {
+              case "Slide1":
+                this.imagesTablette.push(elt.path);
+                break;
+              case "Slide2":
+                this.imagesTablette.push(elt.path);
+                break;
+              case "Slide3":
+                this.imagesTablette.push(elt.path);
+                break;
+              case "Slide4":
+                this.imagesTablette.push(elt.path);
+                break;
+              case "Slide5":
+                this.imagesTablette.push(elt.path);
+                break;
+            
+              default: console.log("Erreur dans le SlideNumber");
+                break;
+            }
+          }
+          else if(elt.device == "mobile"){
+            switch (elt.slideNumber) {
+              case "Slide1":
+                this.imagesMobile.push(elt.path);
+                break;
+              case "Slide2":
+                this.imagesMobile.push(elt.path);
+                break;
+              case "Slide3":
+                this.imagesMobile.push(elt.path);
+                break;
+              case "Slide4":
+                this.imagesMobile.push(elt.path);
+                break;
+              case "Slide5":
+                this.imagesMobile.push(elt.path);
+                break;
+            
+              default: console.log("Erreur dans le SlideNumber");
+                break;
+            }
           }
   
-        }
-        this.images = [
-          this.slide1.path,
-          this.slide2.path,
-          this.slide3.path,
-          this.slide4.path,
-          this.slide5.path,
-        ]; 
+        } 
       }
       else{
         console.log("Aucune donnée n'est encore disponible pour le moment");

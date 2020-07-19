@@ -1,13 +1,13 @@
 
-<!-- Slider -->
-<div class="tp-banner-container">
+<!-- Slider desktop -->
+<div class="tp-banner-container" *ngIf="size == 3">
  
 
   <div class="fader tp-banner" #sliderRef>
       <div
         [ngStyle]="{'opacity': opacities[idx]}"
         class="fader__slide"
-        *ngFor="let src of images; let idx = index"
+        *ngFor="let src of imagesDesktop; let idx = index"
       >
         <img class="bg-img" [src]="src"/>
 
@@ -82,6 +82,175 @@
     </div>
   
 </div>
+<!-- Fin Slider desktop -->
+<!-- Slider tablette -->
+<div class="tp-banner-container" *ngIf="size == 2 || size == 1">
+ 
+
+  <div class="fader tp-banner" #sliderRef>
+      <div
+        [ngStyle]="{'opacity': opacities[idx]}"
+        class="fader__slide"
+        *ngFor="let src of imagesTablette; let idx = index"
+      >
+        <img class="bg-img" [src]="src"/>
+
+        <div id="textImageOuterDiv">
+          <div *ngIf="idx == 0 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide1'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 1 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide2'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 2 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide3'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 3 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide4'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 4 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide5'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+        </div>
+          
+      
+
+      </div>
+      <svg
+      [ngClass]="'arrow arrow--left ' + ( currentSlide === 0 ? 'arrow--disabled' : '')"
+      (click)="slider.prev()"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+      />
+    </svg>
+    <svg
+      *ngIf="slider"
+      [ngClass]="'arrow arrow--right ' + (slider.details().size - 1 === currentSlide ? 'arrow--disabled' : '')"
+      (click)="slider.next()"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+    </div>
+    <!-- slider navigation -->
+    <div class="dots">
+      <button
+        (click)="slider.moveToSlideRelative(i)"
+        *ngFor="let slide of dotHelper; let i = index"
+        [class]="'dot ' + (i === currentSlide ? 'active' : '')"
+      ></button>
+    </div>
+  
+</div>
+<!-- Fin Slider tablette -->
+<!-- Slider mobile -->
+<div class="tp-banner-container" *ngIf="size == 0">
+ 
+
+  <div class="fader tp-banner" #sliderRef>
+      <div
+        [ngStyle]="{'opacity': opacities[idx]}"
+        class="fader__slide"
+        *ngFor="let src of imagesMobile; let idx = index"
+      >
+        <img class="bg-img" [src]="src"/>
+
+        <div id="textImageOuterDiv">
+          <div *ngIf="idx == 0 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide1'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 1 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide2'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 2 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide3'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 3 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide4'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="idx == 4 && imgTxtObs | async as imgtxts">
+            <div *ngFor="let img of imgtxts">
+              <div *ngIf="img.slideName == 'Slide5'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+                <img  [src]="ImagePath(img.imageTextPath)">
+              </div>
+            </div>
+          </div>
+        </div>
+          
+      
+
+      </div>
+      <svg
+      [ngClass]="'arrow arrow--left ' + ( currentSlide === 0 ? 'arrow--disabled' : '')"
+      (click)="slider.prev()"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+      />
+    </svg>
+    <svg
+      *ngIf="slider"
+      [ngClass]="'arrow arrow--right ' + (slider.details().size - 1 === currentSlide ? 'arrow--disabled' : '')"
+      (click)="slider.next()"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+    </div>
+    <!-- slider navigation -->
+    <div class="dots">
+      <button
+        (click)="slider.moveToSlideRelative(i)"
+        *ngFor="let slide of dotHelper; let i = index"
+        [class]="'dot ' + (i === currentSlide ? 'active' : '')"
+      ></button>
+    </div>
+  
+</div>
+<!-- Fin Slider mobile -->
 
 <br>
 <br>

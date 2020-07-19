@@ -1,26 +1,87 @@
 
   <div class="container" style="width: 80%;">
 
-      <div class="row" *ngIf="images != null && images.length > 0" id="content">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Choisissez la dimension d'écran:</h1>
+            <p> 
+                <mat-button-toggle-group #group="matButtonToggleGroup" name="fontStyle" aria-label="Font Style">
+                  <mat-button-toggle class="btn-device" value="desktop" checked="true">Desktop</mat-button-toggle>
+                  <mat-button-toggle class="btn-device" value="tablette">Tablette</mat-button-toggle>
+                  <mat-button-toggle class="btn-device" value="mobile">Mobile</mat-button-toggle>
+                </mat-button-toggle-group>
+              </p>
+              <p style="color: red;"> {{ group.value }} </p>
+        </div>
+    </div>
+
+    <br><br><br>
+      <!-- div for desktop -->
+      <div class="row" *ngIf="group.value=='desktop' && imagesDesktop != null && imagesDesktop.length > 0" id="content">
         <div class="col-md-12">
         <h1>Choisissez le slide dans le quel vous voulez insérer du texte</h1>
-        <br>
+        
                     <mat-grid-list cols="5" rowHeight="2:3">
-                        <mat-grid-tile id="modSlideGridTile" *ngFor="let image of images, index as i">
+                        <mat-grid-tile id="modSlideGridTile" *ngFor="let image of imagesDesktop, index as i">
       
                          <mat-card class="slide-card">
                             <mat-card-title>Slide {{i+1}}</mat-card-title>
                             <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="image.path">
                             
                             <mat-card-actions id="matBoutons" [align]="'start'">                                     
-                                <button mat-raised-button color="accent" (click)="openDialog(image.path, 'Slide' + (i+1))">Selectionner</button>
+                                <button mat-raised-button color="accent" (click)="openDialog(image.path, 'Slide' + (i+1), group.value)">Selectionner</button>
                                                       
                             </mat-card-actions>
                           </mat-card>
                          </mat-grid-tile>
                     </mat-grid-list>
         </div>
-  </div>
+      </div>
+      <!-- end div for desktop -->
+      <!-- div for tablette -->
+      <div class="row" *ngIf="group.value=='tablette' && imagesTablette != null && imagesTablette.length > 0" id="content">
+        <div class="col-md-12">
+        <h1>Choisissez le slide dans le quel vous voulez insérer du texte</h1>
+        <br>
+                    <mat-grid-list cols="5" rowHeight="2:3">
+                        <mat-grid-tile id="modSlideGridTile" *ngFor="let image of imagesTablette, index as i">
+      
+                         <mat-card class="slide-card">
+                            <mat-card-title>Slide {{i+1}}</mat-card-title>
+                            <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="image.path">
+                            
+                            <mat-card-actions id="matBoutons" [align]="'start'">                                     
+                                <button mat-raised-button color="accent" (click)="openDialog(image.path, 'Slide' + (i+1), group.value)">Selectionner</button>
+                                                      
+                            </mat-card-actions>
+                          </mat-card>
+                         </mat-grid-tile>
+                    </mat-grid-list>
+        </div>
+      </div>
+      <!-- end div for tablette -->
+      <!-- div for mobile -->
+      <div class="row" *ngIf="group.value=='mobile' && imagesMobile != null && imagesMobile.length > 0" id="content">
+        <div class="col-md-12">
+        <h1>Choisissez le slide dans le quel vous voulez insérer du texte</h1>
+        <br>
+                    <mat-grid-list cols="5" rowHeight="2:3">
+                        <mat-grid-tile id="modSlideGridTile" *ngFor="let image of imagesMobile, index as i">
+      
+                         <mat-card class="slide-card">
+                            <mat-card-title>Slide {{i+1}}</mat-card-title>
+                            <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="image.path">
+                            
+                            <mat-card-actions id="matBoutons" [align]="'start'">                                     
+                                <button mat-raised-button color="accent" (click)="openDialog(image.path, 'Slide' + (i+1), group.value)">Selectionner</button>
+                                                      
+                            </mat-card-actions>
+                          </mat-card>
+                         </mat-grid-tile>
+                    </mat-grid-list>
+        </div>
+      </div>
+      <!-- end div for mobile -->
     
       
       
