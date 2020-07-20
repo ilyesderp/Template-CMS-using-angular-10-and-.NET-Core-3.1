@@ -11,40 +11,40 @@
         *ngFor="let src1 of imagesDesktop; trackBy:identify"
       >
         <img class="bg-img" [src]="src1.img"/>
-        <h1 style="position: relative; z-index: 10000;"> {{ src1.id }} </h1>
+
 
         <div id="textImageOuterDiv">
           <div *ngIf="src1.slide == 'Slide1' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide1'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide1' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src1.slide == 'Slide2' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide2'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide2' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src1.slide == 'Slide3' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide3'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide3' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src1.slide == 'Slide4' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide4'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide4' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src1.slide == 'Slide5' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide5'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide5' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
@@ -68,35 +68,35 @@
         <div id="textImageOuterDiv">
           <div *ngIf="src2.slide == 'Slide1' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide1'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide1' && img.device == 'tablette'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src2.slide == 'Slide2' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide2'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide2' && img.device == 'tablette'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src2.slide == 'Slide3' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide3'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide3' && img.device == 'tablette'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src2.slide == 'Slide4' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide4'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide4' && img.device == 'tablette'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src2.slide == 'Slide5' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide5'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide5' && img.device == 'tablette'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
@@ -120,35 +120,35 @@
         <div id="textImageOuterDiv">
           <div *ngIf="src3.slide == 'Slide1' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide1'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide1' && img.device == 'mobile'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src3.slide == 'Slide2' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide2'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide2'  && img.device == 'mobile'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src3.slide == 'Slide3' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide3'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide3' && img.device == 'mobile'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src3.slide == 'Slide4' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide4'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide4' && img.device == 'mobile'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
           </div>
           <div *ngIf="src3.slide == 'Slide5' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide5'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
+              <div *ngIf="img.slideName == 'Slide5' && img.device == 'mobile'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
                 <img  [src]="ImagePath(img.imageTextPath)">
               </div>
             </div>
@@ -198,7 +198,7 @@
 <br>
 <br>
 
-<h1> size = {{ size }} </h1>
+
 
 <br>
 <br>

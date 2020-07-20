@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject, AfterViewInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DataSotrageService } from '../../../../shared/data-storage.service';
 import { HttpEventType } from '@angular/common/http';
 import { ImageText } from '../../../../accueil/slider/slider.component';
 import { PopupDeleteComponent } from '../../../modifier-accueil/modifier-slider/popup-delete/popup-delete.component';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-popup-text-slide',
@@ -28,14 +29,14 @@ export class PopupTextSlideComponent implements OnInit {
   validateMobile: boolean;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string, device: string}, private dataStorageService: DataSotrageService, public dialog: MatDialog) {
-    
-   }
+  constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string, device: string}, 
+              private dataStorageService: DataSotrageService, 
+              public dialog: MatDialog,
+              private cdRef:ChangeDetectorRef) {}
 
+              
   ngOnInit(): void {
-
     this.getTextImage();
-    
   }
 
 
@@ -82,19 +83,24 @@ export class PopupTextSlideComponent implements OnInit {
 
           this.getTextImage();
           this.getDesiredImageText(slide, this.dataText.device);
+
           console.log("before if:");
           if(this.dataText.device == "desktop"){
             this.validateDesktop = true;
+
             console.log("validatedesktop = " + this.validateDesktop)
           }
           else if(this.dataText.device == "tablette"){
             this.validateTab = true;
+
           }
           else if(this.dataText.device == "mobile"){
             this.validateMobile = true;
+
           }
+          
       }
-         
+      
     });
     
   }
@@ -175,6 +181,7 @@ getTextImage(){
       }
       
     }
+    this.cdRef.detectChanges();
   });
 }
 
