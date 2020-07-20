@@ -49,9 +49,9 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>;
   
-  imagesDesktop: String[] = [];
-  imagesTablette: String[] = [];
-  imagesMobile: String[] = [];
+  imagesDesktop: {id: number, slide: string, img: string}[] = [];
+  imagesTablette: {id: number, slide: string, img: string}[] = [];
+  imagesMobile: {id: number, slide: string, img: string}[] = [];
   imgTexts: ImageText[];
 
   imgTxtObs: Observable<ImageText[]>;
@@ -110,19 +110,19 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
           {
             switch (elt.slideNumber) {
               case "Slide1":
-                this.imagesDesktop.push(elt.path);
+                this.imagesDesktop.push({id: 0, slide: "Slide1", img: elt.path});
                 break;
               case "Slide2":
-                this.imagesDesktop.push(elt.path);
+                this.imagesDesktop.push({id: 1, slide: "Slide2", img: elt.path});
                 break;
               case "Slide3":
-                this.imagesDesktop.push(elt.path);
+                this.imagesDesktop.push({id: 2, slide: "Slide3", img: elt.path});
                 break;
               case "Slide4":
-                this.imagesDesktop.push(elt.path);
+                this.imagesDesktop.push({id: 3, slide: "Slide4", img: elt.path});
                 break;
               case "Slide5":
-                this.imagesDesktop.push(elt.path);
+                this.imagesDesktop.push({id: 4, slide: "Slide5", img: elt.path});
                 break;
             
               default: console.log("Erreur dans le SlideNumber");
@@ -132,19 +132,19 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
           else if(elt.device == "tablette"){
             switch (elt.slideNumber) {
               case "Slide1":
-                this.imagesTablette.push(elt.path);
+                this.imagesTablette.push({id: 0, slide: "Slide1", img: elt.path});
                 break;
               case "Slide2":
-                this.imagesTablette.push(elt.path);
+                this.imagesTablette.push({id: 1, slide: "Slide2", img: elt.path});
                 break;
               case "Slide3":
-                this.imagesTablette.push(elt.path);
+                this.imagesTablette.push({id: 2, slide: "Slide3", img: elt.path});
                 break;
               case "Slide4":
-                this.imagesTablette.push(elt.path);
+                this.imagesTablette.push({id: 3, slide: "Slide4", img: elt.path});
                 break;
               case "Slide5":
-                this.imagesTablette.push(elt.path);
+                this.imagesTablette.push({id: 4, slide: "Slide5", img: elt.path});
                 break;
             
               default: console.log("Erreur dans le SlideNumber");
@@ -234,6 +234,12 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
     let path2 = serverPath.replace(/\\/g, "/");
     return 'https://localhost:44324/' + path2;
   }
+
+  //this method is used in *ngfor
+  identify(index, elt){
+    return elt.id;
+  }
+
 
   ngOnDestroy() {
     if (this.slider) this.slider.destroy();

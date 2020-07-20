@@ -11,9 +11,9 @@ import { MatDialog } from '@angular/material/dialog';
 export class ModifierTexteSlideComponent implements OnInit {
 
   images: any[];
-  imagesDesktop: any[];
-  imagesTablette: any[];
-  imagesMobile: any[];
+  imagesDesktop: any[] = [];
+  imagesTablette: any[] = [];
+  imagesMobile: any[] = [];
 
 
   constructor(private dataStorageService: DataSotrageService, public dialog: MatDialog) { }
@@ -33,21 +33,21 @@ export class ModifierTexteSlideComponent implements OnInit {
 
       for (const img of results) {
         if(img.device == "desktop"){
-          desktopArray.push(img);
+          this.imagesDesktop.push(img);
           
         }
         else if(img.device == "tablette"){
-          tabArray.push(img);
+          this.imagesTablette.push(img);
           
         }
         else if(img.device == "mobile"){
-          mobileArray.push(img);
+          this.imagesMobile.push(img);
           
         }
       }
-      this.imagesDesktop = desktopArray;
+      /*this.imagesDesktop = desktopArray;
       this.imagesTablette = tabArray;
-      this.imagesMobile = mobileArray;
+      this.imagesMobile = mobileArray;*/
     });
   }
 
