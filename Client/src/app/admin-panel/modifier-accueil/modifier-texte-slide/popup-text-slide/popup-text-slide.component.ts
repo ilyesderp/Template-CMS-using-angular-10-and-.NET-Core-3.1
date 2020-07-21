@@ -5,7 +5,7 @@ import { HttpEventType } from '@angular/common/http';
 import { ImageText } from '../../../../accueil/slider/slider.component';
 import { PopupDeleteComponent } from '../../../modifier-accueil/modifier-slider/popup-delete/popup-delete.component';
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
-import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-popup-text-slide',
@@ -16,27 +16,29 @@ export class PopupTextSlideComponent implements OnInit {
   fileData: File = null;
   fileUploadProgress: string = null;
 
-  imgTxtDesktop: ImageText[] = [];
-  imgTxtTab: ImageText[] = [];
-  imgTxtMobile: ImageText[] = [];
+  imgTxts: ImageText[] = [];
+
 
   posX: any = 0;
   posY: any = 0;
 
 
-  validateDesktop: boolean;
-  validateTab: boolean;
-  validateMobile: boolean;
+  validateDesktop: boolean = false;
+  validateTab: boolean = false;
+  validateMobile: boolean = false;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public dataText: {path: string, slide: string, device: string}, 
               private dataStorageService: DataSotrageService, 
-              public dialog: MatDialog,
-              private cdRef:ChangeDetectorRef) {}
+              public dialog: MatDialog) {}
 
               
-  ngOnInit(): void {
+  ngOnInit(){
     this.getTextImage();
+
+    console.log("imgTxts :  ");
+    console.log(this.imgTxts);
+
   }
 
 
@@ -60,6 +62,7 @@ export class PopupTextSlideComponent implements OnInit {
   onSubmitUpload(slide: string, device: string){
     let formData = new FormData();
     if (this.fileData === null) {
+      alert("Veuillez charger une image!");
       return;
     }
 
@@ -80,9 +83,9 @@ export class PopupTextSlideComponent implements OnInit {
           this.fileUploadProgress = '';
           console.log(events.body);         
           alert('SUCCESS !!');
+      }
 
           this.getTextImage();
-          this.getDesiredImageText(slide, this.dataText.device);
 
           console.log("before if:");
           if(this.dataText.device == "desktop"){
@@ -98,11 +101,11 @@ export class PopupTextSlideComponent implements OnInit {
             this.validateMobile = true;
 
           }
-          
-      }
       
     });
     
+          
+
   }
 
   supprimerImageText(id: any, slide: string){
@@ -124,72 +127,20 @@ export class PopupTextSlideComponent implements OnInit {
 
 }
 
-getTextImage(){
+  getTextImage(){//a refaire, mettre un seul array pour les imgTxts
   this.dataStorageService.getTextImagesFromServer().subscribe(results => {
-
-    for (const res of results) {
-      if(res.device == "desktop"){
-        if(res != null && res.slideName == "Slide1"){
-          this.imgTxtDesktop.push(res);
-        }
-        else if(res != null && res.slideName == "Slide2"){
-          this.imgTxtDesktop.push(res);
-        }
-        else if(res != null && res.slideName == "Slide3"){
-          this.imgTxtDesktop.push(res);
-        }
-        else if(res != null && res.slideName == "Slide4"){
-          this.imgTxtDesktop.push(res);
-        }
-        else if(res != null && res.slideName == "Slide5"){
-          this.imgTxtDesktop.push(res);
-        }
-      }
-      else if(res.device == "tablette"){
-        if(res != null && res.slideName == "Slide1"){
-          this.imgTxtTab.push(res);
-        }
-        else if(res != null && res.slideName == "Slide2"){
-          this.imgTxtTab.push(res);
-        }
-        else if(res != null && res.slideName == "Slide3"){
-          this.imgTxtTab.push(res);
-        }
-        else if(res != null && res.slideName == "Slide4"){
-          this.imgTxtTab.push(res);
-        }
-        else if(res != null && res.slideName == "Slide5"){
-          this.imgTxtTab.push(res);
-        }
-      }
-      else if(res.device == "mobile"){
-        if(res != null && res.slideName == "Slide1"){
-          this.imgTxtMobile.push(res);
-        }
-        else if(res != null && res.slideName == "Slide2"){
-          this.imgTxtMobile.push(res);
-        }
-        else if(res != null && res.slideName == "Slide3"){
-          this.imgTxtMobile.push(res);
-        }
-        else if(res != null && res.slideName == "Slide4"){
-          this.imgTxtMobile.push(res);
-        }
-        else if(res != null && res.slideName == "Slide5"){
-          this.imgTxtMobile.push(res);
-        }
-      }
-      
-    }
-    this.cdRef.detectChanges();
+  
+    console.log("getTextImage :  ");
+    console.log(results);
+    this.imgTxts = results;
+    
   });
+  
 }
 
 getDesiredImageText(numSlide: string, device: string): ImageText{
-  
-  if(device == "desktop"){
-    for (const imgTxt of this.imgTxtDesktop) {
-      if(imgTxt != null && imgTxt.slideName == numSlide){
+    for(let imgTxt of this.imgTxts) {
+      if(imgTxt != null && imgTxt.slideName == numSlide && imgTxt.device == device){
         this.validateDesktop = true;
         return imgTxt;
       }
@@ -198,31 +149,6 @@ getDesiredImageText(numSlide: string, device: string): ImageText{
         return null;
       }
     }
-  }
-  if(device == "tablette"){
-    for (const imgTxt of this.imgTxtTab) {
-      if(imgTxt != null && imgTxt.slideName == numSlide){
-        this.validateTab = true;
-        return imgTxt;
-      }
-      else {
-        this.validateTab = false;
-        return null;
-      }
-    }
-  }
-  if(device == "mobile"){
-    for (const imgTxt of this.imgTxtMobile) {
-      if(imgTxt != null && imgTxt.slideName == numSlide){
-        this.validateMobile = true;
-        return imgTxt;
-      }
-      else {
-        this.validateMobile = false;
-        return null;
-      }
-    }
-  }
 }
 
 ImagePath(serverPath: string){

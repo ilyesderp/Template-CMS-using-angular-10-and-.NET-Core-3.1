@@ -1,6 +1,5 @@
-<!-- div for desktop --> <p> {{ validateDesktop }} </p>
-<p> {{ validateTab }} </p>
-<p> {{ validateMobile }} </p>
+<!-- div for desktop --> 
+<h1> {{ getDesiredImageText(dataText.slide, dataText.device) }} </h1>  
 <div *ngIf="dataText.device == 'desktop'">
   <div class="example-boundary" [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
     
@@ -22,11 +21,15 @@
           [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide, dataText.device).positionX, y: getDesiredImageText(dataText.slide, dataText.device).positionY}"
           cdkDrag>
         </div>
-      </ng-template>          
+      </ng-template>  
+            
 </div>
 <br><br>
 <div id="container-popBtn">
 <div class="row" id="popupBtn">
+  <p> {{ dataText.slide }} </p>
+  <p> {{ dataText.device }} </p>
+  <p> {{ validateDesktop }} </p>
 <div class="form-group col-md-4 external-btn" *ngIf="!validateDesktop">
 <mat-form-field class="col-md-7">
     <ngx-mat-file-input placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
@@ -157,5 +160,3 @@
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close style="background: rgb(233, 232, 232);">Fermer</button>
   </div>
-
-

@@ -72,7 +72,7 @@ namespace API.Controllers
 
                     
 
-                    var dbImagetext = _context.ImageTexts.Where(i => i.SlideName.Equals(imageText.SlideName)).Where(i => i.Device.Equals(imageText.Device)).FirstOrDefault();
+                    var dbImagetext = _context.ImageTexts.Where(i => i.Device.Equals(imageTextClient.Device)).Where(i => i.SlideName.Equals(imageText.SlideName)).FirstOrDefault();
                     if (dbImagetext == null)
                     {
                             imageText.Device = imageTextClient.Device;
