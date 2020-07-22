@@ -17,8 +17,8 @@
 .fader .bg-img {
   width: 100%;
   height: 100%;
-  min-width: 1520px;
-  min-height: 620px;
+  /*min-width: 1520px;*/
+  /*min-height: 620px;*/
   position: absolute;
   top: 50%;
   left: 50%;

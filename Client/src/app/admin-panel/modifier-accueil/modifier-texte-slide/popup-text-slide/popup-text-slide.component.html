@@ -1,10 +1,17 @@
+<br> 
+
+<h2 style="text-align: center;" *ngIf="dataText.device == 'desktop' && !validateDesktop">Veuillez charger puis glisser l'image contenant votre texte vers la position souhaitée:</h2>
+<h2 style="text-align: center;" *ngIf="dataText.device == 'tablette' && !validateTab">Veuillez charger puis glisser l'image contenant votre texte vers la position souhaitée:</h2>
+<h2 style="text-align: center;" *ngIf="dataText.device == 'mobile' && !validateMobile">Veuillez charger puis glisser l'image contenant votre texte vers la position souhaitée:</h2>
+
+<br>
+
 <!-- div for desktop --> 
-<h1> {{ getDesiredImageText(dataText.slide, dataText.device) }} </h1>  
 <div *ngIf="dataText.device == 'desktop'">
   <div class="example-boundary" [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
     
 
-    <div *ngIf="getDesiredImageText(dataText.slide, dataText.device) == null; then contenu_bon else contenu_pas_bon"></div>
+    <div *ngIf="desiredImageTextDesktop[dataText.slide] == null; then contenu_bon else contenu_pas_bon"></div>
       <ng-template #contenu_bon>
         <div class="example-box" 
               cdkDragBoundary=".example-boundary" 
@@ -15,10 +22,10 @@
         </div>
       </ng-template>
       <ng-template #contenu_pas_bon>
-        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(getDesiredImageText(dataText.slide, dataText.device).imageTextPath) +'\')'}" 
+        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(desiredImageTextDesktop[dataText.slide].imageTextPath) +'\')'}" 
           cdkDragBoundary=".example-boundary" 
           (cdkDragEnded)="onDragEnded($event)"
-          [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide, dataText.device).positionX, y: getDesiredImageText(dataText.slide, dataText.device).positionY}"
+          [cdkDragFreeDragPosition]="{x: desiredImageTextDesktop[dataText.slide].positionX, y: desiredImageTextDesktop[dataText.slide].positionY}"
           cdkDrag>
         </div>
       </ng-template>  
@@ -27,16 +34,13 @@
 <br><br>
 <div id="container-popBtn">
 <div class="row" id="popupBtn">
-  <p> {{ dataText.slide }} </p>
-  <p> {{ dataText.device }} </p>
-  <p> {{ validateDesktop }} </p>
 <div class="form-group col-md-4 external-btn" *ngIf="!validateDesktop">
 <mat-form-field class="col-md-7">
     <ngx-mat-file-input placeholder="Chargez votre image" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
     <mat-icon matSuffix>folder</mat-icon>
 </mat-form-field>
 <div class="form-group col-md-3">
-  <button mat-raised-button color="primary" (click)="onSubmitUpload(dataText.slide, dataText.device)">Envoyer</button>
+  <button mat-raised-button color="primary" (click)="onSubmitUpload()">Envoyer</button>
 </div>
 </div>
 
@@ -44,7 +48,7 @@
 <button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
 </div>-->
 <div class="col-md-2 external-btn">
-<button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide, dataText.device).id, dataText.slide)">Supprimer Image</button>
+<button mat-raised-button color="warn" (click)="supprimerImageText(desiredImageTextDesktop[dataText.slide].id, dataText.slide)" [disabled]="!validateDesktop">Supprimer Image</button>
 </div>
 <div class="col-md-2 external-btn">
 <button mat-raised-button color="accent" (click)="onSubmitPosition({Image: null, PosX: posX, PosY: posY, NumSlide: dataText.slide, Device: dataText.device})" [disabled]="!validateDesktop">Enregistrer</button>
@@ -58,7 +62,7 @@
   <div class="example-boundary" [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
     
 
-    <div *ngIf="getDesiredImageText(dataText.slide, dataText.device) == null; then contenu_bon else contenu_pas_bon"></div>
+    <div *ngIf="desiredImageTextTab[dataText.slide] == null; then contenu_bon else contenu_pas_bon"></div>
       <ng-template #contenu_bon>
         <div class="example-box" 
               cdkDragBoundary=".example-boundary" 
@@ -69,10 +73,10 @@
         </div>
       </ng-template>
       <ng-template #contenu_pas_bon>
-        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(getDesiredImageText(dataText.slide, dataText.device).imageTextPath) +'\')'}" 
+        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(desiredImageTextTab[dataText.slide].imageTextPath) +'\')'}" 
           cdkDragBoundary=".example-boundary" 
           (cdkDragEnded)="onDragEnded($event)"
-          [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide, dataText.device).positionX, y: getDesiredImageText(dataText.slide, dataText.device).positionY}"
+          [cdkDragFreeDragPosition]="{x: desiredImageTextTab[dataText.slide].positionX, y: desiredImageTextTab[dataText.slide].positionY}"
           cdkDrag>
         </div>
       </ng-template> 
@@ -86,7 +90,7 @@
             <mat-icon matSuffix>folder</mat-icon>
         </mat-form-field>
         <div class="form-group col-md-3">
-          <button mat-raised-button color="primary" (click)="onSubmitUpload(dataText.slide, dataText.device)">Envoyer</button>
+          <button mat-raised-button color="primary" (click)="onSubmitUpload()">Envoyer</button>
         </div>
       </div>
       
@@ -94,7 +98,7 @@
         <button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
       </div>-->
       <div class="col-md-2 external-btn">
-        <button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide, dataText.device).id, dataText.slide)">Supprimer Image</button>
+        <button mat-raised-button color="warn" (click)="supprimerImageText(desiredImageTextTab[dataText.slide].id, dataText.slide)" [disabled]="!validateTab">Supprimer Image</button>
       </div>
       <div class="col-md-2 external-btn">
         <button mat-raised-button color="accent" (click)="onSubmitPosition({Image: null, PosX: posX, PosY: posY, NumSlide: dataText.slide, Device: dataText.device})" [disabled]="!validateTab">Enregistrer</button>
@@ -109,7 +113,7 @@
   <div class="example-boundary" [ngStyle]="{'background-image': 'url(\'' + dataText.path + '\')'}">
     
 
-    <div *ngIf="getDesiredImageText(dataText.slide, dataText.device) == null; then contenu_bon else contenu_pas_bon"></div>
+    <div *ngIf="desiredImageTextMobile[dataText.slide] == null; then contenu_bon else contenu_pas_bon"></div>
       <ng-template #contenu_bon>
         <div class="example-box" 
               cdkDragBoundary=".example-boundary" 
@@ -120,10 +124,10 @@
         </div>
       </ng-template>
       <ng-template #contenu_pas_bon>
-        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(getDesiredImageText(dataText.slide, dataText.device).imageTextPath) +'\')'}" 
+        <div class="example-box" [ngStyle]="{'background': 'url(\''+ ImagePath(desiredImageTextMobile[dataText.slide].imageTextPath) +'\')'}" 
           cdkDragBoundary=".example-boundary" 
           (cdkDragEnded)="onDragEnded($event)"
-          [cdkDragFreeDragPosition]="{x: getDesiredImageText(dataText.slide, dataText.device).positionX, y: getDesiredImageText(dataText.slide, dataText.device).positionY}"
+          [cdkDragFreeDragPosition]="{x: desiredImageTextMobile[dataText.slide].positionX, y: desiredImageTextMobile[dataText.slide].positionY}"
           cdkDrag>
         </div>
       </ng-template>
@@ -137,7 +141,7 @@
             <mat-icon matSuffix>folder</mat-icon>
         </mat-form-field>
         <div class="form-group col-md-3">
-          <button mat-raised-button color="primary" (click)="onSubmitUpload(dataText.slide, dataText.device)">Envoyer</button>
+          <button mat-raised-button color="primary" (click)="onSubmitUpload()">Envoyer</button>
         </div>
       </div>
       
@@ -145,7 +149,7 @@
         <button mat-raised-button color="accent" (click)="activateDragDrop()">Positionner</button>
       </div>-->
       <div class="col-md-2 external-btn">
-        <button mat-raised-button color="warn" (click)="supprimerImageText(getDesiredImageText(dataText.slide, dataText.device).id, dataText.slide)">Supprimer Image</button>
+        <button mat-raised-button color="warn" (click)="supprimerImageText(desiredImageTextMobile[dataText.slide].id, dataText.slide)" [disabled]="!validateMobile">Supprimer Image</button>
       </div>
       <div class="col-md-2 external-btn">
         <button mat-raised-button color="accent" (click)="onSubmitPosition({Image: null, PosX: posX, PosY: posY, NumSlide: dataText.slide, Device: dataText.device})" [disabled]="!validateMobile">Enregistrer</button>

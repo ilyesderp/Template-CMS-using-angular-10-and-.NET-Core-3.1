@@ -1,17 +1,17 @@
 
-<!-- Slider desktop -->
+
 <div class="tp-banner-container">
  
-
-  <div class="fader tp-banner" #sliderRef>
+  
+    <!-- Slider desktop -->
     <ng-container *ngIf="size == 3">
+      <div class="fader tp-banner" #sliderRef style="max-height: 620px; width: 100%;">
       <div
         [ngStyle]="{'opacity': opacities[src1.id]}"
         class="fader__slide"
         *ngFor="let src1 of imagesDesktop; trackBy:identify"
-      >
+        >
         <img class="bg-img" [src]="src1.img"/>
-
 
         <div id="textImageOuterDiv">
           <div *ngIf="src1.slide == 'Slide1' && imgTxtObs | async as imgtxts">
@@ -54,15 +54,37 @@
       
 
       </div>
+      <svg
+      [ngClass]="'arrow arrow--left ' + ( currentSlide === 0 ? 'arrow--disabled' : '')"
+      (click)="slider.prev()"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+      />
+    </svg>
+    <svg
+      *ngIf="slider"
+      [ngClass]="'arrow arrow--right ' + (slider.details().size - 1 === currentSlide ? 'arrow--disabled' : '')"
+      (click)="slider.next()"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+  </div>
     </ng-container>
     <!-- Fin Slider desktop -->
     <!-- Slider tablette -->
     <ng-container *ngIf="size == 1 || size == 2">
+      <div class="fader tp-banner" #sliderRef style="max-height: 459px; width: 100%;">
       <div
         [ngStyle]="{'opacity': opacities[src2.id]}"
         class="fader__slide"
         *ngFor="let src2 of imagesTablette; trackBy:identify"
-      >
+        
+        >
         <img class="bg-img" [src]="src2.img"/>
 
         <div id="textImageOuterDiv">
@@ -106,15 +128,36 @@
       
 
       </div>
+      <svg
+      [ngClass]="'arrow arrow--left ' + ( currentSlide === 0 ? 'arrow--disabled' : '')"
+      (click)="slider.prev()"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z"
+      />
+    </svg>
+    <svg
+      *ngIf="slider"
+      [ngClass]="'arrow arrow--right ' + (slider.details().size - 1 === currentSlide ? 'arrow--disabled' : '')"
+      (click)="slider.next()"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+  </div>
     </ng-container>
     <!-- Fin Slider tablette -->
     <!-- Slider mobile -->
     <ng-container *ngIf="size == 0">
+      <div class="fader tp-banner" #sliderRef style="max-height: 200px; width: 100%;">
       <div
         [ngStyle]="{'opacity': opacities[src3.id]}"
         class="fader__slide"
         *ngFor="let src3 of imagesMobile; trackBy:identify"
-      >
+        >
         <img class="bg-img" [src]="src3"/>
 
         <div id="textImageOuterDiv">
@@ -158,9 +201,6 @@
       
 
       </div>
-    </ng-container>
-    <!-- Fin Slider mobile -->
-
       <svg
       [ngClass]="'arrow arrow--left ' + ( currentSlide === 0 ? 'arrow--disabled' : '')"
       (click)="slider.prev()"
@@ -180,6 +220,11 @@
     >
       <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
     </svg>
+  </div>
+    </ng-container>
+    <!-- Fin Slider mobile -->
+
+      
     </div>
     <!-- slider navigation -->
     <div class="dots">
@@ -190,7 +235,6 @@
       ></button>
     </div>
   
-</div>
 
 
 <br>
