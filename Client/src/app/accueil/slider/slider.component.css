@@ -28,26 +28,16 @@
 
 /* navigation slider*/
 
-[class^="number-slide"],
-[class*=" number-slide"] {
-  background: grey;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 50px;
-  color: #fff;
-  font-weight: 500;
-  height: 200px;
-}
 
 
-.dots {
+
+.dotsDesktops, .dotsTabs, .dotsMobiles {
   display: flex;
   padding: 5px 0;
   justify-content: center;
 }
 
-.dot {
+.dotDesktop, .dotTab, .dotMobile {
   border: none;
   width: 10px;
   height: 10px;
@@ -60,11 +50,30 @@
   opacity: 0.6;
 }
 
-.dot:focus {
+.dotDesktopfocus, .dotTabfocus, .dotMobilefocus {
+  border: none;
+  width: 10px;
+  height: 10px;
+  background: #c5c5c5;
+  border-radius: 50%;
+  margin: 0 5px;
+  padding: 5px;
+  margin-top: -40px;
+  cursor: pointer;
+  opacity: 0.6;
   outline: none;
 }
 
-.dot.active {
+.dotDesktopactive, .dotTabactive, .dotMobileactive {
+  border: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 5px;
+  padding: 5px;
+  margin-top: -40px;
+  cursor: pointer;
+  opacity: 0.6;
   background: #000;
 }
 

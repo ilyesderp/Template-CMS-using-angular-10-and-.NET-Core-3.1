@@ -16,7 +16,6 @@ export interface ImageText{
   device: string;
 }
 
-declare var $: any;
 
 @Component({
   selector: 'app-slider',
@@ -30,16 +29,27 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   
   
   //declarations pour le slider
-  slider: KeenSlider = null;
-  opacities: number[] = [];
-  currentSlide: number = 1;
-  dotHelper: Array<Number> = [];
+  sliderDesktop: KeenSlider = null;
+  sliderTab: KeenSlider = null;
+  sliderMobile: KeenSlider = null;
+
+  opacitiesDesktop: number[] = [];
+  opacitiesTab: number[] = [];
+  opacitiesMobile: number[] = [];
+
+  currentSlideDesktop: number = 1;
+  currentSlideTab: number = 1;
+  currentSlideMobile: number = 1;
+
+  dotHelperDesktop: Array<Number> = [];
+  dotHelperTab: Array<Number> = [];
+  dotHelperMobile: Array<Number> = [];
+
+  autoPlayDesktop: any;
+  autoPlayTab: any;
+  autoPlayMobile: any;
   
-  slide1: any;
-  slide2: any;
-  slide3: any;
-  slide4: any;
-  slide5: any;
+   //fin declarations pour le slider
 
   imgTxt1: ImageText;
   imgTxt2: ImageText;
@@ -47,7 +57,9 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   imgTxt4: ImageText;
   imgTxt5: ImageText;
 
-  @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>;
+  @ViewChild("sliderRefDesktop") sliderRefDesktop: ElementRef<HTMLElement>;
+  @ViewChild("sliderRefTab") sliderRefTab: ElementRef<HTMLElement>;
+  @ViewChild("sliderRefMobile") sliderRefMobile: ElementRef<HTMLElement>;
   
   imagesDesktop: {id: number, slide: string, img: string}[] = [];
   imagesTablette: {id: number, slide: string, img: string}[] = [];
@@ -62,6 +74,16 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   constructor(private dataStorageService: DataSotrageService, private resizeService: ResizeService) { 
     this.resizeService.onResize$.pipe(delay(0)).subscribe(x => {
       this.size = x;
+
+      if(this.size == 3){
+        this.startSliderDesktop();
+      }
+      else if(this.size == 2 || this.size == 1){
+        this.startSliderTab();
+      }
+      else if(this.size == 0){
+        this.startSliderMobile();
+      }
     });
   }
   
@@ -74,26 +96,93 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   }
   
   ngAfterViewInit(){ 
-    this.startSlider();
+    /*this.startSliderDesktop();
+    this.startSliderTab();
+    this.startSliderMobile();*/
     
   }
   
 
-  startSlider () {
+  startSliderDesktop () {
     setTimeout(() => {
-      this.slider = new KeenSlider(this.sliderRef.nativeElement, {
+      this.sliderDesktop = new KeenSlider(this.sliderRefDesktop.nativeElement, {
         initial: 0,
         slides: 5,
         loop: true,
         duration: 1500,
         slideChanged: s => {
-          this.currentSlide = s.details().relativeSlide;
+          this.currentSlideDesktop = s.details().relativeSlide;
         },
         move: s => {
-          this.opacities = s.details().positions.map(slide => slide.portion);
+          this.opacitiesDesktop = s.details().positions.map(slide => slide.portion);
         }
       });
-      this.dotHelper = [...Array(this.slider.details().size).keys()];
+      this.dotHelperDesktop = [...Array(this.sliderDesktop.details().size).keys()];
+      
+      //autoplay à corriger:
+      if(this.autoPlayTab){
+        clearInterval(this.autoPlayTab);
+      }
+      if(this.autoPlayMobile){
+        clearInterval(this.autoPlayMobile);
+      }
+      this.autoPlayDesktop = setInterval(() => this.sliderDesktop.next() , 4000);
+    });
+    
+    
+  }
+
+  startSliderTab () {
+    setTimeout(() => {
+      this.sliderTab = new KeenSlider(this.sliderRefTab.nativeElement, {
+        initial: 0,
+        slides: 5,
+        loop: true,
+        duration: 1500,
+        slideChanged: s => {
+          this.currentSlideTab = s.details().relativeSlide;
+        },
+        move: s => {
+          this.opacitiesTab = s.details().positions.map(slide => slide.portion);
+        }
+      });
+      this.dotHelperTab = [...Array(this.sliderTab.details().size).keys()];
+
+      //autoplay:
+      if(this.autoPlayDesktop){
+        clearInterval(this.autoPlayDesktop);
+      }
+      if(this.autoPlayMobile){
+        clearInterval(this.autoPlayMobile);
+      }
+      this.autoPlayTab = setInterval(() => this.sliderTab.next(), 4000);
+    });
+  }
+
+  startSliderMobile () {
+    setTimeout(() => {
+      this.sliderMobile = new KeenSlider(this.sliderRefMobile.nativeElement, {
+        initial: 0,
+        slides: 5,
+        loop: true,
+        duration: 1500,
+        slideChanged: s => {
+          this.currentSlideMobile = s.details().relativeSlide;
+        },
+        move: s => {
+          this.opacitiesMobile = s.details().positions.map(slide => slide.portion);
+        }
+      });
+      this.dotHelperMobile = [...Array(this.sliderMobile.details().size).keys()];
+
+      //autoplay:
+      if(this.autoPlayDesktop){
+        clearInterval(this.autoPlayDesktop);
+      }
+      if(this.autoPlayTab){
+        clearInterval(this.autoPlayTab);
+      }
+      this.autoPlayMobile = setInterval(() => this.sliderMobile.next(), 4000);
     });
   }
 
@@ -154,19 +243,19 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
           else if(elt.device == "mobile"){
             switch (elt.slideNumber) {
               case "Slide1":
-                this.imagesMobile.push(elt.path);
+                this.imagesMobile.push({id: 0, slide: "Slide1", img: elt.path});
                 break;
               case "Slide2":
-                this.imagesMobile.push(elt.path);
+                this.imagesMobile.push({id: 1, slide: "Slide2", img: elt.path});
                 break;
               case "Slide3":
-                this.imagesMobile.push(elt.path);
+                this.imagesMobile.push({id: 2, slide: "Slide3", img: elt.path});
                 break;
               case "Slide4":
-                this.imagesMobile.push(elt.path);
+                this.imagesMobile.push({id: 3, slide: "Slide4", img: elt.path});
                 break;
               case "Slide5":
-                this.imagesMobile.push(elt.path);
+                this.imagesMobile.push({id: 4, slide: "Slide5", img: elt.path});
                 break;
             
               default: console.log("Erreur dans le SlideNumber");
@@ -242,7 +331,9 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 
 
   ngOnDestroy() {
-    if (this.slider) this.slider.destroy();
+    if (this.sliderDesktop) this.sliderDesktop.destroy();
+    if (this.sliderTab) this.sliderTab.destroy();
+    if (this.sliderMobile) this.sliderMobile.destroy();
   }
 
 }
