@@ -104,7 +104,17 @@
   max-height: 389px !important; 
 }
 
-.img-container img{
+.img-container-tab{
+  max-width: 350px !important; 
+  max-height: 200px !important; 
+}
+
+.img-container-mobile{
+  max-width: 180px !important; 
+  max-height: 120px !important; 
+}
+
+.img-container img, .img-container-tab img, .img-container-mobile img{
   width: 100%; 
   height: 100%;
   display: block !important;
