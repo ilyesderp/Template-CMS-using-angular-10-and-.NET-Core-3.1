@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LoadingBarService } from '@ngx-loading-bar/core';
+import { ResizeService } from 'src/app/shared/size-detector/resize.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-popup-accueil',
@@ -10,9 +12,16 @@ import { LoadingBarService } from '@ngx-loading-bar/core';
 export class PopupAccueilComponent implements OnInit, AfterViewInit {
 
   link: string = '';
+  size: any;
 
   loader = this.loadingBar.useRef();
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {id: any, nom: string, youtubeId: string}, private loadingBar: LoadingBarService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {id: any, nom: string, youtubeId: string}, private loadingBar: LoadingBarService,
+              private resizeService: ResizeService) {
+
+                this.resizeService.onResize$.pipe(delay(0)).subscribe(x => {
+                  this.size = x;
+                });
+              }
 
   ngOnInit(): void {
     this.loader.start();

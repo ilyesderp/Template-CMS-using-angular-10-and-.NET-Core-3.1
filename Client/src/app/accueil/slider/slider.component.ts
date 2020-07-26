@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ResizeService } from 'src/app/shared/size-detector/resize.service';
 import { SCREEN_SIZE } from 'src/app/shared/size-detector/screen-size.enum';
 import { delay } from 'rxjs/operators';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 export interface ImageText{
   id: number;
@@ -20,7 +21,19 @@ export interface ImageText{
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css']
+  styleUrls: ['./slider.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('in', style({ opacity:1,transform: 'translateY(0)' })),
+      transition('void => *', [
+        style({ opacity:0,transform: 'translateY(-50%)' }),
+        animate("500ms ease-in")
+      ]),
+      transition('* => void', [
+        animate("500ms ease-out", style({ opacity:0,transform: 'translateY(-50%)' }))
+      ])
+    ])
+  ]
 })
 export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 
@@ -70,6 +83,10 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 
   size: SCREEN_SIZE;
 
+  toggleAnimateTxtDesktop: boolean[] = [false,false,false,false,false];
+  toggleAnimateTxtTab: boolean[] = [false,false,false,false,false];
+  toggleAnimateTxtMobile: boolean[] = [false,false,false,false,false];
+
 
   constructor(private dataStorageService: DataSotrageService, private resizeService: ResizeService) { 
     this.resizeService.onResize$.pipe(delay(0)).subscribe(x => {
@@ -95,11 +112,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
     this.getImagesTexts();
   }
   
-  ngAfterViewInit(){ 
-    /*this.startSliderDesktop();
-    this.startSliderTab();
-    this.startSliderMobile();*/
-    
+  ngAfterViewInit(){  
   }
   
 
@@ -110,23 +123,37 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
         slides: 5,
         loop: true,
         duration: 1500,
+        controls: false,
         slideChanged: s => {
           this.currentSlideDesktop = s.details().relativeSlide;
         },
         move: s => {
-          this.opacitiesDesktop = s.details().positions.map(slide => slide.portion);
+
+          this.toggleAnimateTxtDesktop[s.details().relativeSlide] = false;
+          
+          this.opacitiesDesktop = s.details().positions.map(slide => { 
+            return slide.portion;
+          });
+        },
+        afterChange: s => {
+          this.toggleAnimateTxtDesktop[s.details().relativeSlide] = true;
         }
       });
       this.dotHelperDesktop = [...Array(this.sliderDesktop.details().size).keys()];
       
-      //autoplay à corriger:
+      
+      
+      //autoplay:
       if(this.autoPlayTab){
         clearInterval(this.autoPlayTab);
       }
       if(this.autoPlayMobile){
         clearInterval(this.autoPlayMobile);
       }
-      this.autoPlayDesktop = setInterval(() => this.sliderDesktop.next() , 4000);
+      this.autoPlayDesktop = setInterval(() => {
+        
+        this.sliderDesktop.next();
+      } , 4000);
     });
     
     
@@ -139,11 +166,16 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
         slides: 5,
         loop: true,
         duration: 1500,
+        controls: false,
         slideChanged: s => {
           this.currentSlideTab = s.details().relativeSlide;
         },
         move: s => {
+          this.toggleAnimateTxtTab[s.details().relativeSlide] = false;
           this.opacitiesTab = s.details().positions.map(slide => slide.portion);
+        },
+        afterChange: s => {
+          this.toggleAnimateTxtTab[s.details().relativeSlide] = true;
         }
       });
       this.dotHelperTab = [...Array(this.sliderTab.details().size).keys()];
@@ -166,11 +198,16 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
         slides: 5,
         loop: true,
         duration: 1500,
+        controls: false,
         slideChanged: s => {
           this.currentSlideMobile = s.details().relativeSlide;
         },
         move: s => {
+          this.toggleAnimateTxtMobile[s.details().relativeSlide] = false;
           this.opacitiesMobile = s.details().positions.map(slide => slide.portion);
+        },
+        afterChange: s => {
+          this.toggleAnimateTxtMobile[s.details().relativeSlide] = true;
         }
       });
       this.dotHelperMobile = [...Array(this.sliderMobile.details().size).keys()];

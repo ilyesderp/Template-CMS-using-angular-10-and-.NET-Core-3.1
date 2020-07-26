@@ -12,8 +12,7 @@
         *ngFor="let src1 of imagesDesktop; trackBy:identify"
         >
         <img class="bg-img" [src]="src1.img"/>
-
-        <div id="textImageOuterDiv">
+        <div id="textImageOuterDiv" [@fadeInOut] *ngIf="toggleAnimateTxtDesktop[src1.id]">
           <div *ngIf="src1.slide == 'Slide1' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
               <div *ngIf="img.slideName == 'Slide1' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
@@ -95,7 +94,7 @@
         >
         <img class="bg-img" [src]="src2.img"/>
 
-        <div id="textImageOuterDiv">
+        <div id="textImageOuterDiv" [@fadeInOut] *ngIf="toggleAnimateTxtTab[src2.id]">
           <div *ngIf="src2.slide == 'Slide1' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
               <div *ngIf="img.slideName == 'Slide1' && img.device == 'tablette'" class="img-container-tab" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.55) + 'px', 'top': (img.positionY*1.6) + 'px'}">
@@ -176,7 +175,7 @@
         >
         <img class="bg-img" [src]="src3.img"/>
 
-        <div id="textImageOuterDiv">
+        <div id="textImageOuterDiv" [@fadeInOut] *ngIf="toggleAnimateTxtMobile[src3.id]">
           <div *ngIf="src3.slide == 'Slide1' && imgTxtObs | async as imgtxts">
             <div *ngFor="let img of imgtxts">
               <div *ngIf="img.slideName == 'Slide1' && img.device == 'mobile'" class="img-container-mobile" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.25) + 'px', 'top': (img.positionY*0.6) + 'px'}">
