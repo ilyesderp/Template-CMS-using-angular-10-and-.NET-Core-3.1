@@ -39,7 +39,7 @@ export class AccueilComponent implements OnInit {
     this.dataStorageService.getYoutubeLink().subscribe( result => {
      if(result.type === HttpEventType.Response){
       if(result.body[0] != null){
-        this.dialog.open(PopupAccueilComponent, {data: result.body[0], width: '90vw',
+        this.dialog.open(PopupAccueilComponent, {data: result.body[0], maxWidth: '100vw',
         maxHeight: '100vh'});
       }
      } 
@@ -49,7 +49,7 @@ export class AccueilComponent implements OnInit {
 
   showPopupImage(){
     this.dataStorageService.getCustomImage().subscribe( result => {
-      this.dialog.open(PopupAcceuilImgComponent, {data: result.path, width: '80vw',
+      this.dialog.open(PopupAcceuilImgComponent, {data: result.path, maxWidth: '100vw',
       maxHeight: '100vh'});
     });
   }
