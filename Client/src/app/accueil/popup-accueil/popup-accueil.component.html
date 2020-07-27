@@ -16,8 +16,8 @@
     
     </div>
     <!-- end of desktop -->
-    <!-- tablette -->
-    <div class="container" *ngIf="size == 2 || size == 1">
+    <!-- tablette 1 -->
+    <div class="container" *ngIf="size == 1">
     
         <div class="row">
             <div class="col-md-9 col-sm-12 col-lg-12 text-center">
@@ -32,7 +32,24 @@
         </div>
     
     </div>
-    <!-- end of tablette -->
+    <!-- end of tablette 1 -->
+    <!-- tablette 2 -->
+    <div class="container" *ngIf="size == 2">
+    
+        <div class="row">
+            <div class="col-md-9 col-sm-12 col-lg-12 text-center">
+                <ngx-loading-bar></ngx-loading-bar>
+                <youtube-player [videoId]="link"
+                suggestedQuality="highres"
+                [height]="550"
+                [width]="940"
+                [startSeconds]="0"
+                (ready)="loader.complete()"></youtube-player>
+            </div>
+        </div>
+    
+    </div>
+    <!-- end of tablette 2 -->
     <!-- mobile -->
     <div class="container" *ngIf="size == 0">
     
