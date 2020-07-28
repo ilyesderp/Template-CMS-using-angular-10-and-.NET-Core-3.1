@@ -54,6 +54,7 @@ export class ModifierSliderComponent implements OnInit{
   value = '';
 
 
+
  
 
   
@@ -63,13 +64,13 @@ export class ModifierSliderComponent implements OnInit{
     this.getUploadedImages();
   }
 
-  supprimerImage(imgPath: string){
+  supprimerImage(imgPath: string, id: any){
     const dialogDelete = this.dialog.open(PopupDeleteComponent, {data: imgPath});
     dialogDelete.afterClosed().subscribe(result => {
       if(result === true){
             for (const image of this.images) {
-              if(this.ImagePath(image.imagePath) === imgPath){ //find id of the image to be deleted and send it through delete request.
-                this.dataStorageService.deleteImageInService(image.id).subscribe(response => {
+              if((this.ImagePath(image.imagePath) == imgPath) && (image.id == id)){ //find id of the image to be deleted and send it through delete request.
+                this.dataStorageService.deleteImageInService(image.id).subscribe(response => {//here problem deleting images.
                   
                   if(response == 'Slide1' || response =='Slide2' || response =='Slide3' || response =='Slide4' || response =='Slide5'){
                     alert("Vous ne pouvez pas supprimer cette image car elle est utilisée dans: "+ response +", vous devez devez d'abord changer l'image utilisée.");
@@ -141,7 +142,7 @@ export class ModifierSliderComponent implements OnInit{
         
       }
          
-    }); 
+    });
 }
 
   getUploadedImages(){

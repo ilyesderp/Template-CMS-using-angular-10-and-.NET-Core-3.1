@@ -13,44 +13,11 @@
         >
         <img class="bg-img" [src]="src1.img"/>
         <div id="textImageOuterDiv" [@fadeInOut] *ngIf="toggleAnimateTxtDesktop[src1.id]">
-          <div *ngIf="src1.slide == 'Slide1' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide1' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
+
+              <div *ngIf="src1.device == 'desktop' && src1.imageText != null" class="img-container" [ngStyle]="{'position': 'relative', 'left': (src1.posX*1.2) + 'px', 'top': (src1.posY*1.9) + 'px'}">
+                <img  [src]="ImagePath(src1.imageText)">
               </div>
-            </div>
-          </div>
-          <div *ngIf="src1.slide == 'Slide2' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide2' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src1.slide == 'Slide3' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide3' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src1.slide == 'Slide4' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide4' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src1.slide == 'Slide5' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide5' && img.device == 'desktop'" class="img-container" [ngStyle]="{'position': 'relative', 'left': (img.positionX*1.2) + 'px', 'top': (img.positionY*1.9) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
         </div>
-          
-      
 
       </div>
       <svg
@@ -83,7 +50,7 @@
   </div>
     </ng-container>
     <!-- Fin Slider desktop -->
-    <!-- Slider tablette -->
+    <!-- Slider tablette  -->
     <ng-container *ngIf="size == 1 || size == 2">
       <div class="fader tp-banner" #sliderRefTab style="max-height: 459px; width: 100%;">
       <div
@@ -95,41 +62,14 @@
         <img class="bg-img" [src]="src2.img"/>
 
         <div id="textImageOuterDiv" [@fadeInOut] *ngIf="toggleAnimateTxtTab[src2.id]">
-          <div *ngIf="src2.slide == 'Slide1' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide1' && img.device == 'tablette'" class="img-container-tab" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.55) + 'px', 'top': (img.positionY*1.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
+          
+            
+              <div *ngIf="src2.device == 'tablette' && src2.imageText != null" class="img-container-tab" [ngStyle]="{'position': 'relative', 'left': (src2.posX*0.55) + 'px', 'top': (src2.posY*1.6) + 'px'}">
+                <img  [src]="ImagePath(src2.imageText)">
               </div>
-            </div>
-          </div>
-          <div *ngIf="src2.slide == 'Slide2' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide2' && img.device == 'tablette'" class="img-container-tab" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.55) + 'px', 'top': (img.positionY*1.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src2.slide == 'Slide3' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide3' && img.device == 'tablette'" class="img-container-tab" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.55) + 'px', 'top': (img.positionY*1.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src2.slide == 'Slide4' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide4' && img.device == 'tablette'" class="img-container-tab" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.55) + 'px', 'top': (img.positionY*1.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src2.slide == 'Slide5' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide5' && img.device == 'tablette'" class="img-container-tab" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.55) + 'px', 'top': (img.positionY*1.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
+            
+          
+          
         </div>
           
       
@@ -176,41 +116,12 @@
         <img class="bg-img" [src]="src3.img"/>
 
         <div id="textImageOuterDiv" [@fadeInOut] *ngIf="toggleAnimateTxtMobile[src3.id]">
-          <div *ngIf="src3.slide == 'Slide1' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide1' && img.device == 'mobile'" class="img-container-mobile" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.25) + 'px', 'top': (img.positionY*0.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
+
+              <div *ngIf="src3.device == 'mobile' && src3.imageText != null" class="img-container-mobile" [ngStyle]="{'position': 'relative', 'left': (src3.posX*0.25) + 'px', 'top': (src3.posY*0.6) + 'px'}">
+                <img  [src]="ImagePath(src3.imageText)">
               </div>
-            </div>
-          </div>
-          <div *ngIf="src3.slide == 'Slide2' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide2'  && img.device == 'mobile'" class="img-container-mobile" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.25) + 'px', 'top': (img.positionY*0.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src3.slide == 'Slide3' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide3' && img.device == 'mobile'" class="img-container-mobile" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.25) + 'px', 'top': (img.positionY*0.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src3.slide == 'Slide4' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide4' && img.device == 'mobile'" class="img-container-mobile" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.25) + 'px', 'top': (img.positionY*0.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
-          <div *ngIf="src3.slide == 'Slide5' && imgTxtObs | async as imgtxts">
-            <div *ngFor="let img of imgtxts">
-              <div *ngIf="img.slideName == 'Slide5' && img.device == 'mobile'" class="img-container-mobile" [ngStyle]="{'position': 'relative', 'left': (img.positionX*0.25) + 'px', 'top': (img.positionY*0.6) + 'px'}">
-                <img  [src]="ImagePath(img.imageTextPath)">
-              </div>
-            </div>
-          </div>
+            
+          
         </div>
           
       

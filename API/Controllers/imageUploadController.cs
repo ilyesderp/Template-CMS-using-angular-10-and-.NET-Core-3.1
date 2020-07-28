@@ -45,46 +45,37 @@ namespace API.Controllers
                     var dbPath = Path.Combine(folderName, fileName);
                     var image = new Image();
 
-                    
-                    
 
-                    using(var stream = new FileStream(fullPath, FileMode.Create))
+
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
-                    
+
                     image.ImagePath = dbPath;
-                    
+                    image.Device = imageData.Device;
+
 
                     var count = _context.Images.Count();
                     if (count < 100)
                     {
-                        var dbImage = _context.Images.FirstOrDefault(i => i.ImagePath.Equals(image.ImagePath));
-                        dbImage.Device = imageData.Device;
+                        /*var dbImage = _context.Images.FirstOrDefault(i => i.ImagePath.Equals(image.ImagePath));
+                        dbImage.Device = imageData.Device;*/
 
-                        if (dbImage == null)
-                        {
-                            _context.Add(image);
-                        }
-                        else
-                        {
-                            dbImage.ImagePath = image.ImagePath;
-
-                            //return Ok("exist");
-                        }
-                        
+                        _context.Add(image);
                         _context.SaveChanges();
                     }
                     else
                     {
                         return Ok("over100");
-                        
+
                     }
-                                
+
                 }
                 return Ok("All the files are successfully uploaded.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, $"Erreur serveur interne: {ex}");
             }
@@ -107,22 +98,27 @@ namespace API.Controllers
             {
                 var dbImage = _context.Images.FirstOrDefault(i => i.Id.Equals(id));
 
-                if(dbImage != null)
+                if (dbImage != null)
                 {
-                
+
                     string imgPath = dbImage.ImagePath.Replace("\\", "/");
-                    string imgPathFinal =  "https://localhost:44324/" + imgPath;
+                    string imgPathFinal = "https://localhost:44324/" + imgPath;
 
                     //var findInSlides = _context.Slides.FirstOrDefault(s => s.Path.Equals(dbImage.ImagePath));
-                    var findInSlides = _context.Slides.FirstOrDefault(s => s.Path.Equals(imgPathFinal));
+                    var findInSlides = _context.Slides.Where(s => s.Path.Equals(imgPathFinal))
+                                                        .Where(s => s.Device.Equals(dbImage.Device)).FirstOrDefault();
 
                     if (findInSlides == null)
                     {
                         var dbImgTxt = _context.ImageTexts.FirstOrDefault(s => s.ImageTextPath.Equals(dbImage.ImagePath));
-                        if (System.IO.File.Exists(dbImage.ImagePath) && dbImgTxt == null) //delete image from wwwroot
+                        var searchImages = _context.Images.Where(i => i.ImagePath.Equals(dbImage.ImagePath))
+                                                        .Where(i => i.Device != dbImage.Device).FirstOrDefault();
+                        if (System.IO.File.Exists(dbImage.ImagePath) && dbImgTxt == null && searchImages == null) //delete image from wwwroot
                         {
                             System.IO.File.Delete(dbImage.ImagePath);
                         }
+
+                        var imageToRemove = _context.Images.FirstOrDefault(i => i.Id.Equals(id));
 
                         _context.Images.Remove(dbImage);
                         _context.SaveChanges();
@@ -138,12 +134,12 @@ namespace API.Controllers
                 }
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return StatusCode(500, $"Erreurlors de la suppresion de l'image: {e}");
             }
 
-                return Ok("Suppression réussie!");
+            return Ok("Suppression réussie!");
         }
 
         /*[HttpGet("{id}")]//just for tests

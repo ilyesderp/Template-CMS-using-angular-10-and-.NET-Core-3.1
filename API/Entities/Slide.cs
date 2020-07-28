@@ -16,6 +16,12 @@ namespace API.Entities
 
         public string Path { get; set; }
 
+        public string ImageText { get; set; }
+
+        public double PosX { get; set; }
+
+        public double PosY { get; set; }
+
         public string Device { get; set; }
     }
 }

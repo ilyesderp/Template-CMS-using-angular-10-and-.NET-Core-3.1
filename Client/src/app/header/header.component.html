@@ -22,6 +22,17 @@
 								<img class="flag" src="../../assets/images/img/dz.png" alt="Français" style="vertical-align: middle;">
 							</a>
 							</li>
+							<li class="flagPickerChange">
+								<ngx-flag-picker
+								
+								[selectedCountryCode]="selectedCountryCode"
+								[countryCodes]="countryCodes"
+								[showLabels]="false"
+								[showArrow]="false"
+								[customLabels]="{monnaie: 'EUR'}"
+								(changedCountryCode)="changeSelectedCountryCode($event)">
+								</ngx-flag-picker>
+							</li>
 
 
 						</ul>

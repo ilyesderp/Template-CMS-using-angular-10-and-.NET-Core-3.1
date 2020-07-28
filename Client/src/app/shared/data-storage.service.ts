@@ -120,4 +120,8 @@ export class DataSotrageService{
     getChoixPopup(){
         return this.http.get("https://localhost:44324/api/ChoixPopup", {responseType: 'text'});
     }
+
+    getTauxChangeJson(){
+        return this.http.get("http://localhost:4444/change.json");
+    }
 }

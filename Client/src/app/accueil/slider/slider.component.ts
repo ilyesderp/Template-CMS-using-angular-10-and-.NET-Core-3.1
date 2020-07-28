@@ -27,10 +27,10 @@ export interface ImageText{
       state('in', style({ opacity:1,transform: 'translateY(0)' })),
       transition('void => *', [
         style({ opacity:0,transform: 'translateY(-50%)' }),
-        animate("500ms ease-in")
+        animate("300ms ease-in")
       ]),
       transition('* => void', [
-        animate("500ms ease-out", style({ opacity:0,transform: 'translateY(-50%)' }))
+        animate("300ms ease-out", style({ opacity:0,transform: 'translateY(-50%)' }))
       ])
     ])
   ]
@@ -74,12 +74,11 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   @ViewChild("sliderRefTab") sliderRefTab: ElementRef<HTMLElement>;
   @ViewChild("sliderRefMobile") sliderRefMobile: ElementRef<HTMLElement>;
   
-  imagesDesktop: {id: number, slide: string, img: string}[] = [];
-  imagesTablette: {id: number, slide: string, img: string}[] = [];
-  imagesMobile: {id: number, slide: string, img: string}[] = [];
+  imagesDesktop: {id: number, slide: string, img: string, imageText: string, posX: any, posY: any, device: string}[] = [];
+  imagesTablette: {id: number, slide: string, img: string, imageText: string, posX: any, posY: any, device: string}[] = [];
+  imagesMobile: {id: number, slide: string, img: string, imageText: string, posX: any, posY: any, device: string}[] = [];
   imgTexts: ImageText[];
 
-  imgTxtObs: Observable<ImageText[]>;
 
   size: SCREEN_SIZE;
 
@@ -109,7 +108,6 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
 
   ngOnInit(): void {
     this.getSlides();
-    this.getImagesTexts();
   }
   
   ngAfterViewInit(){  
@@ -153,7 +151,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
       this.autoPlayDesktop = setInterval(() => {
         
         this.sliderDesktop.next();
-      } , 4000);
+      } , 6000);
     });
     
     
@@ -187,7 +185,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
       if(this.autoPlayMobile){
         clearInterval(this.autoPlayMobile);
       }
-      this.autoPlayTab = setInterval(() => this.sliderTab.next(), 4000);
+      this.autoPlayTab = setInterval(() => this.sliderTab.next(), 6000);
     });
   }
 
@@ -219,7 +217,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
       if(this.autoPlayTab){
         clearInterval(this.autoPlayTab);
       }
-      this.autoPlayMobile = setInterval(() => this.sliderMobile.next(), 4000);
+      this.autoPlayMobile = setInterval(() => this.sliderMobile.next(), 6000);
     });
   }
 
@@ -236,19 +234,19 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
           {
             switch (elt.slideNumber) {
               case "Slide1":
-                this.imagesDesktop.push({id: 0, slide: "Slide1", img: elt.path});
+                this.imagesDesktop.push({id: 0, slide: "Slide1", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide2":
-                this.imagesDesktop.push({id: 1, slide: "Slide2", img: elt.path});
+                this.imagesDesktop.push({id: 1, slide: "Slide2", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide3":
-                this.imagesDesktop.push({id: 2, slide: "Slide3", img: elt.path});
+                this.imagesDesktop.push({id: 2, slide: "Slide3", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide4":
-                this.imagesDesktop.push({id: 3, slide: "Slide4", img: elt.path});
+                this.imagesDesktop.push({id: 3, slide: "Slide4", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide5":
-                this.imagesDesktop.push({id: 4, slide: "Slide5", img: elt.path});
+                this.imagesDesktop.push({id: 4, slide: "Slide5", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
             
               default: console.log("Erreur dans le SlideNumber");
@@ -258,19 +256,19 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
           else if(elt.device == "tablette"){
             switch (elt.slideNumber) {
               case "Slide1":
-                this.imagesTablette.push({id: 0, slide: "Slide1", img: elt.path});
+                this.imagesTablette.push({id: 0, slide: "Slide1", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide2":
-                this.imagesTablette.push({id: 1, slide: "Slide2", img: elt.path});
+                this.imagesTablette.push({id: 1, slide: "Slide2", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide3":
-                this.imagesTablette.push({id: 2, slide: "Slide3", img: elt.path});
+                this.imagesTablette.push({id: 2, slide: "Slide3", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide4":
-                this.imagesTablette.push({id: 3, slide: "Slide4", img: elt.path});
+                this.imagesTablette.push({id: 3, slide: "Slide4", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide5":
-                this.imagesTablette.push({id: 4, slide: "Slide5", img: elt.path});
+                this.imagesTablette.push({id: 4, slide: "Slide5", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
             
               default: console.log("Erreur dans le SlideNumber");
@@ -280,19 +278,19 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
           else if(elt.device == "mobile"){
             switch (elt.slideNumber) {
               case "Slide1":
-                this.imagesMobile.push({id: 0, slide: "Slide1", img: elt.path});
+                this.imagesMobile.push({id: 0, slide: "Slide1", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide2":
-                this.imagesMobile.push({id: 1, slide: "Slide2", img: elt.path});
+                this.imagesMobile.push({id: 1, slide: "Slide2", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide3":
-                this.imagesMobile.push({id: 2, slide: "Slide3", img: elt.path});
+                this.imagesMobile.push({id: 2, slide: "Slide3", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide4":
-                this.imagesMobile.push({id: 3, slide: "Slide4", img: elt.path});
+                this.imagesMobile.push({id: 3, slide: "Slide4", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
               case "Slide5":
-                this.imagesMobile.push({id: 4, slide: "Slide5", img: elt.path});
+                this.imagesMobile.push({id: 4, slide: "Slide5", img: elt.path, imageText: elt.imageText, posX: elt.posX, posY: elt.posY, device: elt.device});
                 break;
             
               default: console.log("Erreur dans le SlideNumber");
@@ -311,54 +309,15 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
 
-  getImagesTexts(){
-    this.imgTxtObs = this.dataStorageService.getTextImagesFromServer();
-
-    /*this.dataStorageService.getTextImagesFromServer().subscribe( (results) => {
-      console.log(results);
-      
-      for (let res of results) {
-
-        console.log(res.imageTextPath);
-        console.log(res.slideName);
-
-        if(res != null){
-          switch (res.slideName) {
-            case "Slide1":
-              this.imgTxt1.imageTextPath = res.imageTextPath;
-              this.imgTxt1.slideName = res.slideName;
-              break;
-  
-            case "Slide2":
-              this.imgTxt2.imageTextPath = res.imageTextPath;
-              this.imgTxt2.slideName = res.slideName;
-              break;
-  
-            case "Slide3":
-              this.imgTxt3.imageTextPath = res.imageTextPath;
-              this.imgTxt3.slideName = res.slideNumber;
-              break;
-  
-            case "Slide4":
-              this.imgTxt4.imageTextPath = res.imageTextPath;
-              this.imgTxt4.slideName = res.slideNumber;
-              break;
-  
-            case "Slide5":
-              this.imgTxt5.imageTextPath = res.imageTextPath;
-              this.imgTxt5.slideName = res.slideNumber;
-              break;
-          }
-        }       
-      }
-
-    });*/
-  }
 
 
   ImagePath(serverPath: string){
-    let path2 = serverPath.replace(/\\/g, "/");
-    return 'https://localhost:44324/' + path2;
+    if(serverPath != null){
+      let path2 = serverPath.replace(/\\/g, "/");
+      return 'https://localhost:44324/' + path2;
+    }
+    else return null;
+    
   }
 
   //this method is used in *ngfor

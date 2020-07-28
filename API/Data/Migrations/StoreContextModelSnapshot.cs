@@ -109,8 +109,17 @@ namespace API.Data.Migrations
                     b.Property<string>("Device")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageText")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Path")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("PosX")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PosY")
+                        .HasColumnType("float");
 
                     b.Property<string>("SlideNumber")
                         .HasColumnType("nvarchar(max)");

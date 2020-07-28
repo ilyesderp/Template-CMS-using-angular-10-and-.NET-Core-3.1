@@ -22,6 +22,7 @@ import { PopupAcceuilImgComponent } from './accueil/popup-acceuil-img/popup-acce
 // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { SizeDetectorComponent } from './shared/size-detector/size-detector.component';
+import { NgxFlagPickerModule } from 'ngx-flag-picker';
 
 
 
@@ -51,7 +52,8 @@ import { SizeDetectorComponent } from './shared/size-detector/size-detector.comp
     YouTubePlayerModule,
     MatButtonModule,
     MatProgressBarModule,
-    LoadingBarModule
+    LoadingBarModule,
+    NgxFlagPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

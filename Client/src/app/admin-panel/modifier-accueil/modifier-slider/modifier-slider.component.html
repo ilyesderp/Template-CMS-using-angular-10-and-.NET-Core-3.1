@@ -15,129 +15,178 @@
         </div>
     </div>
     <br><br>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-lg-12">
-                
-                    <div class="form-group">
-                        <mat-form-field>
-                            <ngx-mat-file-input [(ngModel)]="value" placeholder="Chargez des images" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" multiple></ngx-mat-file-input>
-                            <mat-icon matSuffix>folder</mat-icon>
-                          </mat-form-field>
-                    </div>
-                    <ngx-loading-bar ref="http"></ngx-loading-bar>
-                    
-                     
-                    <div class="form-group">
-                        <button mat-raised-button color="primary" (click)="onSubmit(group.value)" [disabled]="fileData == null">Envoyer</button>
-                    </div>
-                        
-                
-        </div>
-    </div>
+
     <!-- next div will show depending on which device is selected -->
         <!-- div for desktop -->
-        <div class="row" *ngIf="group.value=='desktop' && imagesDesktop.length > 0">
-            <div class="col-md-12">
-            
-                        <mat-grid-list cols="4" rowHeight="1:1">
-                            <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesDesktop | 
-                             slice: lowValue : highValue)">
-                             
-                             
-                             
-                             
-                             
-                             <mat-card class="example-card">
-                                <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
-                                
-                                <mat-card-actions id="matBoutons" [align]="'start'">                                     
-                                    <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath), group.value)">Selectionner</button>
-                                    <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath))">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                    
-                                </mat-card-actions>
-                              </mat-card>
-                             </mat-grid-tile>
-                        </mat-grid-list>
-                                   
+        <ng-container  *ngIf="group.value=='desktop'">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12">
                         
-                        <mat-paginator [length]="imagesDesktop.length"
-                            [pageSize]="8"
-                            showFirstLastButtons="true"  
-                            (page)="getPaginatorData($event)">
-                        </mat-paginator>
-                </div> 
-        </div>
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <ngx-mat-file-input [(ngModel)]="value" placeholder="Chargez des images" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" multiple></ngx-mat-file-input>
+                                    <mat-icon matSuffix>folder</mat-icon>
+                                  </mat-form-field>
+                            </div>
+                            <ngx-loading-bar ref="http"></ngx-loading-bar>
+                            
+                             
+                            <div class="form-group">
+                                <button mat-raised-button color="primary" (click)="onSubmit(group.value)" [disabled]="value == ''">Envoyer</button>
+                            </div>
+                                
+                        
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-12">
+                
+                            <mat-grid-list cols="4" rowHeight="1:1">
+                                <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesDesktop | 
+                                 slice: lowValue : highValue)">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 <mat-card class="example-card">
+                                    <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
+                                    
+                                    <mat-card-actions id="matBoutons" [align]="'start'">                                     
+                                        <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath), group.value)">Selectionner</button>
+                                        <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath), image.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                        
+                                    </mat-card-actions>
+                                  </mat-card>
+                                 </mat-grid-tile>
+                            </mat-grid-list>
+                                       
+                            
+                            <mat-paginator [length]="imagesDesktop.length"
+                                [pageSize]="8"
+                                showFirstLastButtons="true"  
+                                (page)="getPaginatorData($event)">
+                            </mat-paginator>
+                    </div> 
+            </div>
+        </ng-container>
+        
         <!-- en div for desktop -->
         <!-- div for tablette -->
-        <div class="row" *ngIf="group.value=='tablette' && imagesTablette.length > 0">
-            <div class="col-md-12">
-            
-                        <mat-grid-list cols="4" rowHeight="1:1">
-                            <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesTablette | 
-                             slice: lowValue : highValue)">
-                             
-                             
-                             
-                             
-                             
-                             <mat-card class="example-card">
-                                <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
-                                
-                                <mat-card-actions id="matBoutons" [align]="'start'">                                     
-                                    <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath), group.value)">Selectionner</button>
-                                    <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath))">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                    
-                                </mat-card-actions>
-                              </mat-card>
-                             </mat-grid-tile>
-                        </mat-grid-list>
-                                   
+        <ng-container  *ngIf="group.value=='tablette'">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12">
                         
-                        <mat-paginator [length]="imagesTablette.length"
-                            [pageSize]="8"
-                            showFirstLastButtons="true"  
-                            (page)="getPaginatorData($event)">
-                        </mat-paginator>
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <ngx-mat-file-input [(ngModel)]="value" placeholder="Chargez des images" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" multiple></ngx-mat-file-input>
+                                    <mat-icon matSuffix>folder</mat-icon>
+                                  </mat-form-field>
+                            </div>
+                            <ngx-loading-bar ref="http"></ngx-loading-bar>
+                            
+                             
+                            <div class="form-group">
+                                <button mat-raised-button color="primary" (click)="onSubmit(group.value)" [disabled]="value == ''">Envoyer</button>
+                            </div>
+                                
+                        
                 </div>
-        </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                
+                            <mat-grid-list cols="4" rowHeight="1:1">
+                                <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesTablette | 
+                                 slice: lowValue : highValue)">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 <mat-card class="example-card">
+                                    <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
+                                    
+                                    <mat-card-actions id="matBoutons" [align]="'start'">                                     
+                                        <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath), group.value)">Selectionner</button>
+                                        <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath), image.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                        
+                                    </mat-card-actions>
+                                  </mat-card>
+                                 </mat-grid-tile>
+                            </mat-grid-list>
+                                       
+                            
+                            <mat-paginator [length]="imagesTablette.length"
+                                [pageSize]="8"
+                                showFirstLastButtons="true"  
+                                (page)="getPaginatorData($event)">
+                            </mat-paginator>
+                    </div>
+            </div>
+        </ng-container>
+        
         <!-- end div for tablette -->
         <!-- div for mobile -->
-        <div class="row" *ngIf="group.value=='mobile' && imagesMobile.length > 0">
-            <div class="col-md-12">
-            
-                        <mat-grid-list cols="4" rowHeight="1:1">
-                            <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesMobile | 
-                             slice: lowValue : highValue)">
-                             
-                             
-                             
-                             
-                             
-                             <mat-card class="example-card">
-                                <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
-                                
-                                <mat-card-actions id="matBoutons" [align]="'start'">                                     
-                                    <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath), group.value)">Selectionner</button>
-                                    <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath))">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                    
-                                </mat-card-actions>
-                              </mat-card>
-                             </mat-grid-tile>
-                        </mat-grid-list>
-                                   
+        <ng-container  *ngIf="group.value=='mobile'">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-lg-12">
                         
-                        <mat-paginator [length]="imagesMobile.length"
-                            [pageSize]="8"
-                            showFirstLastButtons="true"  
-                            (page)="getPaginatorData($event)">
-                        </mat-paginator>
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <ngx-mat-file-input [(ngModel)]="value" placeholder="Chargez des images" name="image" (change)="fileProgress($event)" [accept]="'.jpg, .png, .jpeg'" multiple></ngx-mat-file-input>
+                                    <mat-icon matSuffix>folder</mat-icon>
+                                  </mat-form-field>
+                            </div>
+                            <ngx-loading-bar ref="http"></ngx-loading-bar>
+                            
+                             
+                            <div class="form-group">
+                                <button mat-raised-button color="primary" (click)="onSubmit(group.value)" [disabled]="value == ''">Envoyer</button>
+                            </div>
+                                
+                        
                 </div>
-        </div>
-        <!-- end div for mobile -->
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                
+                            <mat-grid-list cols="4" rowHeight="1:1">
+                                <mat-grid-tile id="modSlideGridTile" *ngFor="let image of (imagesMobile | 
+                                 slice: lowValue : highValue)">
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 <mat-card class="example-card">
+                                    <img mat-card-lg-image mat-card-md-image mat-card-sm-image [src]="ImagePath(image.imagePath)">
+                                    
+                                    <mat-card-actions id="matBoutons" [align]="'start'">                                     
+                                        <button mat-raised-button (click)="openDialog(ImagePath(image.imagePath), group.value)">Selectionner</button>
+                                        <button mat-icon-button color="warn" (click)="supprimerImage(ImagePath(image.imagePath), image.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                        
+                                    </mat-card-actions>
+                                  </mat-card>
+                                 </mat-grid-tile>
+                            </mat-grid-list>
+                                       
+                            
+                            <mat-paginator [length]="imagesMobile.length"
+                                [pageSize]="8"
+                                showFirstLastButtons="true"  
+                                (page)="getPaginatorData($event)">
+                            </mat-paginator>
+                    </div>
+            </div>
+        </ng-container>
+            <!-- end div for mobile -->
+        
+        
 </div>

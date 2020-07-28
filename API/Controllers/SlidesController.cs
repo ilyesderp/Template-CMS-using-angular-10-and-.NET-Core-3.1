@@ -65,6 +65,18 @@ namespace API.Controllers
         {
             var slides = await _context.Slides.ToListAsync();
 
+            foreach(var slide in slides)
+            {
+                var dbImagetext = _context.ImageTexts.Where(i => i.SlideName.Equals(slide.SlideNumber)).Where(i => i.Device.Equals(slide.Device)).FirstOrDefault();
+
+                if(dbImagetext != null)
+                {
+                    slide.ImageText = dbImagetext.ImageTextPath;
+                    slide.PosX = dbImagetext.PositionX;
+                    slide.PosY = dbImagetext.PositionY;
+                }
+            }
+
             return Ok(slides);
         }
 
