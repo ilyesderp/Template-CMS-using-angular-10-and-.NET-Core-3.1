@@ -33,7 +33,7 @@
 
 .dotsDesktops, .dotsTabs, .dotsMobiles {
   display: flex;
-  padding: 5px 0;
+  padding: 0;
   justify-content: center;
 }
 
