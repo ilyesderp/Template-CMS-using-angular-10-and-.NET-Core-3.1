@@ -16,21 +16,23 @@
 							<li><a href="index.php#map">Notre réseau</a></li>
 							<li ><a class="online" href="https://www.facebook.com/AGB.DZ/" ><fa-icon [icon]="signInIcon"></fa-icon>  Facebook </a></li>
 							<li class="separ"></li>
-							<li><a routerLink="">
-								<img class="flag" src="../../assets/images/img/eur.png" alt="Français" style="vertical-align: middle;">
-								<span style="vertical-align: middle;">&nbsp;&nbsp; 1 € = 139.17 DZD&nbsp;&nbsp; </span>
-								<img class="flag" src="../../assets/images/img/dz.png" alt="Français" style="vertical-align: middle;">
-							</a>
-							</li>
 							<li class="flagPickerChange">
 								<ngx-flag-picker
-								
-								[selectedCountryCode]="selectedCountryCode"
+								[selectedCountryCode]="selectedCountryCode1"
 								[countryCodes]="countryCodes"
 								[showLabels]="false"
 								[showArrow]="false"
-								[customLabels]="{monnaie: 'EUR'}"
-								(changedCountryCode)="changeSelectedCountryCode($event)">
+								(changedCountryCode)="changeSelectedCountryCodeOne($event)">
+								</ngx-flag-picker>
+
+								<span style="vertical-align: middle; color: white;">&nbsp;&nbsp; {{unit}} {{shortName}} = {{unit}} {{shortName}} &nbsp;&nbsp; </span>
+
+								<ngx-flag-picker
+								[selectedCountryCode]="selectedCountryCode2"
+								[countryCodes]="['dz']"
+								[showLabels]="false"
+								[showArrow]="false"
+								(changedCountryCode)="changeSelectedCountryCodeTwo($event)">
 								</ngx-flag-picker>
 							</li>
 

@@ -34,6 +34,9 @@
 /* Preloader
 -------------------------------------------------------------- */
 
+.flag-icon{
+    box-shadow: 0px 0px 3px white;
+}
 
 .preloader {
 	width: 100%;

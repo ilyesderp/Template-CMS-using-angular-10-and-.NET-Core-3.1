@@ -13,8 +13,15 @@ export class HeaderComponent implements OnInit {
   signInIcon = faSignInAlt;
   phoneIcon = faPhoneAlt;
 
-  selectedCountryCode = 'us';
-  countryCodes = ['us', 'lu', 'de', 'bs', 'br', 'pt', 'dz'];
+  selectedCountryCode1 = 'eu';
+  selectedCountryCode2 = 'dz';
+  //countryCodes = ['eu', 'us', 'jp', 'ch', 'se', 'dk', 'no', 'dz'];
+  countryCodes = [];
+  unit: number;
+  shortName: string;
+  sellRate: number;
+
+  taux: {unit: number, shortName: string, sellRate: number}[] = [];
 
   constructor(public headerService: HeaderService, private dataStorageService: DataSotrageService) { }
 
@@ -23,8 +30,13 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  changeSelectedCountryCode(value: string): void {
-    this.selectedCountryCode = value;
+  changeSelectedCountryCodeOne(value: string): void {
+    this.selectedCountryCode1 = value;
+  }
+
+  //not used yet
+  changeSelectedCountryCodeTwo(value: string): void {
+    this.selectedCountryCode2 = value;
   }
 
 
@@ -33,6 +45,25 @@ getTauxChange(){
       console.log("-----------------------------------");
       console.log(data.body.result);
       console.log("-----------------------------------");
+
+      for (const elt of data.body.result) {
+        var countryCode: string = elt.shortName;
+        countryCode = countryCode.substring(0,2);
+        countryCode = countryCode.toLowerCase();
+        this.countryCodes.push(countryCode);
+
+        if(this.selectedCountryCode1 == countryCode){
+          this.unit = elt.unit;
+          this.shortName = elt.shortName;
+          this.sellRate = elt.sellRate;
+        }
+        else{
+          console.log("erreur countryCode");
+        }
+
+        //this.taux.push({unit: elt.unit, shortName: elt.shortName, sellRate: elt.sellRate});
+        
+      }
   });
 }
 
