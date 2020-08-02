@@ -1,0 +1,26 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+
+        <h3 style="padding: 15px; padding-bottom: 0; font-weight: bold;">Modification Produits</h3>
+        <a mat-list-item [routerLink]="'ajouter-produit'"> Ajouter Nouveau Produit </a>
+        <a mat-list-item [routerLink]="'modifier-popup-image'"> Modifier Produit </a>
+        <a mat-list-item [routerLink]="'modifier-popup-video'"> Supprimer Produit </a>
+
+  
+        <h3 style="padding: 15px; padding-bottom: 0; font-weight: bold;">Modification Catégories</h3>
+        <a mat-list-item [routerLink]="'modifier-popup-yt-video'"> Ajouter Nouvelle Catégorie </a>
+        <a mat-list-item [routerLink]="'modifier-popup-image'"> Modifier Catégorie </a>
+        <a mat-list-item [routerLink]="'modifier-popup-video'"> Supprimer Catégorie </a>
+
+        
+        
+  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

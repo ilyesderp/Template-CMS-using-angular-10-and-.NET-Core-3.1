@@ -10,7 +10,8 @@ const routes: Routes = [
   {path: '', component: AccueilComponent},
   {path: 'qui-sommes-nous', component: QuiSommesNousComponent},
   {path: 'produits-et-services', component: ProduitsEtServicesComponent},
-  {path: 'auth', component: AuthentificationComponent}
+  {path: 'auth', component: AuthentificationComponent},
+  {path: 'admin-panel', loadChildren: () => import('./admin-panel/admin-panel.module').then(m => m.AdminPanelModule)}
 ];
 
 @NgModule({

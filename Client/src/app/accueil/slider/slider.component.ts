@@ -1,8 +1,7 @@
-import { Component, OnInit, AfterViewInit, ViewEncapsulation, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import KeenSlider from "keen-slider";
-import { Observable } from 'rxjs';
 import { ResizeService } from 'src/app/shared/size-detector/resize.service';
 import { SCREEN_SIZE } from 'src/app/shared/size-detector/screen-size.enum';
 import { delay } from 'rxjs/operators';
@@ -321,7 +320,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   //this method is used in *ngfor
-  identify(index, elt){
+  identify(elt){
     return elt.id;
   }
 

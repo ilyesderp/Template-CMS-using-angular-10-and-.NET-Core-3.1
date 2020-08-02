@@ -10,7 +10,6 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { QuiSommesNousComponent } from './qui-sommes-nous/qui-sommes-nous.component';
 import { ProduitsEtServicesComponent } from './produits-et-services/produits-et-services.component';
 import { SliderComponent } from './accueil/slider/slider.component';
-import { AdminPanelModule } from './admin-panel/admin-panel.module';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +22,7 @@ import { PopupAcceuilImgComponent } from './accueil/popup-acceuil-img/popup-acce
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { SizeDetectorComponent } from './shared/size-detector/size-detector.component';
 import { NgxFlagPickerModule } from 'ngx-flag-picker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -46,14 +46,14 @@ import { NgxFlagPickerModule } from 'ngx-flag-picker';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    AdminPanelModule,
     HttpClientModule,
     MatDialogModule,
     YouTubePlayerModule,
     MatButtonModule,
     MatProgressBarModule,
     LoadingBarModule,
-    NgxFlagPickerModule
+    NgxFlagPickerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

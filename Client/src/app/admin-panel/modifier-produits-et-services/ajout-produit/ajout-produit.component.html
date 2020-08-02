@@ -1,0 +1,65 @@
+
+<div class="container">
+    <div class="row">
+        <br><br>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <br>
+            <h1 style="font-weight: bold; text-align: center; color: #4a4a4a;">Création Produit</h1>
+            <br><br>
+            <p style="color: #5a5959; font-size: large;">Remplisser tous les champs et appuyez sur "Créer Produit":</p>
+            <form style="text-align: left; display: inline-block;" (ngSubmit)="createProduct(productForm)" #productForm="ngForm">
+
+                
+                <mat-form-field>
+                    <mat-label>Titre</mat-label>
+                    <input matInput type="text" name="titre" class="form-control" ngModel>
+                </mat-form-field>
+                
+            
+                 <br>
+                <mat-form-field>
+                    <mat-label>Image Entete</mat-label>
+                    <ngx-mat-file-input placeholder="Chargez une image" name="entete" [accept]="'.jpg, .png, .jpeg'" ngModel></ngx-mat-file-input>
+                    <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+                <br>
+                <br>
+                <br>
+            
+                <p style="color: #5a5959; font-size: large;">Contenu des onglets: </p>
+                  <br>
+                  <label for="onglet1" style="color: #0f6dbf;">Onglet "Qu’est-ce que c’est ?" :</label>
+                  <br>
+                  <tinymce ngModel [config]="config" name="onglet1" ></tinymce>
+                  <br>
+                  <br>
+            
+                  <label for="onglet2" style="color: #0f6dbf;">Onglet "Pourquoi souscrire ?" :</label>
+                  <br>
+                  <tinymce ngModel [config]="config" name="onglet2" ></tinymce>
+                  <br>
+                  <br>
+            
+                  <label for="onglet3" style="color: #0f6dbf;">Onglet "Comment ça marche ?" :</label>
+                  <br>
+                  <tinymce ngModel [config]="config" name="onglet3" ></tinymce>
+                  <br>
+                  <br>
+            
+                  <label for="onglet4" style="color: #0f6dbf;">Onglet "FAQ" :</label>
+                  <br>
+                  <tinymce ngModel [config]="config" name="onglet4" ></tinymce>
+                  <br>
+                  <br>
+
+                  <button mat-raised-button color="accent" type="submit">Créer Produit</button>
+                  <br>
+                  <br>
+                  <br>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+  

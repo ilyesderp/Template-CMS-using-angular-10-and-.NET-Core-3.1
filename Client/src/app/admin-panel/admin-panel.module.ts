@@ -4,7 +4,6 @@ import { AdminPanelComponent } from './admin-panel.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,13 +39,16 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { SideNavProduitsComponent } from './admin-header/side-nav-produits/side-nav-produits.component';
+import { AjoutProduitComponent } from './modifier-produits-et-services/ajout-produit/ajout-produit.component';
+import { NgxTinymceModule } from 'ngx-tinymce';
 
 
 
 
 //routing is integrated in AdminPanelModule file not like in AppModule
 const adminRoutes: Routes = [
-    {path: 'admin-panel', component: AdminPanelComponent, children: [
+    {path: '', component: AdminPanelComponent, children: [
         {path: 'modifier-popup', component: ModifierPopupAccueilComponent, children: [
             {path: 'modifier-popup-yt-video', component: YoutubeVidComponent},
             {path: 'modifier-popup-image', component: CustomImgComponent},
@@ -58,7 +60,9 @@ const adminRoutes: Routes = [
             {path: 'modifier-texte-slider', component: ModifierTexteSlideComponent}
         ]},
         {path: 'modifier-qui-sommes-nous', component: ModifierQuiSommesNousComponent},
-        {path: 'modifier-produits-et-services', component: ModifierProduitsEtServicesComponent}
+        {path: 'modifier-produits-et-services', component: ModifierProduitsEtServicesComponent, children: [
+            {path: 'ajouter-produit', component: AjoutProduitComponent}
+        ]}
     ]}  
 ]
 
@@ -81,15 +85,15 @@ const adminRoutes: Routes = [
         YoutubeVidComponent,
         CustomVidComponent,
         CustomImgComponent,
-        ChoixPopupComponent
+        ChoixPopupComponent,
+        SideNavProduitsComponent,
+        AjoutProduitComponent
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(adminRoutes),
         FormsModule,
-
         MaterialFileInputModule,
-        BrowserAnimationsModule,
         MatFormFieldModule,
         MatIconModule,
         MatButtonModule,
@@ -106,7 +110,10 @@ const adminRoutes: Routes = [
         MatProgressBarModule,
         LoadingBarHttpClientModule,
         LoadingBarModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        NgxTinymceModule.forRoot({
+            baseURL: '//cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/',
+          })
     ],
 
     providers: [{ provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}]

@@ -11,7 +11,7 @@ export class AdminPanelComponent implements OnInit {
   constructor(public headerService: HeaderService) { }
 
   ngOnInit(): void {
-    this.headerService.hide();
+    //this.headerService.hide();
   }
 
 }

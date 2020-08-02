@@ -47,7 +47,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.selectedCountryCode1 = value;
     
     for (const elt of this.taux) {
-      let code: string = elt.shortName.substring(0,2);
+      if(elt.shortName != null && elt.unit != null && elt.sellRate != null){
+        let code: string = elt.shortName.substring(0,2);
       code = code.toLowerCase();
       if((code == 'cn') && (elt.shortName == "CNY") && (code == this.selectedCountryCode1) && (this.specialCase == 'CNH' || this.specialCase == '')){
         this.unit1 = elt.unit;
@@ -70,6 +71,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         break;
       }
 
+      }
     }
 
   }
