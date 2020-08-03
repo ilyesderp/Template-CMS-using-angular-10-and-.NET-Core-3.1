@@ -42,6 +42,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { SideNavProduitsComponent } from './admin-header/side-nav-produits/side-nav-produits.component';
 import { AjoutProduitComponent } from './modifier-produits-et-services/ajout-produit/ajout-produit.component';
 import { NgxTinymceModule } from 'ngx-tinymce';
+import { AjoutCategorieComponent } from './modifier-produits-et-services/categorie/ajout-categorie/ajout-categorie.component';
+import { MatSelectModule } from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -61,7 +64,8 @@ const adminRoutes: Routes = [
         ]},
         {path: 'modifier-qui-sommes-nous', component: ModifierQuiSommesNousComponent},
         {path: 'modifier-produits-et-services', component: ModifierProduitsEtServicesComponent, children: [
-            {path: 'ajouter-produit', component: AjoutProduitComponent}
+            {path: 'ajouter-produit', component: AjoutProduitComponent},
+            {path: 'ajouter-categorie', component: AjoutCategorieComponent}
         ]}
     ]}  
 ]
@@ -87,7 +91,8 @@ const adminRoutes: Routes = [
         CustomImgComponent,
         ChoixPopupComponent,
         SideNavProduitsComponent,
-        AjoutProduitComponent
+        AjoutProduitComponent,
+        AjoutCategorieComponent
     ],
     imports: [
         CommonModule,
@@ -113,7 +118,9 @@ const adminRoutes: Routes = [
         MatButtonToggleModule,
         NgxTinymceModule.forRoot({
             baseURL: '//cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/',
-          })
+          }),
+        MatSelectModule,
+        MatCheckboxModule
     ],
 
     providers: [{ provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}]
