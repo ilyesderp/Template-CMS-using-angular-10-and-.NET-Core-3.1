@@ -25,5 +25,7 @@ namespace API.Data
 
         public DbSet<ChoixPopup> ChoixPopups { get; set; }
 
+        public DbSet<Categorie> Categories { get; set; }
+
     }
 }

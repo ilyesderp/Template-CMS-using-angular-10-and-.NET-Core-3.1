@@ -124,4 +124,8 @@ export class DataSotrageService{
     getTauxChangeJson(){
         return this.http.get("http://localhost:4444/change.json");
     }
+
+    postCategorie(data){
+        return this.http.post('https://localhost:44324/api/Categorie', data, {responseType: 'text'});
+    }
 }
