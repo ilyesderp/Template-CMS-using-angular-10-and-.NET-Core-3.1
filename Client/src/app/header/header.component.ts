@@ -97,7 +97,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
 getTauxChange(){
   this.dataStorageService.getTauxChangeJson().subscribe( (data: any) => {
-      console.log("-----------------------------------");
+      console.log("------------------- file change.json ----------------");
       console.log(data.body.result);
       console.log("-----------------------------------");
 

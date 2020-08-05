@@ -128,4 +128,15 @@ export class DataSotrageService{
     postCategorie(data){
         return this.http.post('https://localhost:44324/api/Categorie', data, {responseType: 'text'});
     }
+
+    getAllCategoriesFromServer(){
+        return this.http.get<{id: any, titre: string, 
+            entete: string, 
+            parent: string, 
+            children: string, 
+            etiquette1: string, 
+            etiquette2: string, 
+            miniature: string}[]>("https://localhost:44324/api/Categorie");
+    }
+
 }

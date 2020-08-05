@@ -23,5 +23,7 @@ namespace API.Entities
         public string Etiquette2 { get; set; }
 
         public string Miniature { get; set; }
+
+        public string State { get; set; }
     }
 }

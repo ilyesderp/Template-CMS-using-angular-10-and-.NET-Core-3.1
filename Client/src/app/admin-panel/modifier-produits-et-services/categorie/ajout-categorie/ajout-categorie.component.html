@@ -6,7 +6,7 @@
             <br>
             <h1 style="font-weight: bold; text-align: center; color: #4a4a4a;">Création Catégorie</h1>
             <br><br>
-            <div class="alert alert-warning" role="alert" *ngIf="!categoryForm.valid && categoryForm.touched" style="text-align: center;">Veuillez remplir tout les champs ayant *</div>
+            <div class="alert alert-warning" role="alert" *ngIf="!categoryForm.valid && categoryForm.touched" style="text-align: center;">Veuillez remplir tout les champs ayant "*"</div>
             <p style="color: #5a5959; font-size: large;">Remplisser tous les champs et appuyez sur "Créer Catégorie":</p>
             
             <form style="text-align: left; display: inline-block; min-width: 500px;" (ngSubmit)="onSubmitCategorie()" #categoryForm="ngForm">
@@ -36,24 +36,18 @@
 
                 <mat-form-field appearance="fill" *ngIf="isSousCategorie">
                     <mat-label>Catégorie Parente</mat-label>
-                    <mat-select ngModel name="categorieParente" [(value)]="categorieParente" required>
-                      <mat-option value="Comptes">
-                        Comptes
-                      </mat-option>
-                      <mat-option value="Cartes Nationales">
-                        Cartes Nationales
-                      </mat-option>
-                      <mat-option value="Etc ...">
-                        Etc ...
+                    <mat-select ngModel name="categorieParente" [(value)]="categorieParente" (selectionChange)="parentSelected($event)" required>
+                      <mat-option *ngFor="let cat of allcategorieParentes" [value]="cat.titre">
+                        {{ cat.titre }}
                       </mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <br><br>
 
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="fill" class="readonly-wrapper">
                     <mat-label>Etiquette 1</mat-label>
-                    <mat-select ngModel name="etiquette1" [(value)]="etiquette1" required>
+                    <mat-select ngModel name="etiquette1" [(value)]="etiquette1" class="readonly-block" [disabled]="toggleReadOnly" required>
                       <mat-option value="Classique">
                         Classique
                       </mat-option>
@@ -65,9 +59,9 @@
 
                 <br>
 
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="fill" class="readonly-wrapper">
                     <mat-label>Etiquette 2</mat-label>
-                    <mat-select ngModel name="etiquette2" [(value)]="etiquette2" required>
+                    <mat-select ngModel name="etiquette2" class="readonly-block" [disabled]="toggleReadOnly" [(value)]="etiquette2" required>
                       <mat-option value="Particulier">
                         Particulier
                       </mat-option>

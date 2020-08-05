@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using API.Data;
+using API.Data.Requests;
 using API.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -82,9 +84,21 @@ namespace API.Controllers
                     categorie.Etiquette2 = content["etiquette2"];
                     categorie.Parent = content["categorieParente"];
                     categorie.Children = "";
+                    categorie.State = content["state"];
+
+                    var dbCategorieParente = _context.Categories.FirstOrDefault(x => x.Titre == categorie.Parent);
+                    if (dbCategorieParente != null)
+                    {
+                        dbCategorieParente.Children = dbCategorieParente.Children + ";" + content["titre"];
+
+                    }
 
                     _context.Add(categorie);
                     _context.SaveChanges();
+
+
+                    
+
 
                     return Ok("Donées de catégorie envoyées avec succès!");
                 }
@@ -100,6 +114,34 @@ namespace API.Controllers
             }
             
         }
+
+
+        [HttpGet]
+        public async Task<ActionResult<List<Categorie>>> GetCategories()
+        {
+            var categories = await _context.Categories.ToListAsync(); 
+            
+            return Ok(categories);
+        }
+
+        /*[HttpPatch]
+        public IActionResult SetChildCategory([FromBody] EditCategorieChildrenRequestformat request)
+        {
+            var dbCategorie = _context.Categories.FirstOrDefault(c => c.Titre == request.categorie.Titre);
+            var dbCategorieParente = _context.Categories.FirstOrDefault(c => c.Titre == request.titreParent);
+
+            var children = "";
+
+            if(dbCategorie != null && dbCategorieParente != null)
+            {
+                //children = dbCategorie.Children.Concat(categorie.Titre);
+                children = dbCategorieParente.Children + ";" + dbCategorie.Titre;
+                dbCategorieParente.Children = children;
+                _context.SaveChanges();
+            }
+
+            return Ok("Catégorie parente modifiée avec succès!");
+        }*/
 
     }
 }
