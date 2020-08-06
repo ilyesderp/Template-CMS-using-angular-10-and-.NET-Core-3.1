@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
@@ -30,7 +30,7 @@ export class AjoutCategorieComponent implements OnInit {
   toggleReadOnly: boolean = false;
 
  
-constructor(private dataStorageService: DataSotrageService) { }
+constructor(private dataStorageService: DataSotrageService, private changeDetection: ChangeDetectorRef) { }
 
 ngOnInit(): void {
   this.getAllCategories();
@@ -49,15 +49,17 @@ toggleCheckBox(value: MatCheckboxChange){
 }
 
 
-parentSelected(selected){
-  this.getAllCategories();
+parentSelected(selected: any){
+  
   this.categorieParente = selected.value;
   for (let item of this.allcategorieParentes) {
     if(this.categorieParente != '' && item.titre == this.categorieParente){
       this.etiquette1 = item.etiquette1;
       this.etiquette2 = item.etiquette2;
+      //this.changeDetection.detectChanges();
     }
   }
+  //this.changeDetection.detach();
 }
 
 
@@ -113,11 +115,12 @@ onSubmitCategorie(){
     console.log(result);
     
     if(result != "exists"){
-      this.formulaire.resetForm();
+      //this.formulaire.resetForm();
       alert("Catégorie Créée");
-      this.getAllCategories();
+      //this.getAllCategories();
+      //this.parentSelected(this.formulaire.value.categorieParente);
       this.isSousCategorie = false;
-      
+      location.reload();
       
     }
     else{
