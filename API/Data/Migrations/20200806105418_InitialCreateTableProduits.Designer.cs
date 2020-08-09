@@ -3,14 +3,16 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20200806105418_InitialCreateTableProduits")]
+    partial class InitialCreateTableProduits
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,22 +147,10 @@ namespace API.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Categorie")
+                    b.Property<string>("Ctegorie")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Entete")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Onglet1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Onglet2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Onglet3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Onglet4")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")

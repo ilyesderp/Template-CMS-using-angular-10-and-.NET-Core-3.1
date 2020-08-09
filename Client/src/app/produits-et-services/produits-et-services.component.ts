@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataSotrageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-produits-et-services',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProduitsEtServicesComponent implements OnInit {
 
-  constructor() { }
+  allCategories: any[] = [];
+
+  constructor(private dataStorageService: DataSotrageService) { }
 
   ngOnInit(): void {
+  }
+
+  getCategories(){
+    this.dataStorageService.getAllCategoriesFromServer().subscribe((result) => {
+      this.allCategories = result;
+    });
   }
 
 }

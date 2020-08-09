@@ -6,53 +6,77 @@
             <br>
             <h1 style="font-weight: bold; text-align: center; color: #4a4a4a;">Création Produit</h1>
             <br><br>
+            <div class="alert alert-warning" role="alert" *ngIf="!productForm.valid && productForm.touched" style="text-align: center;">Veuillez remplir tout les champs ayant "*"</div>
             <p style="color: #5a5959; font-size: large;">Remplisser tous les champs et appuyez sur "Créer Produit":</p>
             <form style="text-align: left; display: inline-block;" (ngSubmit)="createProduct(productForm)" #productForm="ngForm">
 
                 
-                <mat-form-field>
+                <mat-form-field style="width: 400px;">
                     <mat-label>Titre</mat-label>
-                    <input matInput type="text" name="titre" class="form-control" ngModel>
+                    <input matInput type="text" name="titre" pattern="[a-zA-Z0-9 ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
                 </mat-form-field>
+                <div class="alert alert-danger" role="alert" *ngIf="!titre.valid && titre.touched" style="width: 580px;">Le titre doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
                 
-            
-                 <br>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Catégorie</mat-label>
+                    <mat-select ngModel name="categorieParente" [(value)]="categorieParente" required>
+                      <mat-option *ngFor="let cat of allcategories" [value]="cat.titre">
+                        {{ cat.titre }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
                 <mat-form-field>
                     <mat-label>Image Entete</mat-label>
-                    <ngx-mat-file-input placeholder="Chargez une image" name="entete" [accept]="'.jpg, .png, .jpeg'" ngModel></ngx-mat-file-input>
+                    <ngx-mat-file-input placeholder="Chargez une image" name="entete" (change)="fileProgressEntete($event)" [accept]="'.jpg, .png, .jpeg'" ngModel required></ngx-mat-file-input>
                     <mat-icon matSuffix>folder</mat-icon>
                 </mat-form-field>
+
+
+                <br>
                 <br>
                 <br>
                 <br>
             
-                <p style="color: #5a5959; font-size: large;">Contenu des onglets: </p>
+                <p style="color: #5a5959; font-size: larger;">Veuillez remplir le contenu des onglets: </p>
                   <br>
                   <label for="onglet1" style="color: #0f6dbf;">Onglet "Qu’est-ce que c’est ?" :</label>
                   <br>
-                  <tinymce ngModel [config]="config" name="onglet1" ></tinymce>
+                  <tinymce [(ngModel)]="onglet1" #tiny1="ngModel" [config]="config" name="onglet1" (ngModelChange)="validateTinymce1($event)"></tinymce>
+                  <br>
+                  <div class="alert alert-danger" role="alert" *ngIf="!tiny1.valid" style="text-align: center;">Longueur du contenu maximale dépassée! Vous devez réduire la taille du contenu pour pouvoir valider</div>
                   <br>
                   <br>
             
                   <label for="onglet2" style="color: #0f6dbf;">Onglet "Pourquoi souscrire ?" :</label>
                   <br>
-                  <tinymce ngModel [config]="config" name="onglet2" ></tinymce>
+                  <tinymce [(ngModel)]="onglet2" #tiny2="ngModel" [config]="config" name="onglet2" (ngModelChange)="validateTinymce2($event)"></tinymce>
+                  <br>
+                  <div class="alert alert-danger" role="alert" *ngIf="!tiny2.valid" style="text-align: center;">Longueur du contenu maximale dépassée! Vous devez réduire la taille du contenu pour pouvoir valider</div>
                   <br>
                   <br>
             
                   <label for="onglet3" style="color: #0f6dbf;">Onglet "Comment ça marche ?" :</label>
                   <br>
-                  <tinymce ngModel [config]="config" name="onglet3" ></tinymce>
+                  <tinymce [(ngModel)]="onglet3" #tiny3="ngModel" [config]="config" name="onglet3" (ngModelChange)="validateTinymce3($event)"></tinymce>
+                  <br>
+                  <div class="alert alert-danger" role="alert" *ngIf="!tiny3.valid" style="text-align: center;">Longueur du contenu maximale dépassée! Vous devez réduire la taille du contenu pour pouvoir valider</div>
+                  
                   <br>
                   <br>
             
                   <label for="onglet4" style="color: #0f6dbf;">Onglet "FAQ" :</label>
                   <br>
-                  <tinymce ngModel [config]="config" name="onglet4" ></tinymce>
+                  <tinymce [(ngModel)]="onglet4" #tiny4="ngModel" [config]="config" name="onglet4" (ngModelChange)="validateTinymce4($event)"></tinymce>
+                  <br>
+                  <div class="alert alert-danger" role="alert" *ngIf="!tiny4.valid" style="text-align: center;">Longueur du contenu maximale dépassée! Vous devez réduire la taille du contenu pour pouvoir valider</div>
+                  
                   <br>
                   <br>
 
-                  <button mat-raised-button color="accent" type="submit">Créer Produit</button>
+                  <button mat-raised-button color="accent" type="submit" [disabled]="!productForm.valid">Créer Produit</button>
                   <br>
                   <br>
                   <br>

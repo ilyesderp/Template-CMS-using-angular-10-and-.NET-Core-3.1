@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
@@ -30,7 +30,7 @@ export class AjoutCategorieComponent implements OnInit {
   toggleReadOnly: boolean = false;
 
  
-constructor(private dataStorageService: DataSotrageService, private changeDetection: ChangeDetectorRef) { }
+constructor(private dataStorageService: DataSotrageService) { }
 
 ngOnInit(): void {
   this.getAllCategories();
@@ -119,7 +119,7 @@ onSubmitCategorie(){
       alert("Catégorie Créée");
       //this.getAllCategories();
       //this.parentSelected(this.formulaire.value.categorieParente);
-      this.isSousCategorie = false;
+
       location.reload();
       
     }

@@ -139,4 +139,9 @@ export class DataSotrageService{
             miniature: string}[]>("https://localhost:44324/api/Categorie");
     }
 
+
+    createProduct(dataForm){
+        return this.http.post("https://localhost:44324/api/Produit", dataForm, {responseType: 'text'});
+    }
+
 }

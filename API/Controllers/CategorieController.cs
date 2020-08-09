@@ -124,24 +124,5 @@ namespace API.Controllers
             return Ok(categories);
         }
 
-        /*[HttpPatch]
-        public IActionResult SetChildCategory([FromBody] EditCategorieChildrenRequestformat request)
-        {
-            var dbCategorie = _context.Categories.FirstOrDefault(c => c.Titre == request.categorie.Titre);
-            var dbCategorieParente = _context.Categories.FirstOrDefault(c => c.Titre == request.titreParent);
-
-            var children = "";
-
-            if(dbCategorie != null && dbCategorieParente != null)
-            {
-                //children = dbCategorie.Children.Concat(categorie.Titre);
-                children = dbCategorieParente.Children + ";" + dbCategorie.Titre;
-                dbCategorieParente.Children = children;
-                _context.SaveChanges();
-            }
-
-            return Ok("Catégorie parente modifiée avec succès!");
-        }*/
-
     }
 }
