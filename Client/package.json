@@ -28,6 +28,7 @@
     "@google-cloud/storage": "^5.0.1",
     "@ngx-loading-bar/core": "^5.0.2",
     "@ngx-loading-bar/http-client": "^5.0.2",
+    "@types/jquery": "^3.5.1",
     "bootstrap": "^3.4.1",
     "jquery": "^2.2.4",
     "keen-slider": "^4.2.1",

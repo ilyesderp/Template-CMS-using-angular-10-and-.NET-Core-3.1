@@ -777,9 +777,9 @@ function onInitFs(fs) {
         consCarousel('.testimonial03');
         consCarousel('.clients-carousel');
 
-        consIsotope('.portfolio', '');
-        consIsotope('.portfolio2', '.conditions');
-        isoCompte('.portfolio3', '');
+        //consIsotope('.portfolio', '');
+        //consIsotope('.portfolio2', '.conditions');
+        //isoCompte('.portfolio3', '');
         //init_filter(); à remettre si pour plus tard
 
         consIsotope('.masonry main > div.content');

@@ -8,6 +8,7 @@ using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -28,7 +29,7 @@ namespace API.Controllers
             var content = Request.Form;
             try
             {
-                var file = content.Files[0];
+                var files = content.Files;
 
                 var subFolder = Path.Combine("images", "imagesProduitsServices");
                 var folderName = Path.Combine("wwwroot", subFolder);
@@ -37,11 +38,13 @@ namespace API.Controllers
 
                 var produit = new Produit();
 
-                if (file == null)
+                if (files.Any(f => f.Length == 0))
                 {
                     return BadRequest();
                 }
 
+                foreach (var file in files)
+                {
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(pathToSave, fileName);
                     var dbPath = Path.Combine(folderName, fileName);
@@ -57,10 +60,14 @@ namespace API.Controllers
                     {
                         produit.Entete = dbPath;
                     }
+                    else if (file.Name == "miniature")
+                    {
+                        produit.Miniature = dbPath;
+                    }
 
-                
+                }
 
-                var dbProduit = _context.Produits.Where(c => c.Titre.Equals(content["titre"])).Where(c => c.Categorie.Equals(content["categorieParente"])).FirstOrDefault();
+                    var dbProduit = _context.Produits.Where(c => c.Titre.Equals(content["titre"])).Where(c => c.Categorie.Equals(content["categorieParente"])).FirstOrDefault();
 
 
                 if (dbProduit == null)
@@ -80,6 +87,9 @@ namespace API.Controllers
                     if (dbCategorieParente != null)
                     {
                         dbCategorieParente.Produits = dbCategorieParente.Produits + ";" + content["titre"];
+
+                        produit.Etiquette1 = dbCategorieParente.Etiquette1;
+                        produit.Etiquette2 = dbCategorieParente.Etiquette2;
 
                     }
 
@@ -102,6 +112,15 @@ namespace API.Controllers
             {
                 return StatusCode(500, $"Erreur serveur interne: {ex}");
             }
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult<List<Produit>>> GetProducts()
+        {
+            var products = await _context.Produits.ToListAsync();
+
+            return Ok(products);
         }
 
     }

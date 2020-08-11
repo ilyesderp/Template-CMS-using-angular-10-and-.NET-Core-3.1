@@ -24,6 +24,7 @@ export class AjoutProduitComponent implements OnInit {
 
   @ViewChild('productForm') formulaire: NgForm;
   enteteFileData: File = null;
+  miniatureFileData: File = null;
   categorieParente: string = '';
   allcategories: {id: any, titre: string, 
     entete: string, 
@@ -55,6 +56,11 @@ export class AjoutProduitComponent implements OnInit {
     this.enteteFileData = <File>fileInput.target.files[0];
   }
 
+  fileProgressMiniature(fileInput: any){
+    this.miniatureFileData = <File>fileInput.target.files[0];
+  }
+
+
   validateTinymce1(content: string){
     console.log(content);
     if(content.length > 100) {
@@ -64,21 +70,21 @@ export class AjoutProduitComponent implements OnInit {
 
   validateTinymce2(content: string){
     console.log(content);
-    if(content.length > 100) {
+    if(content.length > 20000) {
       this.formulaire.controls['onglet2'].setErrors({ 'invalid': true });
     }
   }
 
   validateTinymce3(content: string){
     console.log(content);
-    if(content.length > 100) {
+    if(content.length > 20000) {
       this.formulaire.controls['onglet3'].setErrors({ 'invalid': true });
     }
   }
 
   validateTinymce4(content: string){
     console.log(content);
-    if(content.length > 100) {
+    if(content.length > 20000) {
       this.formulaire.controls['onglet4'].setErrors({ 'invalid': true });
     }
   }
@@ -97,6 +103,7 @@ export class AjoutProduitComponent implements OnInit {
   formData.append("titre", this.formulaire.value.titre);
   formData.append("categorieParente", this.formulaire.value.categorieParente);
   formData.append("entete", this.enteteFileData);
+  formData.append("miniature", this.miniatureFileData);
 
   //if(this.onglet1.length > 10) alert("Sup à 10 car");
   formData.append("onglet1", this.onglet1);

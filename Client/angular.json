@@ -38,15 +38,13 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/plugins.js",
-              "src/assets/js/main.js",
-              "src/assets/js/jquery.themepunch.tools.min.js",
-              "src/assets/js/jquery.themepunch.revolution.js",
               "src/assets/js/scrollreveal.min.js",
               "src/assets/js/include.js",
               "src/assets/js/imagesLoaded.pkgd.min.js",
               "src//assets/js/isotope.pkgd.min.js",
               "src/assets/js/venobox.min.js",
-              "src//assets/js/scripts.js"
+              "src//assets/js/scripts.js",
+              "src/assets/js/main.js"
             ]
           },
           "configurations": {

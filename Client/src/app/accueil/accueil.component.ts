@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../shared/navbar.service';
 import { DataSotrageService } from '../shared/data-storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupAccueilComponent } from './popup-accueil/popup-accueil.component';
 import { PopupAcceuilImgComponent } from './popup-acceuil-img/popup-acceuil-img.component';
 import { HttpEventType } from '@angular/common/http';
+
 
 
 @Component({
@@ -20,6 +21,7 @@ export class AccueilComponent implements OnInit {
   constructor(public headerService: HeaderService, private dataStorageService: DataSotrageService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
     this.headerService.show();
 
     this.dataStorageService.getChoixPopup().subscribe( data => {
@@ -53,6 +55,8 @@ export class AccueilComponent implements OnInit {
       maxHeight: '100vh'});
     });
   }
+
+  
   
 
 }

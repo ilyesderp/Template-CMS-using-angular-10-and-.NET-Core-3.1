@@ -34,6 +34,14 @@
                     <mat-icon matSuffix>folder</mat-icon>
                 </mat-form-field>
 
+                <br>
+
+                <mat-form-field>
+                    <mat-label>Image Miniature</mat-label>
+                    <ngx-mat-file-input placeholder="Chargez une image" name="miniature" (change)="fileProgressMiniature($event)" [accept]="'.jpg, .png, .jpeg'" ngModel required></ngx-mat-file-input>
+                    <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+
 
                 <br>
                 <br>

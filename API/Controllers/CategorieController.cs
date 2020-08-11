@@ -119,7 +119,8 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Categorie>>> GetCategories()
         {
-            var categories = await _context.Categories.ToListAsync(); 
+            var categories = await _context.Categories.ToListAsync();
+            //var sousCategories = 
             
             return Ok(categories);
         }
