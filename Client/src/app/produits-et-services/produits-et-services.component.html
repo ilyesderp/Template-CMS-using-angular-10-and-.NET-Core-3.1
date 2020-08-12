@@ -20,26 +20,30 @@
                 <div class="filter-wrap col-sm-8 col-xs-12">
                     <ul class="filter horizontal" data-filter-group="con2">
                         <!-- classiqe + islamique -->
-                        <li id="classique"><a class="filter-button"  data-filter="classiques">Classique</a></li>
-                        <li id="islamique"><a class="filter-button" data-filter="islamique">Participatif</a></li>
+                        <li id="classique"><a (click)="filterSlected()" [ngClass]="['filter-button', filterSlected()]"  data-filter="Classique" 
+                                                style="background: #D2AA3C url(../../assets/images/common/classique.png) 13px 7px no-repeat;
+                                                        padding-left: 53px; padding-top: 12px; padding-bottom: 12px;">Classique</a></li>
+                        <li id="islamique"><a [ngClass]="['filter-button', filterSlected()]" data-filter="Participatif" style="color: #FFF;
+                            background: #5A963C url(../../assets/images/common/mosque.png) 13px 4px no-repeat;
+                            padding-left: 53px; padding-top: 12px; padding-bottom: 12px;">Participatif</a></li>
                     </ul>
                 </div>
                 <div class="filter-wrap col-sm-8 col-xs-12">
 
                     <ul class="filter horizontal" data-filter-group="con1">
-                        <li id="part"><a  data-filter=".particulier" href="#">Particulier</a></li>
-                        <li id="prof"><a  data-filter=".professionnel" href="#">Professionnel</a></li>
-                        <li id="entrep"><a  data-filter=".entreprise" href="#">Entreprise</a></li>
+                        <li id="part"><a class="filter-button" data-filter="Particulier">Particulier</a></li>
+                        <li id="prof"><a class="filter-button" data-filter="Professionnel">Professionnel</a></li>
+                        <li id="entrep"><a class="filter-button" data-filter="Entreprise">Entreprise</a></li>
                     </ul>
 
                 </div>
             </div>
 
             <br>
-    
+            
             <div class="portfolio popup-gallery mgb50 col-sm-12 col-xs-12">
                 <div class="col-md-12">
-                    <div *ngFor="let category of allCategories" class="item filter {{ category.etiquette2 }} {{ category.etiquette1 }}">
+                    <div *ngFor="let category of allCategories" [ngClass]="['item', 'filterNg', category.etiquette2, category.etiquette1]">
                         <article class="feature">
                             <p class="image"><a href="categorie/comptes.html"><img [src]="formatImagePath(category.miniature)" alt="{{category.titre}}"></a></p>
                             <div class="intro" >

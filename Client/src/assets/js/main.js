@@ -780,7 +780,7 @@ function onInitFs(fs) {
         //consIsotope('.portfolio', '');
         //consIsotope('.portfolio2', '.conditions');
         //isoCompte('.portfolio3', '');
-        //init_filter(); à remettre si pour plus tard
+        //init_filter(); //à remettre si pour plus tard
 
         consIsotope('.masonry main > div.content');
 

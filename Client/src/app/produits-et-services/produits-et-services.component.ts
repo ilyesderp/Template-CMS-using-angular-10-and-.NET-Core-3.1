@@ -50,14 +50,14 @@ export class ProduitsEtServicesComponent implements OnInit {
           if(value == "all")
           {
               //$('.filter').removeClass('hidden');
-              $('.filter').show('1000');
+              $('.filterNg').show('1000');
           }
           else
           {
   //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
   //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
-              $(".filter").not('.'+value).hide('3000');
-              $('.filter').filter('.'+value).show('3000');
+              $(".filterNg").not('.'+value).hide('3000');
+              $('.filterNg').filter('.'+value).show('3000');
               
           }
       });
