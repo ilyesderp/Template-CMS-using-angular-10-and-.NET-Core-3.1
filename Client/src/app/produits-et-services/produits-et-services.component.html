@@ -20,10 +20,10 @@
                 <div class="filter-wrap col-sm-8 col-xs-12">
                     <ul class="filter horizontal" data-filter-group="con2">
                         <!-- classiqe + islamique -->
-                        <li id="classique"><a (click)="filterSlected()" [ngClass]="['filter-button', filterSlected()]"  data-filter="Classique" 
+                        <li id="classique"><a [ngClass]="{'selectionne': tabIndex === 0, 'filter-button': true}" (click)="onTabClick(0)"  data-filter="Classique" 
                                                 style="background: #D2AA3C url(../../assets/images/common/classique.png) 13px 7px no-repeat;
                                                         padding-left: 53px; padding-top: 12px; padding-bottom: 12px;">Classique</a></li>
-                        <li id="islamique"><a [ngClass]="['filter-button', filterSlected()]" data-filter="Participatif" style="color: #FFF;
+                        <li id="islamique"><a [ngClass]="{'selectionne': tabIndex === 1, 'filter-button': true}" (click)="onTabClick(1)" data-filter="Participatif" style="color: #FFF;
                             background: #5A963C url(../../assets/images/common/mosque.png) 13px 4px no-repeat;
                             padding-left: 53px; padding-top: 12px; padding-bottom: 12px;">Participatif</a></li>
                     </ul>
@@ -31,9 +31,9 @@
                 <div class="filter-wrap col-sm-8 col-xs-12">
 
                     <ul class="filter horizontal" data-filter-group="con1">
-                        <li id="part"><a class="filter-button" data-filter="Particulier">Particulier</a></li>
-                        <li id="prof"><a class="filter-button" data-filter="Professionnel">Professionnel</a></li>
-                        <li id="entrep"><a class="filter-button" data-filter="Entreprise">Entreprise</a></li>
+                        <li id="part"><a [ngClass]="{'selectionne': tabIndex2 === 0, 'filter-button': true}" (click)="onTabClick2(0)" data-filter="Particulier">Particulier</a></li>
+                        <li id="prof"><a [ngClass]="{'selectionne': tabIndex2 === 1, 'filter-button': true}" (click)="onTabClick2(1)" data-filter="Professionnel">Professionnel</a></li>
+                        <li id="entrep"><a [ngClass]="{'selectionne': tabIndex2 === 2, 'filter-button': true}" (click)="onTabClick2(2)" data-filter="Entreprise">Entreprise</a></li>
                     </ul>
 
                 </div>
