@@ -84,6 +84,7 @@ namespace API.Controllers
                     categorie.Etiquette2 = content["etiquette2"];
                     categorie.Parent = content["categorieParente"];
                     categorie.Children = "";
+                    categorie.Produits = "";
                     categorie.State = content["state"];
 
                     var dbCategorieParente = _context.Categories.FirstOrDefault(x => x.Titre == categorie.Parent);

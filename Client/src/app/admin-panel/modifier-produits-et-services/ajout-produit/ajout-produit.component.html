@@ -13,19 +13,20 @@
                 
                 <mat-form-field style="width: 400px;">
                     <mat-label>Titre</mat-label>
-                    <input matInput type="text" name="titre" pattern="[a-zA-Z0-9 ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
+                    <input matInput type="text" name="titre" pattern="[a-zA-Z0-9éèà ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
                 </mat-form-field>
                 <div class="alert alert-danger" role="alert" *ngIf="!titre.valid && titre.touched" style="width: 580px;">Le titre doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
                 
                 <br>
                 <mat-form-field appearance="fill" style="width: 400px;">
                     <mat-label>Catégorie</mat-label>
-                    <mat-select ngModel name="categorieParente" [(value)]="categorieParente" required>
+                    <mat-select ngModel name="categorieParente" [(value)]="categorieParente" #categorie required>
                       <mat-option *ngFor="let cat of allcategories" [value]="cat.titre">
                         {{ cat.titre }}
                       </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <div class="alert alert-danger" role="alert" *ngIf="categorie.errorState.valueOf()" style="width: 580px;">Vous devez obligatoirement selectionner une catégorie parente à un produit, si il n'y en a aucune vous devez en créer d'abord.</div>
 
                 <br>
                 <mat-form-field>

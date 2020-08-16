@@ -14,7 +14,7 @@
               
                 <mat-form-field>
                     <mat-label>Titre</mat-label>
-                    <input matInput type="text" name="titre" class="form-control" pattern="[a-zA-Z0-9 ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
+                    <input matInput type="text" name="titre" class="form-control" pattern="[a-zA-Z0-9éèà ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
                 </mat-form-field>
                 <div class="alert alert-danger" role="alert" *ngIf="!titre.valid && titre.touched">Le titre doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
                 

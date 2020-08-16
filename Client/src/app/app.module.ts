@@ -23,6 +23,8 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { SizeDetectorComponent } from './shared/size-detector/size-detector.component';
 import { NgxFlagPickerModule } from 'ngx-flag-picker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategorieComponent } from './produits-et-services/categorie/categorie.component';
+import { ProduitComponent } from './produits-et-services/produit/produit.component';
 
 
 
@@ -39,7 +41,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthentificationComponent,
     PopupAccueilComponent,
     PopupAcceuilImgComponent,
-    SizeDetectorComponent
+    SizeDetectorComponent,
+    CategorieComponent,
+    ProduitComponent
     
   ],
   imports: [

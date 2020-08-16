@@ -20,10 +20,10 @@
                 <div class="filter-wrap col-sm-8 col-xs-12">
                     <ul class="filter horizontal" data-filter-group="con2">
                         <!-- classiqe + islamique -->
-                        <li id="classique"><a [ngClass]="{'selectionne': tabIndex === 0, 'filter-button': true}" (click)="onTabClick(0)"  data-filter="Classique" 
+                        <li id="classique"><a id="Classique" [ngClass]="{'selectionne': tabIndex === 0, 'filter-button': true, 'filtre1': true}" (click)="onTabClick(0)"  data-filter="Classique" 
                                                 style="background: #D2AA3C url(../../assets/images/common/classique.png) 13px 7px no-repeat;
                                                         padding-left: 53px; padding-top: 12px; padding-bottom: 12px;">Classique</a></li>
-                        <li id="islamique"><a [ngClass]="{'selectionne': tabIndex === 1, 'filter-button': true}" (click)="onTabClick(1)" data-filter="Participatif" style="color: #FFF;
+                        <li id="islamique"><a id="Participatif" [ngClass]="{'selectionne': tabIndex === 1, 'filter-button': true, 'filtre1': true}" (click)="onTabClick(1)" data-filter="Participatif" style="color: #FFF;
                             background: #5A963C url(../../assets/images/common/mosque.png) 13px 4px no-repeat;
                             padding-left: 53px; padding-top: 12px; padding-bottom: 12px;">Participatif</a></li>
                     </ul>
@@ -31,9 +31,9 @@
                 <div class="filter-wrap col-sm-8 col-xs-12">
 
                     <ul class="filter horizontal" data-filter-group="con1">
-                        <li id="part"><a [ngClass]="{'selectionne': tabIndex2 === 0, 'filter-button': true}" (click)="onTabClick2(0)" data-filter="Particulier">Particulier</a></li>
-                        <li id="prof"><a [ngClass]="{'selectionne': tabIndex2 === 1, 'filter-button': true}" (click)="onTabClick2(1)" data-filter="Professionnel">Professionnel</a></li>
-                        <li id="entrep"><a [ngClass]="{'selectionne': tabIndex2 === 2, 'filter-button': true}" (click)="onTabClick2(2)" data-filter="Entreprise">Entreprise</a></li>
+                        <li id="part"><a [ngClass]="{'selectionne': tabIndex2 === 0, 'filter-button2': true, 'filtre2': true}" (click)="onTabClick2(0)" data-filter="Particulier" id="Particulier">Particulier</a></li>
+                        <li id="prof"><a [ngClass]="{'selectionne': tabIndex2 === 1, 'filter-button2': true, 'filtre2': true}" (click)="onTabClick2(1)" data-filter="Professionnel" id="Professionnel">Professionnel</a></li>
+                        <li id="entrep"><a [ngClass]="{'selectionne': tabIndex2 === 2, 'filter-button2': true, 'filtre2': true}" (click)="onTabClick2(2)" data-filter="Entreprise" id="Entreprise">Entreprise</a></li>
                     </ul>
 
                 </div>
@@ -45,22 +45,20 @@
                 <div class="col-md-12">
                     <div *ngFor="let category of allCategories" [ngClass]="['item', 'filterNg', category.etiquette2, category.etiquette1]">
                         <article class="feature">
+
                             <p class="image"><a href="categorie/comptes.html"><img [src]="formatImagePath(category.miniature)" alt="{{category.titre}}"></a></p>
                             <div class="intro" >
                                 <ul>
 
-                                    <a title="Chèque" href="produits/particuliers-classique-compte-cheque.html" data-original-title="Chèque" data-toggle="tooltip" data-placement="top" id="produit">Chèque</a>
-                                    <br/>
-                                    <a title="Devise" href="produits/particuliers-classique-compte-devise.html" data-original-title="Devise" data-toggle="tooltip" data-placement="top" id="produit">Devises</a>
-                                    <br/>
-                                    <a title="Livret Epargne Classique" href="produits/particuliers-classique-compte-epargne.html" data-original-title="Livret Epargne Classique" data-toggle="tooltip" data-placement="top" id="produit">Livret epargne</a>
-                                    <br/>
-
-                                    <a title="Epargne Smart" href="produits/particuliers-classique-compte-epargne-smart.html" data-original-title="Epargne SMART" data-toggle="tooltip" data-placement="top" id="produit">Epargne SMART</a>
-                                    <br/>
-
-                                    <a title="Autre" href="categorie/comptes.html" data-original-title="Epargne START" data-toggle="tooltip" data-placement="top" id="produit">Autre</a>
-
+                                    <span *ngFor="let child of setChildren(category.children)">
+                                        <a title="{{child}}" href="{{setChildLink(child, category.etiquette1, category.etiquette2)}}" data-toggle="tooltip" data-placement="top" id="produit">{{child}}</a>
+                                        <br>
+                                    </span>
+                                    <span *ngFor="let produit of setChildren(category.produits)">
+                                        <a title="{{produit}}" href="{{setChildLink(produit, category.etiquette1, category.etiquette2)}}" data-toggle="tooltip" data-placement="top" id="produit">{{produit}}</a>
+                                        <br>
+                                    </span>
+                                    
                                 </ul>
                                 <h3 style="pointer-events: unset;" ><a href="categorie/comptes.html">{{ category.titre }}</a></h3>
                             </div>

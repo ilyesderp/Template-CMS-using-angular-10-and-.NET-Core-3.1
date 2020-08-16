@@ -136,7 +136,8 @@ export class DataSotrageService{
             children: string, 
             etiquette1: string, 
             etiquette2: string, 
-            miniature: string}[]>("https://localhost:44324/api/Categorie");
+            miniature: string,
+            produits: string}[]>("https://localhost:44324/api/Categorie");
     }
 
 
@@ -144,7 +145,7 @@ export class DataSotrageService{
         return this.http.post("https://localhost:44324/api/Produit", dataForm, {responseType: 'text'});
     }
 
-    getAllProductsFromServer(){
+    getallChildrenFromServer(){ //not used yet might be deleted later.
         return this.http.get<{
             id: any, 
             titre: string, 
