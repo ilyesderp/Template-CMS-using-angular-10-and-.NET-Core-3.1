@@ -60,12 +60,12 @@ export class ProduitsEtServicesComponent implements OnInit, AfterViewInit {
     return childrenArray;
   }
 
-  setChildLink(child: string, etiq1: string, etiq2: string){
-    let link = "http://localhost:4200/produits-et-services/" + etiq1 + "/" + etiq2 + "/" + child;
+  setPath(link: string){
     //link = "éèà réràr rré";
     link = link.replace(/[éè]/g,'e');
     link = link.replace(/[à]/g,'a');
     link = link.replace(/[ ]/g,'-');
+    link = link.toLowerCase();
     return link;
   }
 

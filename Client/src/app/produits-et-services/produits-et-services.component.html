@@ -51,70 +51,22 @@
                                 <ul>
 
                                     <span *ngFor="let child of setChildren(category.children)">
-                                        <a title="{{child}}" href="{{setChildLink(child, category.etiquette1, category.etiquette2)}}" data-toggle="tooltip" data-placement="top" id="produit">{{child}}</a>
-                                        <br>
+                                        <a title="{{child}}" [routerLink]="['/produits-et-services', 'categories', setPath(category.etiquette1), setPath(category.etiquette2), setPath(child)]" data-toggle="tooltip" data-placement="top" id="produit">{{child}}</a>
+                                        <br>    
                                     </span>
-                                    <span *ngFor="let produit of setChildren(category.produits)">
-                                        <a title="{{produit}}" href="{{setChildLink(produit, category.etiquette1, category.etiquette2)}}" data-toggle="tooltip" data-placement="top" id="produit">{{produit}}</a>
+                                    <!--<span *ngFor="let produit of setChildren(category.produits)">
+                                        <a title="{{produit}}" [routerLink]="['/produits-et-services', 'produits', setPath(category.etiquette1), setPath(category.etiquette2), setPath(produit)]" data-toggle="tooltip" data-placement="top" id="produit">{{produit}}</a>
                                         <br>
-                                    </span>
+                                    </span>-->
                                     
                                 </ul>
-                                <h3 style="pointer-events: unset;" ><a href="categorie/comptes.html">{{ category.titre }}</a></h3>
+                                <h3 style="pointer-events: unset;" ><a [routerLink]="['/produits-et-services', 'categories', setPath(category.etiquette1), setPath(category.etiquette2), setPath(category.titre)]">{{ category.titre }}</a></h3>
                             </div>
                         </article>
                     </div>
                 </div>
             </div>
     
-    
-                <!--<div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter irrigation">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter spray">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter irrigation">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter spray">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter irrigation">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter irrigation">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter spray">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>
-    
-                <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
-                    <img src="http://fakeimg.pl/365x365/" class="img-responsive">
-                </div>-->
             </div>
         </div>
     

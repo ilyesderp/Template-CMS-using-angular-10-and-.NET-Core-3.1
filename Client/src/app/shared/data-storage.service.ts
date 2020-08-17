@@ -145,7 +145,7 @@ export class DataSotrageService{
         return this.http.post("https://localhost:44324/api/Produit", dataForm, {responseType: 'text'});
     }
 
-    getallChildrenFromServer(){ //not used yet might be deleted later.
+    getallProductsFromServer(){
         return this.http.get<{
             id: any, 
             titre: string, 

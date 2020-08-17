@@ -25,7 +25,7 @@ export const ScriptStore: Scripts[] = [
 declare var document: any;
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root'
 })
 export class DynamicScriptLoaderService {
 
