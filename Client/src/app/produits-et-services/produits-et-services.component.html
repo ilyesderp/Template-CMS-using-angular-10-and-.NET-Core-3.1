@@ -46,18 +46,24 @@
                     <div *ngFor="let category of allCategories" [ngClass]="['item', 'filterNg', category.etiquette2, category.etiquette1]">
                         <article class="feature">
 
-                            <p class="image"><a href="categorie/comptes.html"><img [src]="formatImagePath(category.miniature)" alt="{{category.titre}}"></a></p>
+                            <p class="image"><a><img [src]="formatImagePath(category.miniature)" alt="{{category.titre}}"></a></p>
                             <div class="intro" >
                                 <ul>
-
-                                    <span *ngFor="let child of setChildren(category.children)">
-                                        <a title="{{child}}" [routerLink]="['/produits-et-services', 'categories', setPath(category.etiquette1), setPath(category.etiquette2), setPath(child)]" data-toggle="tooltip" data-placement="top" id="produit">{{child}}</a>
-                                        <br>    
-                                    </span>
-                                    <!--<span *ngFor="let produit of setChildren(category.produits)">
-                                        <a title="{{produit}}" [routerLink]="['/produits-et-services', 'produits', setPath(category.etiquette1), setPath(category.etiquette2), setPath(produit)]" data-toggle="tooltip" data-placement="top" id="produit">{{produit}}</a>
-                                        <br>
-                                    </span>-->
+                                    <br>
+                                    <ng-container *ngFor="let child of setChildren(category.children)">
+                                        
+                                        
+                                            <a *ngIf="child!=''" title="{{child}}" [routerLink]="['/produits-et-services', 'categories', setPath(category.etiquette1), setPath(category.etiquette2), setPath(child)]" data-toggle="tooltip" data-placement="top" id="produit">{{child}}</a>
+                                            <div class="brLine" *ngIf="child != ''"></div>
+                                    </ng-container>
+                                    
+                                    <ng-container *ngFor="let produit of setChildren(category.produits)">
+                                        
+                                        
+                                            <a *ngIf="produit != '' && produit" title="{{produit}}" [routerLink]="['/produits-et-services', 'produits', setPath(category.etiquette1), setPath(category.etiquette2), setPath(produit)]" data-toggle="tooltip" data-placement="top" id="produit">{{produit}}</a>
+                                            <div class="brLine" *ngIf="produit != ''"></div>
+                                    </ng-container>
+                                    
                                     
                                 </ul>
                                 <h3 style="pointer-events: unset;" ><a [routerLink]="['/produits-et-services', 'categories', setPath(category.etiquette1), setPath(category.etiquette2), setPath(category.titre)]">{{ category.titre }}</a></h3>

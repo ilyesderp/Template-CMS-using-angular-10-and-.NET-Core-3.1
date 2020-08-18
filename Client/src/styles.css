@@ -1334,7 +1334,7 @@ body.boxed .header.header-sticky {
 	padding: 0 15px;
 	color: #ccc;
 	content: "";
-	/*background-image: url(../images/common/icon-arrow-breadcrumb.gif);*/
+	background-image: url(assets/images/common/icon-arrow-breadcrumb.gif);
 	background-position: center;
 	background-repeat: no-repeat;
 }

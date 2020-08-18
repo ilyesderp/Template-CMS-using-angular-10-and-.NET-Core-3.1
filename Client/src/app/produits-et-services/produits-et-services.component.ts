@@ -1,7 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DataSotrageService } from '../shared/data-storage.service';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
-
 
 
 declare var $: any;
@@ -56,7 +54,8 @@ export class ProduitsEtServicesComponent implements OnInit, AfterViewInit {
 
 
   setChildren(children: string): string[]{
-    let childrenArray: string[] = children.split(';');
+    let childrenArray: string[] = [];
+    childrenArray = children.split(';');
     return childrenArray;
   }
 

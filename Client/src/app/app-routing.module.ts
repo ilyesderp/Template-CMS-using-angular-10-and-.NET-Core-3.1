@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'produits-et-services', component: ProduitsEtServicesComponent}, 
   {path: 'produits-et-services/categories/:etiq1/:etiq2/:titre', component: CategorieComponent},
   {path: 'produits-et-services/produits/:etiq1/:etiq2/:titre', component: ProduitComponent},
+  {path: 'produits-et-services/categories/:etiq1/:etiq2/:parent/:titre', component: CategorieComponent},
   {path: 'auth', component: AuthentificationComponent},
   {path: 'admin-panel', loadChildren: () => import('./admin-panel/admin-panel.module').then(m => m.AdminPanelModule)}
 ];
