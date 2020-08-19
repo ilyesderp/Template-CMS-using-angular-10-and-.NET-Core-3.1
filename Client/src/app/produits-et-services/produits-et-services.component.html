@@ -60,7 +60,8 @@
                                     <ng-container *ngFor="let produit of setChildren(category.produits)">
                                         
                                         
-                                            <a *ngIf="produit != '' && produit" title="{{produit}}" [routerLink]="['/produits-et-services', 'produits', setPath(category.etiquette1), setPath(category.etiquette2), setPath(produit)]" data-toggle="tooltip" data-placement="top" id="produit">{{produit}}</a>
+                                            <a *ngIf="produit != '' && produit" title="{{produit}}" [routerLink]="['/produits-et-services', 'produits', setPath(category.etiquette1), setPath(category.etiquette2), setPath(produit)]" 
+                                            [queryParams]="{titre: produit, etiq1: category.etiquette1, etiq2: category.etiquette2}" data-toggle="tooltip" data-placement="top" id="produit">{{produit}}</a>
                                             <div class="brLine" *ngIf="produit != ''"></div>
                                     </ng-container>
                                     

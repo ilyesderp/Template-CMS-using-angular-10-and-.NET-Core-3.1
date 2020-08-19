@@ -63,28 +63,28 @@ export class AjoutProduitComponent implements OnInit {
 
   validateTinymce1(content: string){
     console.log(content);
-    if(content.length > 100) {
+    if(content.length > 200000) {
       this.formulaire.controls['onglet1'].setErrors({ 'invalid': true });
     }
   }
 
   validateTinymce2(content: string){
     console.log(content);
-    if(content.length > 20000) {
+    if(content.length > 200000) {
       this.formulaire.controls['onglet2'].setErrors({ 'invalid': true });
     }
   }
 
   validateTinymce3(content: string){
     console.log(content);
-    if(content.length > 20000) {
+    if(content.length > 200000) {
       this.formulaire.controls['onglet3'].setErrors({ 'invalid': true });
     }
   }
 
   validateTinymce4(content: string){
     console.log(content);
-    if(content.length > 20000) {
+    if(content.length > 200000) {
       this.formulaire.controls['onglet4'].setErrors({ 'invalid': true });
     }
   }

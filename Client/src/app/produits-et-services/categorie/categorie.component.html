@@ -85,7 +85,8 @@
 		
 									<p class="image"><a><img [src]="formatImagePath(produit.miniature)" alt="{{produit.titre}}"></a></p>
 									<div class="intro" >
-										<h3 style="pointer-events: unset;" ><a [routerLink]="['/produits-et-services', 'produits', setPath(produit.etiquette1), setPath(produit.etiquette2), setPath(produit.titre)]">{{ produit.titre }}</a></h3>
+										<h3 style="pointer-events: unset;" ><a [routerLink]="['/produits-et-services', 'produits', setPath(produit.etiquette1), setPath(produit.etiquette2), setPath(produit.titre)]"
+											[queryParams]="{titre: produit.titre, etiq1: produit.etiquette1, etiq2: produit.etiquette2}">{{ produit.titre }}</a></h3>
 									</div>
 									
 								</article>

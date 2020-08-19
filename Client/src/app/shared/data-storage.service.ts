@@ -163,4 +163,20 @@ export class DataSotrageService{
             state: string;}[]>("https://localhost:44324/api/Produit");
     }
 
+    getOneProductFromServer(titre: string, etiq1: string, etiq2: string){
+        return this.http.get<{
+            id: any;
+            titre: string;
+            entete: string;
+            miniature: string;
+            categorie: string;
+            onglet1: string;
+            onglet2: string;
+            onglet3: string;
+            onglet4: string;
+            etiquette1: string;
+            etiquette2: string;
+            state: string;}>(`https://localhost:44324/api/Produit/${titre}/${etiq1}/${etiq2}`);
+    }
+
 }

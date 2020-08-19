@@ -123,5 +123,16 @@ namespace API.Controllers
             return Ok(products);
         }
 
+
+        [HttpGet("{titre}/{etiq1}/{etiq2}")]
+        public async Task<ActionResult<List<Produit>>> GetOneProduct(string titre, string etiq1, string etiq2)
+        {
+            var dbProduct = await _context.Produits.Where(i => i.Titre.Equals(titre)).Where(i => i.Etiquette1.Equals(etiq1)).Where(i => i.Etiquette2.Equals(etiq2)).FirstOrDefaultAsync();
+
+            //var products = await _context.Produits.ToListAsync();
+
+            return Ok(dbProduct);
+        }
+
     }
 }

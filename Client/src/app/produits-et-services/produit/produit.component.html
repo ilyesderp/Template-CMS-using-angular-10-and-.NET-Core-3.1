@@ -1,20 +1,600 @@
-<p>produit works!</p>
-<p>produit works!</p>
-<p>produit works!</p>
-    <p>produit works!</p>
-    <p>produit works!</p>
-    <p>produit works!</p>
-    <p>produit works!</p>
-    <p>produit works!</p>
-    <p>produit works!</p>
-   <p>produit works!</p>
-        <p>produit works!</p>
-        <p>produit works!</p>
-        <p>produit works!</p>
-        <p>produit works!</p>
-        <p>produit works!</p>
-        <p>produit works!</p>
-        <p>produit works!</p>
-        <p>produit works!</p>
-        <p>produit works!</p>
+<!-- Page Title -->
+<section class="breadcrumb-wrap" style="overflow: visible; margin-top: 65px;" [ngStyle]="{'background-image': 'url(' + formatImagePath(produit.entete) + ')'}">
+    <div class="container">
+        <div class="row">
+            <h1 id="NosProduits">{{produit.titre.toUpperCase()}} </h1>
+            <ul class="breadcrumb">
+                <li><a [routerLink]="['/']">Accueil</a></li>
+                <li><a [routerLink]="['/produits-et-services']">Produits</a></li>
+                
+                <li *ngIf="produit.categorie!= 'none'"><a [routerLink]="['/produits-et-services', 'categories', setPath(produit.etiquette1), setPath(produit.etiquette2), setPath(produit.categorie)]">{{produit.categorie}}</a></li>
+                <li class="last">{{produit.titre}} </li>
+            </ul>
+        </div>
+    </div>
+</section>
 
+<!-- tabs de produit -->
+<section class="prod-tabs">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Qu’est-ce que c’est ?</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Pourquoi souscrire ?</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Comment ça marche ?</a></li>
+                    <li><a data-toggle="tab" href="#menu3">FAQ</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div [innerHTML]="produit.onglet1" id="home" class="tab-pane fade in active">
+                    </div>
+                    <div [innerHTML]="produit.onglet2" id="menu1" class="tab-pane fade">
+                    </div>
+                    <div [innerHTML]="produit.onglet3" id="menu2" class="tab-pane fade">
+                    </div>
+                    <div [innerHTML]="produit.onglet4" id="menu3" class="tab-pane fade">
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
+        </section>
+        <!-- bleu band -->
+        <section class="bleu-band">
+            <div class="container ">
+                <div class="row">
+                    <h2 class="title" style="color:#fff">GEREZ EFFICACEMENT VOTRE ARGENT</h2>
+                    <button class="btn" >J’en profite !</button>
+
+                </div>
+            </div>
+        </section>
+        <!-- questions -->
+        <section class="page-portfolio section-portfolio style3">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-sm-12">
+                        <div id="accordion2">
+                            <div class="card">
+                                <div class="card-header" id="headingOne2">
+                                    <h5 class="mb-0">
+
+
+                                        <h3>AUTRES PRODUITS SUGGERES </h3>
+
+                                    </h5>
+                                </div>
+                                <section class="page-portfolio section-portfolio style3 prods">
+                                    <div class="portfolio3 popup-gallery mgb50 col-sm-12 col-xs-12">
+                                        <div class="col-md-12">
+
+
+
+                                            <div class="item particulier classiques">
+                                                <article class="feature">
+                                                    <p class="image"><a href="#"><img src="../imgmaj/DIVERS/particulier-leasing_s.jpg" alt="Cartes bancaires nationales"></a></p>
+                                                    <div class="intro">
+                                                        <h3><a href="../categorie/credits-a-la-consommation.html#NosProduits"  style ="font-size: 14px; background: #005288 none repeat scroll 0 0;">Crédits à la consommation</a></h3>
+                                                    </div>
+                                                </article>
+                                            </div>
+
+
+                                            <div class="item particulier classiques">
+                                                <article class="feature">
+                                                    <p class="image"><a href="#"><img src="../imgmaj/classique-pf.jpg" alt="Carte bancaires internationales"></a></p>
+                                                    <div class="intro">
+                                                        <h3><a href="../produits/particuliers-classique-compte-epargne-smart.html" style ="font-size: 14px; background: #005288 none repeat scroll 0 0;">Epargne SMART</a></h3>
+                                                    
+                                                    </div>
+                                                </article>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- taux de change -->
+<a class='button taux' href='https://mobileapp.agb.dz/#/public/taux-change' target="popup"  onclick="window.open('https://mobileapp.agb.dz/#/public/taux-change' ); return false;"> <i class="glyphicon glyphicon-plus outils"></i> Taux de change</a>
+        <div class='wrap'>
+            <div class='content'>
+                <h2>Taux de change!</h2>
+                <table class="table">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Achat</td>
+                        <td>Vente</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/eur-.png"></td>
+                        <td>EUR</td>
+                        <td>119.45</td>
+                        <td>126.79</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/usd-.png"></td>
+                        <td>USD</td>
+                        <td>106.45</td>
+                        <td>113.49</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/jpy-.png"></td>
+                        <td>JPY</td>
+                        <td>119.45</td>
+                        <td>126.79</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/gbp-.png"></td>
+                        <td>GBP</td>
+                        <td>119.45</td>
+                        <td>126.79</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/chf-.png"></td>
+                        <td>CHF</td>
+                        <td>119.45</td>
+                        <td>126.79</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/cad-.png"></td>
+                        <td>CAD</td>
+                        <td>119.45</td>
+                        <td>126.79</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/aed-.png"></td>
+                        <td>AED</td>
+                        <td>24.45</td>
+                        <td>126.79</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/kwd-.png"></td>
+                        <td>KWD</td>
+                        <td>119.45</td>
+                        <td>126.79</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/sar-.png"></td>
+                        <td>SAR</td>
+                        <td>119.45</td>
+                        <td>126.79</td>
+                    </tr>
+                    <tr>
+                        <td><img src="../images/common/flags/sek-.png"></td>
+                        <td>SEK</td>
+                        <td>119.45</td>
+                        <td>126.79</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    
+    <!-- <a class='button taux' href='https://dibvomchmfuat1.agb.corp:9443/mfp/AGBWebApp#/public/taux-change' target="popup"  onclick="window.open('https://dibvomchmfuat1.agb.corp:9443/mfp/AGBWebApp#/public/taux-change','popup','width=650,height=740, left=350, resizable=0' ); return false;"> <i class="glyphicon glyphicon-plus outils"></i> Taux de change</a> -->														    
+
+    
+    <div class="wrap2 container">
+        <div class="content sim-tabs">
+            <!-- tabs -->
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills justify-content-center tabs-buttons" role="tablist">
+                    <li role="presentation" class="nav-item active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="nav-link nav-link-offres" data-target="tab-immobilier"><i class="material-icons">home</i></a>Crédit immobilier</li>
+                    <li role="presentation" class="nav-item"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="nav-link nav-link-offres" data-target="tab-sayarati"><i class="material-icons">directions_car</i></a>Crédit Sayarati</li>
+                    <li role="presentation" class="nav-item"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" class="nav-link nav-link-offres" data-target="tab-teshilat"><i class="material-icons">weekend</i></a>Crédit Teshilat</li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" id="tab-immobilier">
+                        <div class="col-sm-8 sim-form">
+                            <!-- multistep form -->
+                            <form id="msform">
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active">Situation de l’emprunteur</li>
+                                    <li>Informations personnelles</li>
+                                    <li>Informations sur le bien</li>
+                                </ul>
+                                <!-- fieldsets -->
+                                <fieldset>
+                                    <div class="col-sm-4 text-left">Type</div>
+                                    <div class="col-sm-4 text-left">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="type"> Immobilier bonifie</label>
+                                                <label>
+                                                    <input type="radio" name="type"> Immobilier classique</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 text-left">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="conjoint"> Conjoint inclu</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Revenu mensuel (DZD)</label>
+                                                        <input type="text" class="form-control" id="revenu" placeholder="Revenu mensuel (DZD)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Date de naissance</label>
+                                                        <input type='date' class="form-control" id="age" data-placeholder="Age" />
+                                                    </div>
+                                                </div>
+                                                <div class="range slidecontainer col-sm-12 text-left">
+                                                    <label>Durée (Années)</label>
+                                                    <input type="range" min="0" max="50" value="25" class="slider" id="annee" name="annee">
+                                                    <p><span id="demo"></span> Années</p>
+                                                </div>
+                                                <input type="button" name="next" class="next action-button btn-block" value="Next" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Nom</label>
+                                                        <input type="text" class="form-control" id="nom">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Prénom</label>
+                                                        <input type="text" class="form-control" id="prenom">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Numéro de téléphone</label>
+                                                        <input type="text" class="form-control" id="telephone">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="email" class="form-control" id="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    Résidence
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    <div class="form-group">
+                                                        <label>Wilaya</label>
+                                                        <select class="form-control" id="wilaya">
+                                                            <option>Adrar</option>
+                                                            <option>Chilef</option>
+                                                            <option>Laghouat</option>
+                                                            <option>Oum-elbouagui</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    <div class="form-group">
+                                                        <label>Commune</label>
+                                                        <select class="form-control" id="commune">
+                                                            <option>Adrar</option>
+                                                            <option>Chilef</option>
+                                                            <option>Laghouat</option>
+                                                            <option>Oum-elbouagui</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <input type="button" name="next" class="next action-button btn-block" value="Next" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Prix du bien (DZD)</label>
+                                                        <input type="text" class="form-control" id="bien">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Apport personnel (DZD)</label>
+                                                        <input type='date' class="form-control" id="apport" />
+                                                    </div>
+                                                </div>
+                                                <div class="range slidecontainer col-sm-12 text-left">
+                                                    <label>TAEG</label>
+                                                    <input type="range" min="0" max="100" value="50" class="slider" id="taeg">
+                                                    <p><span id="demo2"></span> %</p>
+                                                </div>
+                                                <input type="submit" name="submit" class="submit action-button" value="Submit" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-4 sim-result">
+                                        <h3>Résultats</h3>
+                                        <div class="result-b">
+                                            <h5>Mensualité maximale su crédit</h5>
+                                            <h4>---,---,-- DZD</h4>
+                                            <h5>Montant maximale su crédit</h5>
+                                            <h4>---,---,-- DZD</h4>
+                                            <h5>Durée (Mois)</h5>
+                                            <h4>-- Mois</h4>
+                                        </div>
+                                        <div class="result-b result-c">
+                                            <h5>Quotité de financement <span class="text-right">-- %</span></h5>
+                                            <h5>Assurance ADE Immo <span class="text-right">---,---,-- DZD</span></h5>
+                                            <h5>Assurance MRH <span class="text-right">---,---,-- DZD</span></h5>
+                                        </div>
+                                        <div class="result-b result-c">
+                                            <h5>Montant de crédit <span class="text-right">---,---,-- DZD</span></h5>
+                                            <h5>Mensualités <span class="text-right">---,---,-- DZD</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="tab-sayarati">
+                                    <div class="col-sm-8 sim-form">
+                                        <!-- multistep form -->
+                                        <form id="msform">
+                                            <!-- progressbar -->
+                                            <ul id="progressbar">
+                                                <li class="active">Situation de l’emprunteur</li>
+                                                <li>Informations personnelles</li>
+                                                <li>Informations sur le bien</li>
+                                            </ul>
+                                            <!-- fieldsets -->
+                                            <fieldset>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Revenu mensuel (DZD)</label>
+                                                        <input type="text" class="form-control" id="sayaratiRevenu" placeholder="Revenu mensuel (DZD)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Date de naissance</label>
+                                                        <input type='date' class="form-control" id="sayaratiAge" data-placeholder="Age" />
+                                                    </div>
+                                                </div>
+                                                <div class="range slidecontainer col-sm-12 text-left">
+                                                    <label>Durée (Années)</label>
+                                                    <input type="range" min="0" max="50" value="25" class="slider" id="sayaratiAnnee" name="annee">
+                                                    <p><span id="sayaratiDemo"></span> Années</p>
+                                                </div>
+                                                <input type="button" name="next" class="next action-button btn-block" value="Next" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Nom</label>
+                                                        <input type="text" class="form-control" id="sayaratiNom">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Prénom</label>
+                                                        <input type="text" class="form-control" id="sayaratiPrenom">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Numéro de téléphone</label>
+                                                        <input type="text" class="form-control" id="sayaratiTelephone">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="email" class="form-control" id="sayaratiEmail">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    Résidence
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    <div class="form-group">
+                                                        <label>Wilaya</label>
+                                                        <select class="form-control" id="sayaratiWilaya">
+                                                            <option>Adrar</option>
+                                                            <option>Chilef</option>
+                                                            <option>Laghouat</option>
+                                                            <option>Oum-elbouagui</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    <div class="form-group">
+                                                        <label>Commune</label>
+                                                        <select class="form-control" id="sayaratiCommune">
+                                                            <option>Adrar</option>
+                                                            <option>Chilef</option>
+                                                            <option>Laghouat</option>
+                                                            <option>Oum-elbouagui</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <input type="button" name="next" class="next action-button btn-block" value="Next" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Prix du bien (DZD)</label>
+                                                        <input type="text" class="form-control" id="sayaratiBien">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Apport personnel (DZD)</label>
+                                                        <input type='date' class="form-control" id="sayaratiBpport" />
+                                                    </div>
+                                                </div>
+                                                <div class="range slidecontainer col-sm-12 text-left">
+                                                    <label>TAEG</label>
+                                                    <input type="range" min="0" max="100" value="50" class="slider" id="sayaratiTaeg">
+                                                    <p><span id="sayaratiDemo2"></span> %</p>
+                                                </div>
+                                                <input type="submit" name="submit" class="submit action-button" value="Submit" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-4 sim-result">
+                                        <h3>Résultats</h3>
+                                        <div class="result-b">
+                                            <h5>Mensualité maximale su crédit</h5>
+                                            <h4>---,---,-- DZD</h4>
+                                            <h5>Montant maximale su crédit</h5>
+                                            <h4>---,---,-- DZD</h4>
+                                            <h5>Durée (Mois)</h5>
+                                            <h4>-- Mois</h4>
+                                        </div>
+                                        <div class="result-b result-c">
+                                            <h5>Quotité de financement <span class="text-right">-- %</span></h5>
+                                            <h5>Assurance ADE CONSO <span class="text-right">---,---,-- DZD</span></h5>
+                                        </div>
+                                        <div class="result-b result-c">
+                                            <h5>Montant de crédit <span class="text-right">---,---,-- DZD</span></h5>
+                                            <h5>Mensualités <span class="text-right">---,---,-- DZD</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="tab-teshilat">
+                                    <div class="col-sm-8 sim-form">
+                                        <!-- multistep form -->
+                                        <form id="msform">
+                                            <!-- progressbar -->
+                                            <ul id="progressbar">
+                                                <li class="active">Situation de l’emprunteur</li>
+                                                <li>Informations personnelles</li>
+                                                <li>Informations sur le bien</li>
+                                            </ul>
+                                            <!-- fieldsets -->
+                                            <fieldset>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Revenu mensuel (DZD)</label>
+                                                        <input type="text" class="form-control" id="teshilatRevenu" placeholder="Revenu mensuel (DZD)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Date de naissance</label>
+                                                        <input type='date' class="form-control" id="teshilatAge" data-placeholder="Age" />
+                                                    </div>
+                                                </div>
+                                                <div class="range slidecontainer col-sm-12 text-left">
+                                                    <label>Durée (Années)</label>
+                                                    <input type="range" min="0" max="50" value="25" class="slider" id="teshilatAnnee" name="annee">
+                                                    <p><span id="teshilatDemo"></span> Années</p>
+                                                </div>
+                                                <input type="button" name="next" class="next action-button btn-block" value="Next" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Nom</label>
+                                                        <input type="text" class="form-control" id="teshilatNom">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Prénom</label>
+                                                        <input type="text" class="form-control" id="teshilatPrenom">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Numéro de téléphone</label>
+                                                        <input type="text" class="form-control" id="teshilatTelephone">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input type="email" class="form-control" id="teshilatEmail">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    Résidence
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    <div class="form-group">
+                                                        <label>Wilaya</label>
+                                                        <select class="form-control" id="teshilatWilaya">
+                                                            <option>Adrar</option>
+                                                            <option>Chilef</option>
+                                                            <option>Laghouat</option>
+                                                            <option>Oum-elbouagui</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4 text-left">
+                                                    <div class="form-group">
+                                                        <label>Commune</label>
+                                                        <select class="form-control" id="teshilatCommune">
+                                                            <option>Adrar</option>
+                                                            <option>Chilef</option>
+                                                            <option>Laghouat</option>
+                                                            <option>Oum-elbouagui</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <input type="button" name="next" class="next action-button btn-block" value="Next" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Prix du bien (DZD)</label>
+                                                        <input type="text" class="form-control" id="teshilatBien">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <div class="form-group">
+                                                        <label>Apport personnel (DZD)</label>
+                                                        <input type='date' class="form-control" id="teshilatBpport" />
+                                                    </div>
+                                                </div>
+                                                <div class="range slidecontainer col-sm-12 text-left">
+                                                    <label>TAEG</label>
+                                                    <input type="range" min="0" max="100" value="50" class="slider" id="teshilatTaeg">
+                                                    <p><span id="teshilatDemo2"></span> %</p>
+                                                </div>
+                                                <input type="submit" name="submit" class="submit action-button" value="Submit" />
+                                                <br class="clearfix">
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-4 sim-result">
+                                        <h3>Résultats</h3>
+                                        <div class="result-b">
+                                            <h5>Mensualité maximale su crédit</h5>
+                                            <h4>---,---,-- DZD</h4>
+                                            <h5>Montant maximale su crédit</h5>
+                                            <h4>---,---,-- DZD</h4>
+                                            <h5>Durée (Mois)</h5>
+                                            <h4>-- Mois</h4>
+                                        </div>
+                                        <div class="result-b result-c">
+                                            <h5>Quotité de financement <span class="text-right">-- %</span></h5>
+                                            <h5>Assurance ADE CONSO <span class="text-right">---,---,-- DZD</span></h5>
+                                        </div>
+                                        <div class="result-b result-c">
+                                            <h5>Montant de crédit <span class="text-right">---,---,-- DZD</span></h5>
+                                            <h5>Mensualités <span class="text-right">---,---,-- DZD</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<a class='button outils' href='https://dibvomchmfuat1.agb.corp:9443/mfp/AGBWebApp#/public/simulateur-credit' target="popup"  onclick="window.open('https://dibvomchmfuat1.agb.corp:9443/mfp/AGBWebApp#/public/simulateur-credit','popup','width=650,height=740, left=350, resizable=0' ); return false;"> <i class="glyphicon glyphicon-plus outils"></i> Simulateur AGB </a> -->
+                <section class="more-info">
+
+                </section>
