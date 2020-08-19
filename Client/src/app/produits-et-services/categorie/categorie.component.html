@@ -6,6 +6,7 @@
 					<ul class="breadcrumb">
 						<li><a [routerLink]="['/']">Accueil</a></li>
 						<li><a [routerLink]="['/produits-et-services']">Produits</a></li>
+						
 						<li *ngIf="currentCategory.parent!= 'none'"><a [routerLink]="['/produits-et-services', 'categories', setPath(currentCategory.etiquette1), setPath(currentCategory.etiquette2), setPath(currentCategory.parent)]">{{currentCategory.parent}}</a></li>
 						<li class="last">{{currentCategory.titre}} </li>
 					</ul>

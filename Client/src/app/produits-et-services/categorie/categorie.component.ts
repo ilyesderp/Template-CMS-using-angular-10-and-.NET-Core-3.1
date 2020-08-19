@@ -164,7 +164,7 @@ filtre2: string = "Particulier";
           etiq1 == this.categoryFromRoute.etiq1 && 
           etiq2 == this.categoryFromRoute.etiq2){
             this.currentCategory = cat;
-            this.productsUsed = [];
+            //this.productsUsed = [];
         }
       }
     });

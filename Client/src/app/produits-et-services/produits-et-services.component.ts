@@ -42,7 +42,14 @@ export class ProduitsEtServicesComponent implements OnInit, AfterViewInit {
 
   getCategories(){
     this.dataStorageService.getAllCategoriesFromServer().subscribe((result) => {
-      this.allCategories = result;
+      
+      for (let cat of result) {
+        if(cat.parent == "none"){
+          this.allCategories.push(cat);
+        }
+      }
+
+      //this.allCategories = result;
     });
   }
 
