@@ -73,6 +73,7 @@ namespace API.Controllers
                 if (dbProduit == null)
                 {
                     produit.Titre = content["titre"];
+                    produit.JenProfite = content["jenProfite"];
                     produit.Categorie = content["categorieParente"];
                     produit.State = content["state"];
 
@@ -81,6 +82,8 @@ namespace API.Controllers
                     produit.Onglet2 = content["onglet2"];
                     produit.Onglet3 = content["onglet3"];
                     produit.Onglet4 = content["onglet4"];
+
+                    produit.AutreProduits = content["autresProduits"];
 
 
                     var dbCategorieParente = _context.Categories.FirstOrDefault(x => x.Titre == produit.Categorie);
@@ -134,5 +137,31 @@ namespace API.Controllers
             return Ok(dbProduct);
         }
 
+
+        [HttpGet("{ids}")]
+        public async Task<ActionResult<List<Produit>>> GetAutresProducts(string ids)
+        {
+            var myIds = ids.Split(';');
+            
+                int id1;
+                Int32.TryParse(myIds[1], out id1);
+                int id2;
+                Int32.TryParse(myIds[2], out id2);
+                int id3;
+                Int32.TryParse(myIds[3], out id3);
+                int id4;
+                Int32.TryParse(myIds[4], out id4);
+                var dbProducts = await _context.Produits.Where(i => i.Id == id1 || i.Id == id2 || i.Id == id3 || i.Id == id4).ToListAsync();
+                
+            return Ok(dbProducts);
+            
+
+            //var products = await _context.Produits.ToListAsync();
+
+            
+        }
+
     }
+
+    
 }

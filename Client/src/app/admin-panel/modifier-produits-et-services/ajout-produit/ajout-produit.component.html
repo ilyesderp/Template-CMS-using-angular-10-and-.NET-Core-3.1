@@ -13,10 +13,18 @@
                 
                 <mat-form-field style="width: 400px;">
                     <mat-label>Titre</mat-label>
-                    <input matInput type="text" name="titre" pattern="[a-zA-Z0-9éèà ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
+                    <input matInput type="text" name="titre" pattern="[a-zA-Z0-9éèà' ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
                 </mat-form-field>
                 <div class="alert alert-danger" role="alert" *ngIf="!titre.valid && titre.touched" style="width: 580px;">Le titre doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
                 
+                <br>
+                <mat-form-field style="width: 400px;">
+                    <mat-label>J'en Profite</mat-label>
+                    <input matInput type="text" name="jenProfite" pattern="[a-zA-Z0-9éèà' ]*" minlength="2" maxlength="300" ngModel #jenProfite="ngModel" required>
+                </mat-form-field>
+                <div class="alert alert-danger" role="alert" *ngIf="!jenProfite.valid && jenProfite.touched" style="width: 580px;">Ce champs doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
+
+                <br>
                 <br>
                 <mat-form-field appearance="fill" style="width: 400px;">
                     <mat-label>Catégorie</mat-label>
@@ -36,6 +44,7 @@
                 </mat-form-field>
 
                 <br>
+                
 
                 <mat-form-field>
                     <mat-label>Image Miniature</mat-label>
@@ -43,6 +52,64 @@
                     <mat-icon matSuffix>folder</mat-icon>
                 </mat-form-field>
 
+                <br>
+                <br>
+                <br>
+                <p style="color: #5a5959; font-size: larger;">Veuillez choisir les autres produits, s'il y en a aucun selectionnez "Aucun": </p>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Autre Produit 1</mat-label>
+                    <mat-select ngModel name="autre1" [(value)]="autre1" #autreN1>
+                        <mat-option [value]="''">
+                            Aucun
+                        </mat-option>
+                      <mat-option *ngFor="let prod of allProducts" [value]="prod.id">
+                        {{ prod.titre }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Autre Produit 2</mat-label>
+                    <mat-select ngModel name="autre2" [(value)]="autre2" #autreN2>
+                        <mat-option [value]="''">
+                            Aucun
+                        </mat-option>
+                      <mat-option *ngFor="let prod of allProducts" [value]="prod.id">
+                        {{ prod.titre }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Autre Produit 3</mat-label>
+                    <mat-select ngModel name="autre3" [(value)]="autre3" #autreN3>
+                        <mat-option [value]="''">
+                            Aucun
+                        </mat-option>
+                      <mat-option *ngFor="let prod of allProducts" [value]="prod.id">
+                        {{ prod.titre }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Autre Produit 4</mat-label>
+                    <mat-select ngModel name="autre4" [(value)]="autre4" #autreN4>
+                        <mat-option [value]="''">
+                            Aucun
+                        </mat-option>
+                        <mat-option *ngFor="let prod of allProducts" [value]="prod.id">
+                        {{ prod.titre }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
                 <br>
                 <br>

@@ -34,15 +34,36 @@ export class AjoutProduitComponent implements OnInit {
     etiquette2: string, 
     miniature: string}[] = [];
 
+    allProducts: {
+      id: any, 
+      titre: string, 
+      entete: string,
+      miniature: string, 
+      categorie: string, 
+      onglet1: string, 
+      onglet2: string, 
+      onglet3: string, 
+      onglet4: string,
+      etiquette1: string,
+      etiquette2: string,
+      state: string
+}[] = [];
+
   onglet1: string;
   onglet2: string;
   onglet3: string;
   onglet4: string;
 
+  autre1: string = '';
+  autre2: string = '';
+  autre3: string = '';
+  autre4: string = '';
+
   constructor(private dataStorageService: DataSotrageService) { }
 
   ngOnInit(): void {
     this.getAllCategories();
+    this.getAllProducts();
   }
 
 
@@ -62,28 +83,27 @@ export class AjoutProduitComponent implements OnInit {
 
 
   validateTinymce1(content: string){
-    console.log(content);
+
     if(content.length > 200000) {
       this.formulaire.controls['onglet1'].setErrors({ 'invalid': true });
     }
   }
 
   validateTinymce2(content: string){
-    console.log(content);
+
     if(content.length > 200000) {
       this.formulaire.controls['onglet2'].setErrors({ 'invalid': true });
     }
   }
 
   validateTinymce3(content: string){
-    console.log(content);
     if(content.length > 200000) {
       this.formulaire.controls['onglet3'].setErrors({ 'invalid': true });
     }
   }
 
   validateTinymce4(content: string){
-    console.log(content);
+
     if(content.length > 200000) {
       this.formulaire.controls['onglet4'].setErrors({ 'invalid': true });
     }
@@ -91,7 +111,6 @@ export class AjoutProduitComponent implements OnInit {
 
 
   createProduct(form: NgForm){
-    console.log(form);
 
     if (this.enteteFileData === null) {
       alert("Veuillez charger une image!");
@@ -101,6 +120,7 @@ export class AjoutProduitComponent implements OnInit {
     let formData: FormData = new FormData();
 
   formData.append("titre", this.formulaire.value.titre);
+  formData.append("jenProfite", this.formulaire.value.jenProfite);
   formData.append("categorieParente", this.formulaire.value.categorieParente);
   formData.append("entete", this.enteteFileData);
   formData.append("miniature", this.miniatureFileData);
@@ -110,11 +130,15 @@ export class AjoutProduitComponent implements OnInit {
   formData.append("onglet2", this.onglet2);
   formData.append("onglet3", this.onglet3);
   formData.append("onglet4", this.onglet4);
+
+  var autresProduits = ';' + this.autre1 + ';' + this.autre2 + ';' + this.autre3 + ';' + this.autre4;
+  formData.append("autresProduits", autresProduits);
+
   
   formData.append("state", "active");
 
   this.dataStorageService.createProduct(formData).subscribe((result) => {
-    console.log(result);
+
     if(result != "exists"){
       alert("Produit créé avec succès!");
       location.reload();
@@ -124,6 +148,13 @@ export class AjoutProduitComponent implements OnInit {
     }
   });
 
+  }
+
+  getAllProducts(){
+
+    this.dataStorageService.getallProductsFromServer().subscribe((results) => {
+      this.allProducts = results;
+    });
   }
 
 

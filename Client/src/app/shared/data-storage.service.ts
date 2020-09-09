@@ -167,6 +167,7 @@ export class DataSotrageService{
         return this.http.get<{
             id: any;
             titre: string;
+            jenProfite: string;
             entete: string;
             miniature: string;
             categorie: string;
@@ -176,7 +177,30 @@ export class DataSotrageService{
             onglet4: string;
             etiquette1: string;
             etiquette2: string;
-            state: string;}>(`https://localhost:44324/api/Produit/${titre}/${etiq1}/${etiq2}`);
+            state: string;
+            autreProduits: string;}>(`https://localhost:44324/api/Produit/${titre}/${etiq1}/${etiq2}`);
+    }
+
+
+    getAutresProduits(ids: string){
+        console.log("ici ****************");
+        console.log(ids);
+        return this.http.get<{
+            id: any;
+            titre: string;
+            jenProfite: string;
+            entete: string;
+            miniature: string;
+            categorie: string;
+            onglet1: string;
+            onglet2: string;
+            onglet3: string;
+            onglet4: string;
+            etiquette1: string;
+            etiquette2: string;
+            state: string;
+            autreProduits: string;
+          }[]>(`https://localhost:44324/api/Produit/${ids}`);
     }
 
 }

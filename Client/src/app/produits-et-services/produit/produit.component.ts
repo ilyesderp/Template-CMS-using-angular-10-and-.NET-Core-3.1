@@ -14,6 +14,7 @@ export class ProduitComponent implements OnInit {
   produit: {
     id: any;
     titre: string;
+    jenProfite: string;
     entete: string;
     miniature: string;
     categorie: string;
@@ -24,9 +25,11 @@ export class ProduitComponent implements OnInit {
     etiquette1: string;
     etiquette2: string;
     state: string;
+    autreProduits: string;
   } = {
     id: '',
     titre: '',
+    jenProfite: '',
     entete: '',
     miniature: '',
     categorie: '',
@@ -36,14 +39,33 @@ export class ProduitComponent implements OnInit {
     onglet4: '',
     etiquette1: '',
     etiquette2: '',
-    state: ''
+    state: '',
+    autreProduits: ''
   };
+
+  autresProduits: {
+    id: any;
+    titre: string;
+    jenProfite: string;
+    entete: string;
+    miniature: string;
+    categorie: string;
+    onglet1: string;
+    onglet2: string;
+    onglet3: string;
+    onglet4: string;
+    etiquette1: string;
+    etiquette2: string;
+    state: string;
+    autreProduits: string;
+  }[] = [];
 
 
   constructor(private dataStorageService: DataSotrageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getProduct();
+    
   }
 
   getProduct(){
@@ -57,8 +79,8 @@ export class ProduitComponent implements OnInit {
     });
     this.dataStorageService.getOneProductFromServer(this.productFromRoute.titre, this.productFromRoute.etiq1, this.productFromRoute.etiq2)
     .subscribe( result => {
-      console.log(result);
       this.produit = result;
+      this.getAutresProduits();
     });
   }
 
@@ -75,6 +97,19 @@ export class ProduitComponent implements OnInit {
     link = link.replace(/[ ]/g,'-');
     link = link.toLowerCase();
     return link;
+  }
+
+  getAutresProduits(){
+    console.log("-------------------- this.produit.autresProduits ----------------------------");
+    console.log(this.produit);
+    console.log("-------------------- this.produit.autresProduits ----------------------------");
+    
+    this.dataStorageService.getAutresProduits(this.produit.autreProduits).subscribe((data) => {
+      this.autresProduits = data;
+      console.log("-------------------- start test autres produits log ----------------------------");
+      console.log(this.autresProduits);
+      console.log("-------------------- end test autres produits log ----------------------------");
+    });
   }
 
 }
