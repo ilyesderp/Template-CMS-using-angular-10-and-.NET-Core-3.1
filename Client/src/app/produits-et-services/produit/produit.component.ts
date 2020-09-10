@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-produit',
@@ -61,22 +61,30 @@ export class ProduitComponent implements OnInit {
   }[] = [];
 
 
-  constructor(private dataStorageService: DataSotrageService, private route: ActivatedRoute) { }
+  constructor(private dataStorageService: DataSotrageService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.getProduct();
-    
-  }
 
-  getProduct(){
     this.route.queryParams.subscribe((params: Params) => {
       this.productFromRoute = {
         titre: params["titre"],
         etiq1: params["etiq1"],
         etiq2: params["etiq2"]
       }
-
     });
+
+    this.getProduct();
+  }
+
+  goToOtherProductPage(event, titre: string, etiq1: string, etiq2: string) {
+    event.preventDefault();
+
+    this.router.navigateByUrl('/', {skipLocationChange: true})
+      .then(() => this.router.navigate(['/produits-et-services', 'produits', this.setPath(etiq1), this.setPath(etiq2), this.setPath(titre)], 
+                                        {queryParams: {titre: titre, etiq1: etiq1, etiq2: etiq2}}));
+  }
+
+  getProduct(){
     this.dataStorageService.getOneProductFromServer(this.productFromRoute.titre, this.productFromRoute.etiq1, this.productFromRoute.etiq2)
     .subscribe( result => {
       this.produit = result;
@@ -100,15 +108,8 @@ export class ProduitComponent implements OnInit {
   }
 
   getAutresProduits(){
-    console.log("-------------------- this.produit.autresProduits ----------------------------");
-    console.log(this.produit);
-    console.log("-------------------- this.produit.autresProduits ----------------------------");
-    
     this.dataStorageService.getAutresProduits(this.produit.autreProduits).subscribe((data) => {
       this.autresProduits = data;
-      console.log("-------------------- start test autres produits log ----------------------------");
-      console.log(this.autresProduits);
-      console.log("-------------------- end test autres produits log ----------------------------");
     });
   }
 

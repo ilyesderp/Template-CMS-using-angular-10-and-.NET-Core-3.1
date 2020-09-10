@@ -70,27 +70,20 @@
                                     <div class="portfolio3 popup-gallery mgb50 col-sm-12 col-xs-12">
                                         <div class="col-md-12">
 
-
-
-                                            <div class="item particulier classiques">
+                                            <div class="item particulier classiques" *ngFor="let prod of autresProduits">
                                                 <article class="feature">
-                                                    <p class="image"><a href="#"><img src="../imgmaj/DIVERS/particulier-leasing_s.jpg" alt="Cartes bancaires nationales"></a></p>
+                                                    <p class="image"><a href="#"><img [src]="formatImagePath(prod.miniature)" alt="Carte bancaires internationales"></a></p>
                                                     <div class="intro">
-                                                        <h3><a href="../categorie/credits-a-la-consommation.html#NosProduits"  style ="font-size: 14px; background: #005288 none repeat scroll 0 0;">Crédits à la consommation</a></h3>
-                                                    </div>
-                                                </article>
-                                            </div>
-
-
-                                            <div class="item particulier classiques">
-                                                <article class="feature">
-                                                    <p class="image"><a href="#"><img src="../imgmaj/classique-pf.jpg" alt="Carte bancaires internationales"></a></p>
-                                                    <div class="intro">
-                                                        <h3><a href="../produits/particuliers-classique-compte-epargne-smart.html" style ="font-size: 14px; background: #005288 none repeat scroll 0 0;">Epargne SMART</a></h3>
+                                                        <h3><a (click)="goToOtherProductPage($event, prod.titre, prod.etiquette1, prod.etiquette2)"
+                                                                
+                                                                style ="font-size: 14px; background: #005288 none repeat scroll 0 0; cursor: pointer;">
+                                                                {{ prod.titre }}
+                                                            </a></h3>
                                                     
                                                     </div>
                                                 </article>
                                             </div>
+
                                         </div>
                                     </div>
                                 </section>
