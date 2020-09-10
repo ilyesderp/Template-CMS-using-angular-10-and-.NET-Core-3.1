@@ -1,0 +1,102 @@
+
+<div class="container">
+    <div class="row">
+        <br><br>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <br>
+            <h1 style="font-weight: bold; text-align: center; color: #4a4a4a;">Modification Catégorie</h1>
+            <br><br>
+            <div class="alert alert-warning" role="alert" *ngIf="!categoryForm.valid && categoryForm.touched" style="text-align: center;">Veuillez remplir tout les champs ayant "*"</div>
+            
+            
+            <form style="text-align: left; display: inline-block; min-width: 500px;" (ngSubmit)="onSubmitCategorie()" #categoryForm="ngForm">
+
+              
+                <mat-form-field>
+                    <mat-label>Titre</mat-label>
+                    <input matInput type="text" name="titre" class="form-control" pattern="[a-zA-Z0-9éèà ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
+                </mat-form-field>
+                <div class="alert alert-danger" role="alert" *ngIf="!titre.valid && titre.touched">Le titre doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
+                
+            
+                 <br>
+                <mat-form-field class="image">
+                    <mat-label>Image Entete</mat-label>
+                    <ngx-mat-file-input placeholder="Chargez une image" (change)="fileProgressEntete($event)" name="entete" [accept]="'.jpg, .png, .jpeg'" ngModel required></ngx-mat-file-input>
+                    <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+
+                <br>
+                <br>
+
+                <mat-checkbox ngModel name="checkSousCat" class="example-margin" (change)="toggleCheckBox($event)">Est sous-catégorie</mat-checkbox>
+
+                <br>
+                <br>
+
+                <mat-form-field appearance="fill" *ngIf="isSousCategorie">
+                    <mat-label>Catégorie Parente</mat-label>
+                    <mat-select ngModel name="categorieParente" [(value)]="categorieParente" (selectionChange)="parentSelected($event)" required>
+                      <mat-option *ngFor="let cat of allcategorieParentes" [value]="cat.titre">
+                        {{ cat.titre }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br><br>
+
+                <mat-form-field appearance="fill" class="readonly-wrapper">
+                    <mat-label>Etiquette 1</mat-label>
+                    <mat-select ngModel name="etiquette1" [(value)]="etiquette1" class="readonly-block" [disabled]="toggleReadOnly" required>
+                      <mat-option value="Classique">
+                        Classique
+                      </mat-option>
+                      <mat-option value="Participatif">
+                        Participatif
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field appearance="fill" class="readonly-wrapper">
+                    <mat-label>Etiquette 2</mat-label>
+                    <mat-select ngModel name="etiquette2" class="readonly-block" [disabled]="toggleReadOnly" [(value)]="etiquette2" required>
+                      <mat-option value="Particulier">
+                        Particulier
+                      </mat-option>
+                      <mat-option value="Professionnel">
+                        Professionnel
+                      </mat-option>
+                      <mat-option value="Entreprise">
+                        Entreprise
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br><br>
+
+                
+
+                <mat-form-field class="image">
+                    <mat-label>Image Miniature</mat-label>
+                    <ngx-mat-file-input placeholder="Chargez une image" (change)="fileProgressMiniature($event)" name="miniature" [accept]="'.jpg, .png, .jpeg'" ngModel required></ngx-mat-file-input>
+                    <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <br>
+            
+                
+
+                  <button mat-raised-button [disabled]="!categoryForm.valid" color="accent" type="submit">Créer Catégorie</button>
+                  <br>
+                  <br>
+                  <br>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+  

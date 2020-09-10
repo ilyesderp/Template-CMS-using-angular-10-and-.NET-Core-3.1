@@ -1,0 +1,15 @@
+<br><br><br>
+<mat-selection-list #categoriesList [multiple]="false">
+    <mat-list-option *ngFor="let categorie of categories" [value]="categorie">
+      {{categorie.titre}}
+    </mat-list-option>
+  </mat-selection-list>
+  
+  <br>
+  <p>
+    Option selected: {{categoriesList.selectedOptions.selected[0]?.value}}
+  </p>
+
+  <button mat-raised-button color="primary" (click)="sendSelectedCategory(categoriesList.selectedOptions.selected[0]?.value)">Selectionner</button>
+  
+

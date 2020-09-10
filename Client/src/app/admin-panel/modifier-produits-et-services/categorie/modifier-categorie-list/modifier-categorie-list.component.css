@@ -1,0 +1,9 @@
+mat-selection-list{
+    width: 90%;
+    margin: auto;
+    background: white;
+}
+
+mat-list-option{
+    padding-left: 20px !important;
+}

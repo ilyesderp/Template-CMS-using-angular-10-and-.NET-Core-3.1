@@ -40,11 +40,13 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { SideNavProduitsComponent } from './admin-header/side-nav-produits/side-nav-produits.component';
-import { AjoutProduitComponent } from './modifier-produits-et-services/ajout-produit/ajout-produit.component';
+import { AjoutProduitComponent } from './modifier-produits-et-services/produit/ajout-produit/ajout-produit.component';
 import { NgxTinymceModule } from 'ngx-tinymce';
 import { AjoutCategorieComponent } from './modifier-produits-et-services/categorie/ajout-categorie/ajout-categorie.component';
 import { MatSelectModule } from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ModifierCategorieComponent } from './modifier-produits-et-services/categorie/modifier-categorie-list/modifier-categorie/modifier-categorie.component';
+import { ModifierCategorieListComponent } from './modifier-produits-et-services/categorie/modifier-categorie-list/modifier-categorie-list.component';
 
 
 
@@ -65,7 +67,8 @@ const adminRoutes: Routes = [
         {path: 'modifier-qui-sommes-nous', component: ModifierQuiSommesNousComponent},
         {path: 'modifier-produits-et-services', component: ModifierProduitsEtServicesComponent, children: [
             {path: 'ajouter-produit', component: AjoutProduitComponent},
-            {path: 'ajouter-categorie', component: AjoutCategorieComponent}
+            {path: 'modifier-categorie-list', component: ModifierCategorieListComponent},
+            {path: 'modifier-categorie', component: ModifierCategorieComponent}
         ]}
     ]}  
 ]
@@ -92,7 +95,9 @@ const adminRoutes: Routes = [
         ChoixPopupComponent,
         SideNavProduitsComponent,
         AjoutProduitComponent,
-        AjoutCategorieComponent
+        AjoutCategorieComponent,
+        ModifierCategorieComponent,
+        ModifierCategorieListComponent
     ],
     imports: [
         CommonModule,
