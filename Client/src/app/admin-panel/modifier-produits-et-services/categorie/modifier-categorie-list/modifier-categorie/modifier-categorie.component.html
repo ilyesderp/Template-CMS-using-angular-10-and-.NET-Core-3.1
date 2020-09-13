@@ -14,29 +14,32 @@
               
                 <mat-form-field>
                     <mat-label>Titre</mat-label>
-                    <input matInput type="text" name="titre" class="form-control" pattern="[a-zA-Z0-9éèà ]*" minlength="2" maxlength="100" ngModel #titre="ngModel" required>
+                    <input matInput type="text" name="titre" class="form-control" pattern="[a-zA-Z0-9éèà ]*" minlength="2" maxlength="100" [(ngModel)]="selectedCategory.titre" #titre="ngModel" [disabled]="locked" required>
                 </mat-form-field>
                 <div class="alert alert-danger" role="alert" *ngIf="!titre.valid && titre.touched">Le titre doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
                 
             
                  <br>
+                <div>
+                  <img [src]="formatImagePath(selectedCategory.entete)" width="250px">
+                </div>
                 <mat-form-field class="image">
                     <mat-label>Image Entete</mat-label>
-                    <ngx-mat-file-input placeholder="Chargez une image" (change)="fileProgressEntete($event)" name="entete" [accept]="'.jpg, .png, .jpeg'" ngModel required></ngx-mat-file-input>
+                    <ngx-mat-file-input [disabled]="locked" placeholder="Chargez une image" (change)="fileProgressEntete($event)" name="entete" [accept]="'.jpg, .png, .jpeg'" [(ngModel)]="selectedCategory.entete" required></ngx-mat-file-input>
                     <mat-icon matSuffix>folder</mat-icon>
                 </mat-form-field>
 
                 <br>
                 <br>
 
-                <mat-checkbox ngModel name="checkSousCat" class="example-margin" (change)="toggleCheckBox($event)">Est sous-catégorie</mat-checkbox>
+                <mat-checkbox [disabled]="locked" [(ngModel)]="isSousCategorie" name="checkSousCat" class="example-margin" (change)="toggleCheckBox($event)">Est sous-catégorie</mat-checkbox>
 
                 <br>
                 <br>
 
                 <mat-form-field appearance="fill" *ngIf="isSousCategorie">
                     <mat-label>Catégorie Parente</mat-label>
-                    <mat-select ngModel name="categorieParente" [(value)]="categorieParente" (selectionChange)="parentSelected($event)" required>
+                    <mat-select [disabled]="locked" [(ngModel)]="selectedCategory.parent" name="categorieParente" [(value)]="categorieParente" (selectionChange)="parentSelected($event)" required>
                       <mat-option *ngFor="let cat of allcategorieParentes" [value]="cat.titre">
                         {{ cat.titre }}
                       </mat-option>
@@ -47,7 +50,7 @@
 
                 <mat-form-field appearance="fill" class="readonly-wrapper">
                     <mat-label>Etiquette 1</mat-label>
-                    <mat-select ngModel name="etiquette1" [(value)]="etiquette1" class="readonly-block" [disabled]="toggleReadOnly" required>
+                    <mat-select [(ngModel)]="selectedCategory.etiquette1" name="etiquette1" [(value)]="etiquette1" class="readonly-block" [disabled]="toggleReadOnly || locked" required>
                       <mat-option value="Classique">
                         Classique
                       </mat-option>
@@ -61,7 +64,7 @@
 
                 <mat-form-field appearance="fill" class="readonly-wrapper">
                     <mat-label>Etiquette 2</mat-label>
-                    <mat-select ngModel name="etiquette2" class="readonly-block" [disabled]="toggleReadOnly" [(value)]="etiquette2" required>
+                    <mat-select [(ngModel)]="selectedCategory.etiquette2" name="etiquette2" class="readonly-block" [disabled]="toggleReadOnly || locked" [(value)]="etiquette2" required>
                       <mat-option value="Particulier">
                         Particulier
                       </mat-option>
@@ -76,10 +79,12 @@
                 <br><br>
 
                 
-
+                <div>
+                  <img [src]="formatImagePath(selectedCategory.miniature)" width="200px">
+                </div>
                 <mat-form-field class="image">
                     <mat-label>Image Miniature</mat-label>
-                    <ngx-mat-file-input placeholder="Chargez une image" (change)="fileProgressMiniature($event)" name="miniature" [accept]="'.jpg, .png, .jpeg'" ngModel required></ngx-mat-file-input>
+                    <ngx-mat-file-input [disabled]="locked" placeholder="Chargez une image" (change)="fileProgressMiniature($event)" name="miniature" [accept]="'.jpg, .png, .jpeg'" [(ngModel)]="selectedCategory.miniature" required></ngx-mat-file-input>
                     <mat-icon matSuffix>folder</mat-icon>
                 </mat-form-field>
 
@@ -89,7 +94,7 @@
             
                 
 
-                  <button mat-raised-button [disabled]="!categoryForm.valid" color="accent" type="submit">Créer Catégorie</button>
+                  <button mat-raised-button [disabled]="!categoryForm.valid || locked" color="accent" type="submit">Enregistrer</button>
                   <br>
                   <br>
                   <br>

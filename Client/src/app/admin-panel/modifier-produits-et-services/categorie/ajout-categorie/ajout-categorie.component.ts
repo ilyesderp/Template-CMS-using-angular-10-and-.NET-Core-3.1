@@ -23,7 +23,8 @@ export class AjoutCategorieComponent implements OnInit {
     children: string, 
     etiquette1: string, 
     etiquette2: string, 
-    miniature: string}[] = [];
+    miniature: string,
+    produits: string;}[] = [];
 
   enteteFileData: File =null;
   miniatureFileData: File =null;

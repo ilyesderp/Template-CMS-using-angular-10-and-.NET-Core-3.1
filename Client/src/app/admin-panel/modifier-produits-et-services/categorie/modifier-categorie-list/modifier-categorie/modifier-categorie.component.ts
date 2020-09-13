@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { DataService } from 'src/app/shared/dataSharing.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 
@@ -26,24 +27,61 @@ export class ModifierCategorieComponent implements OnInit {
     children: string, 
     etiquette1: string, 
     etiquette2: string, 
-    miniature: string}[] = [];
+    miniature: string,
+    produits: string}[] = [];
+
+  selectedCategory: {
+    id: string;
+    titre: string;
+    entete: string;
+    parent: string;
+    children: string;
+    etiquette1: string;
+    etiquette2: string;
+    miniature: string;
+    produits: string;
+  } = {
+    id: '',
+    titre: '',
+    entete: '',
+    parent: '',
+    children: '',
+    etiquette1: '',
+    etiquette2: '',
+    miniature: '',
+    produits: ''
+};
 
   enteteFileData: File =null;
   miniatureFileData: File =null;
   toggleReadOnly: boolean = false;
+  locked: boolean = false;
   
 
  
-constructor(private dataStorageService: DataSotrageService, private dataSharingService: DataService) { }
+constructor(private dataStorageService: DataSotrageService, private route: ActivatedRoute) { }
 
 ngOnInit(): void {
+  this.locked = true;
   this.getAllCategories();
 }
 
 
+
 getSelectedCategory(){
-  this.dataSharingService.currentCategory.subscribe( data => {
-    this.formulaire.value.titre = data.titre;
+
+  this.route.queryParams.subscribe(params => {
+    for (let categ of this.allcategorieParentes) {
+      if(categ.id == params['id']){
+        this.selectedCategory = categ;
+        if(categ.parent != 'none'){
+          this.isSousCategorie = true;
+        }
+        else{
+          this.isSousCategorie = false;
+        }
+      }
+    }
   });
 }
 
@@ -78,6 +116,8 @@ parentSelected(selected: any){
 getAllCategories(){
   this.dataStorageService.getAllCategoriesFromServer().subscribe( (results) => {
     this.allcategorieParentes = results;
+
+    this.getSelectedCategory();
   });
 }
 
@@ -134,6 +174,11 @@ onSubmitCategorie(){
       
   });
   
+    }
+
+formatImagePath(serverPath: string){
+  let path2 = serverPath.replace(/\\/g, "/");
+return 'https://localhost:44324/' + path2; 
 }
 
 }

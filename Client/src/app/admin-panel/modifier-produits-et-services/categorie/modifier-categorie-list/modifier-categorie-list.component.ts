@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSotrageService } from 'src/app/shared/data-storage.service';
-import { DataService } from 'src/app/shared/dataSharing.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,7 +22,7 @@ export class ModifierCategorieListComponent implements OnInit {
 }[] = [];
 
 
-  constructor(private dataStorageService: DataSotrageService, private dataSharingService: DataService, private router: Router) { }
+  constructor(private dataStorageService: DataSotrageService, private router: Router) { }
 
   ngOnInit(): void {
     this.getAllCategoriesForList();
@@ -48,9 +47,9 @@ export class ModifierCategorieListComponent implements OnInit {
     miniature: string;
     produits: string;  
 }){
-    this.dataSharingService.sendCategory(data);
+    //this.dataSharingService.sendCategory(data);
 
-    this.router.navigate(["/admin-panel", "modifier-produits-et-services", "modifier-categorie"]);
+    this.router.navigate(["/admin-panel", "modifier-produits-et-services", "modifier-categorie"], {queryParams: {id: data.id}});
   }
 
 }
