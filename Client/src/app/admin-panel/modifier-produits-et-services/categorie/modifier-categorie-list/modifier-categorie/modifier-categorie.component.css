@@ -13,3 +13,8 @@ mat-form-field{
 .readonly-wrapper .readonly-block {
     pointer-events: none;
 }
+
+#btnAnnuler{
+    background: lightgrey;
+    margin-left: 10px;
+}

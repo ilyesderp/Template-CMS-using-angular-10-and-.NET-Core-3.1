@@ -117,6 +117,105 @@ namespace API.Controllers
         }
 
 
+
+
+
+        [HttpPatch, DisableRequestSizeLimit]
+        public IActionResult EditCategory()
+        {
+            var content = Request.Form;
+            try
+            {
+                var files = content.Files;
+
+                var subFolder = Path.Combine("images", "imagesProduitsServices");
+                var folderName = Path.Combine("wwwroot", subFolder);
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+
+                var categorie = new Categorie();
+
+
+                if (files.Any(f => f.Length == 0))
+                {
+                    return BadRequest();
+                }
+
+                foreach (var file in files)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+                    var dbPath = Path.Combine(folderName, fileName);
+
+
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+
+                    if (file.Name == "entete")
+                    {
+                        categorie.Entete = dbPath;
+                    }
+                    else if (file.Name == "miniature")
+                    {
+                        categorie.Miniature = dbPath;
+                    }
+
+
+                }
+
+                var dbCategorie = _context.Categories.FirstOrDefault(c => c.Id.Equals(content["id"]));
+
+
+                if (dbCategorie != null)
+                {
+                    //categorie.Titre = content["titre"];
+                    categorie.Etiquette1 = content["etiquette1"];
+                    categorie.Etiquette2 = content["etiquette2"];
+                    //categorie.Parent = content["categorieParente"];
+                    //categorie.Children = "";
+                    //categorie.Produits = "";
+                    categorie.State = content["state"];
+
+                    var dbCategorieParente = _context.Categories.FirstOrDefault(x => x.Titre == categorie.Parent);
+                    if (dbCategorieParente != null)
+                    {
+                        if(dbCategorieParente.Titre != content["categorieParente"])
+                        {
+                            categorie.Parent = content["categorieParente"];
+                            dbCategorieParente.Children.Replace(";" + categorie.Titre, "");
+
+                            
+                            //dbCategorieParente.Children = dbCategorieParente.Children + ";" + content["titre"];
+                        }
+
+                        categorie.Titre = content["titre"];
+
+                    }
+
+                    //_context.Add(categorie);
+                    _context.SaveChanges();
+
+                    return Ok("Donées de catégorie modifiées avec succès!");
+                }
+                else
+                {
+                    return Ok("Erreur, cette catégorie n'a pas été trouvée !");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur serveur interne: {ex}");
+            }
+
+        }
+
+
+
+
         [HttpGet]
         public async Task<ActionResult<List<Categorie>>> GetCategories()
         {

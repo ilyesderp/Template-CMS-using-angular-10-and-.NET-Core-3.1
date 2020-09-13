@@ -129,6 +129,10 @@ export class DataSotrageService{
         return this.http.post('https://localhost:44324/api/Categorie', data, {responseType: 'text'});
     }
 
+    patchCategorie(data){
+        return this.http.patch('https://localhost:44324/api/Categorie', data, {responseType: 'text'});
+    }
+
     getAllCategoriesFromServer(){
         return this.http.get<{
             id: any, 

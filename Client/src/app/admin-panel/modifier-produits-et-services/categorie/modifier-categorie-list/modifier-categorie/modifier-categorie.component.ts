@@ -56,6 +56,7 @@ export class ModifierCategorieComponent implements OnInit {
   miniatureFileData: File =null;
   toggleReadOnly: boolean = false;
   locked: boolean = false;
+  toggleModifierBtn: boolean = true;
   
 
  
@@ -66,7 +67,15 @@ ngOnInit(): void {
   this.getAllCategories();
 }
 
+modifier(){
+  this.locked = false;
+  this.toggleModifierBtn = false;
+}
 
+annuler(){
+  this.locked = true;
+  this.toggleModifierBtn = true;
+}
 
 getSelectedCategory(){
 
@@ -159,18 +168,17 @@ onSubmitCategorie(){
     formData.append("etiquette2", this.etiquette2);
   }
 
-  formData.append("state", "active");
+  //formData.append("state", "active");
+  formData.append("id", this.selectedCategory.id);
 
   
-  this.dataStorageService.postCategorie(formData).subscribe((result) => {
+  this.dataStorageService.patchCategorie(formData).subscribe((result) => {
     console.log(result);
     
-      //this.formulaire.resetForm();
       alert("Catégorie Modifiée");
-      //this.getAllCategories();
-      //this.parentSelected(this.formulaire.value.categorieParente);
 
-      location.reload();
+      //location.reload();
+      this.annuler();
       
   });
   

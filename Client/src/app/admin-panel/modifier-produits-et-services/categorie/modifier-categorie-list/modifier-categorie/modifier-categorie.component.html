@@ -6,6 +6,11 @@
             <br>
             <h1 style="font-weight: bold; text-align: center; color: #4a4a4a;">Modification Catégorie</h1>
             <br><br>
+
+            <button mat-raised-button color="primary" id="btnModifier" [disabled]="!toggleModifierBtn" (click)="modifier()" >Modifier</button>
+            <button mat-raised-button id="btnAnnuler" [disabled]="toggleModifierBtn" (click)="annuler()">Annuler</button>
+
+            <br><br>
             <div class="alert alert-warning" role="alert" *ngIf="!categoryForm.valid && categoryForm.touched" style="text-align: center;">Veuillez remplir tout les champs ayant "*"</div>
             
             
@@ -20,7 +25,7 @@
                 
             
                  <br>
-                <div>
+                <div *ngIf="toggleModifierBtn">
                   <img [src]="formatImagePath(selectedCategory.entete)" width="250px">
                 </div>
                 <mat-form-field class="image">
@@ -79,8 +84,8 @@
                 <br><br>
 
                 
-                <div>
-                  <img [src]="formatImagePath(selectedCategory.miniature)" width="200px">
+                <div *ngIf="toggleModifierBtn">
+                  <img [src]="formatImagePath(selectedCategory.miniature)" width="150px">
                 </div>
                 <mat-form-field class="image">
                     <mat-label>Image Miniature</mat-label>
