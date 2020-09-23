@@ -142,31 +142,30 @@ fileProgressMiniature(fileInput: any){
 
 onSubmitCategorie(){
 
-  if (this.enteteFileData === null || this.miniatureFileData === null) {
-    alert("Veuillez charger une image!");
-    return;
-  }
-
   let formData: FormData = new FormData();
 
-  formData.append("titre", this.formulaire.value.titre);
-
-  formData.append("miniature", this.miniatureFileData);
-
-  
-
-  formData.append("entete", this.enteteFileData);
-
-  if(!this.isSousCategorie){
-    formData.append("categorieParente", "none");
-    formData.append("etiquette1", this.formulaire.value.etiquette1);
-    formData.append("etiquette2", this.formulaire.value.etiquette2);
+  if(this.formulaire.value.titre == ''){
+    formData.append("titre", this.selectedCategory.titre);
   }
   else{
-    formData.append("categorieParente", this.formulaire.value.categorieParente);
-    formData.append("etiquette1", this.etiquette1);
-    formData.append("etiquette2", this.etiquette2);
+    formData.append("titre", this.formulaire.value.titre);
   }
+  
+
+  if(this.miniatureFileData == null){
+    formData.append("miniature", this.selectedCategory.miniature);
+  }
+  else{
+    formData.append("miniature", this.miniatureFileData);
+  }
+  
+  if(this.enteteFileData == null){
+    formData.append("entete", this.selectedCategory.entete);
+  }
+  else{
+    formData.append("entete", this.enteteFileData);
+  }
+
 
   //formData.append("state", "active");
   formData.append("id", this.selectedCategory.id);
@@ -177,16 +176,19 @@ onSubmitCategorie(){
     
       alert("Catégorie Modifiée");
 
-      //location.reload();
-      this.annuler();
+      //this.annuler();
+      location.reload();
+      
       
   });
   
     }
 
 formatImagePath(serverPath: string){
-  let path2 = serverPath.replace(/\\/g, "/");
-return 'https://localhost:44324/' + path2; 
+  if(serverPath != null){
+    let path2 = serverPath.replace(/\\/g, "/");
+    return 'https://localhost:44324/' + path2; 
+  }  
 }
 
 }

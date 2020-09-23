@@ -68,6 +68,7 @@ const adminRoutes: Routes = [
         {path: 'modifier-produits-et-services', component: ModifierProduitsEtServicesComponent, children: [
             {path: 'ajouter-produit', component: AjoutProduitComponent},
             {path: 'modifier-categorie-list', component: ModifierCategorieListComponent},
+            {path: 'ajouter-categorie', component: AjoutCategorieComponent},
             {path: 'modifier-categorie', component: ModifierCategorieComponent}
         ]}
     ]}  

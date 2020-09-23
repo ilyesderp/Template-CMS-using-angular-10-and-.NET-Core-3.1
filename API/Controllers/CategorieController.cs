@@ -87,7 +87,7 @@ namespace API.Controllers
                     categorie.Produits = "";
                     categorie.State = content["state"];
 
-                    var dbCategorieParente = _context.Categories.FirstOrDefault(x => x.Titre == categorie.Parent);
+                    var dbCategorieParente = _context.Categories.FirstOrDefault(x => x.Titre == categorie.Parent && x.Etiquette1 == categorie.Etiquette1 && x.Etiquette2 == categorie.Etiquette2);
                     if (dbCategorieParente != null)
                     {
                         dbCategorieParente.Children = dbCategorieParente.Children + ";" + content["titre"];
@@ -121,7 +121,7 @@ namespace API.Controllers
 
 
         [HttpPatch, DisableRequestSizeLimit]
-        public IActionResult EditCategory()
+        public async Task<IActionResult> EditCategory()
         {
             var content = Request.Form;
             try
@@ -133,76 +133,90 @@ namespace API.Controllers
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
 
-                var categorie = new Categorie();
+                var enteteGlobal = "";
+                var minatureGlobal = "";
 
 
-                if (files.Any(f => f.Length == 0))
+
+                if (!files.Any(f => f.Length == 0))
                 {
-                    return BadRequest();
-                }
-
-                foreach (var file in files)
-                {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    var fullPath = Path.Combine(pathToSave, fileName);
-                    var dbPath = Path.Combine(folderName, fileName);
-
-
-
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    foreach (var file in files)
                     {
-                        file.CopyTo(stream);
-                    }
-
-                    if (file.Name == "entete")
-                    {
-                        categorie.Entete = dbPath;
-                    }
-                    else if (file.Name == "miniature")
-                    {
-                        categorie.Miniature = dbPath;
-                    }
+                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                        var fullPath = Path.Combine(pathToSave, fileName);
+                        var dbPath = Path.Combine(folderName, fileName);
 
 
-                }
 
-                var dbCategorie = _context.Categories.FirstOrDefault(c => c.Id.Equals(content["id"]));
-
-
-                if (dbCategorie != null)
-                {
-                    //categorie.Titre = content["titre"];
-                    categorie.Etiquette1 = content["etiquette1"];
-                    categorie.Etiquette2 = content["etiquette2"];
-                    //categorie.Parent = content["categorieParente"];
-                    //categorie.Children = "";
-                    //categorie.Produits = "";
-                    categorie.State = content["state"];
-
-                    var dbCategorieParente = _context.Categories.FirstOrDefault(x => x.Titre == categorie.Parent);
-                    if (dbCategorieParente != null)
-                    {
-                        if(dbCategorieParente.Titre != content["categorieParente"])
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
                         {
-                            categorie.Parent = content["categorieParente"];
-                            dbCategorieParente.Children.Replace(";" + categorie.Titre, "");
-
-                            
-                            //dbCategorieParente.Children = dbCategorieParente.Children + ";" + content["titre"];
+                            file.CopyTo(stream);
                         }
+
+                        if (file.Name == "entete")
+                        {
+                            enteteGlobal = dbPath;
+                        }
+                        else if (file.Name == "miniature")
+                        {
+                            minatureGlobal = dbPath;
+                        }
+
+                    }
+                    //return BadRequest();
+                }
+
+                
+
+                int id;
+                Int32.TryParse(content["id"], out id);
+
+                var categorie = await _context.Categories.FindAsync(id);
+
+
+                if (categorie != null)
+                {
+                    var dbCategorieParente = await _context.Categories.FirstOrDefaultAsync(x => x.Titre == categorie.Parent && x.Etiquette1 == categorie.Etiquette1 && x.Etiquette2 == categorie.Etiquette2);
+                    if (dbCategorieParente == null)
+                    {
+                        categorie.Titre = content["titre"];
+                        if(enteteGlobal != "")
+                            categorie.Entete = enteteGlobal;
+                        if(minatureGlobal != "")
+                            categorie.Miniature = minatureGlobal;
+                        categorie.State = content["state"];
+                    }
+                    else
+                    {
+                        //modif du titre et children du parent car il sera affecté:
+                        dbCategorieParente.Children.Replace(";" + categorie.Titre, content["titre"]);
+
+                        //_context.Update(dbCategorieParente);
+                        //await _context.SaveChangesAsync();
 
                         categorie.Titre = content["titre"];
 
+                        if (enteteGlobal != "")
+                            categorie.Entete = enteteGlobal;
+                        if (minatureGlobal != "")
+                            categorie.Miniature = minatureGlobal;
+                        categorie.State = content["state"];
+
+                        //_context.SaveChanges();
+
+
                     }
 
-                    //_context.Add(categorie);
-                    _context.SaveChanges();
+                    //_context.Entry(categorie).State = EntityState.Modified;
+                    //_context.Update(categorie);
+                    await _context.SaveChangesAsync();
 
+                    
                     return Ok("Donées de catégorie modifiées avec succès!");
                 }
                 else
                 {
-                    return Ok("Erreur, cette catégorie n'a pas été trouvée !");
+                    return Ok("Erreur, cette catégorie n'a pas été trouvée et donc ne peut etre modifiée !");
                 }
 
             }
