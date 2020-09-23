@@ -47,7 +47,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ModifierCategorieComponent } from './modifier-produits-et-services/categorie/modifier-categorie-list/modifier-categorie/modifier-categorie.component';
 import { ModifierCategorieListComponent } from './modifier-produits-et-services/categorie/modifier-categorie-list/modifier-categorie-list.component';
-
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -126,7 +127,9 @@ const adminRoutes: Routes = [
             baseURL: '//cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/',
           }),
         MatSelectModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatTableModule,
+        MatSortModule
     ],
 
     providers: [{ provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}]
