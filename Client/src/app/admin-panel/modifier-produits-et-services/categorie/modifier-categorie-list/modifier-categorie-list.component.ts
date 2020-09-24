@@ -42,6 +42,21 @@ export class ModifierCategorieListComponent implements OnInit, AfterViewInit {
     produits: string;
 }[] = [];
 
+selectedCateg: {
+  id: any;
+  titre: string;
+  entete: string;
+  parent: string;
+  children: string;
+  etiquette1: string;
+  etiquette2: string;
+  miniature: string;
+  produits: string;
+};
+
+  isSelected: boolean = false;
+  rowIndex: any;
+
 
   constructor(private dataStorageService: DataSotrageService, private router: Router) { 
     // Create 100 users
@@ -69,7 +84,14 @@ export class ModifierCategorieListComponent implements OnInit, AfterViewInit {
   }
 
 
+  getSelectedRow(row: any){
 
+    this.isSelected = true;
+    this.rowIndex = row.id;
+    console.log(row);
+
+    this.selectedCateg = row;
+  }
 
 
 
@@ -83,20 +105,10 @@ export class ModifierCategorieListComponent implements OnInit, AfterViewInit {
   }
 
 
-  sendSelectedCategory(data: {
-    id: any;
-    titre: string;
-    entete: string;
-    parent: string;
-    children: string;
-    etiquette1: string;
-    etiquette2: string;
-    miniature: string;
-    produits: string;  
-}){
+  sendSelectedCategory(){
     //this.dataSharingService.sendCategory(data);
 
-    this.router.navigate(["/admin-panel", "modifier-produits-et-services", "modifier-categorie"], {queryParams: {id: data.id}});
+    this.router.navigate(["/admin-panel", "modifier-produits-et-services", "modifier-categorie"], {queryParams: {id: this.selectedCateg.id}});
   }
 
 }

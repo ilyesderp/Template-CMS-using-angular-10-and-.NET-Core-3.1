@@ -18,3 +18,8 @@ mat-form-field{
     background: lightgrey;
     margin-left: 10px;
 }
+
+
+.mat-sort-header-button{
+    background: red !important;
+}

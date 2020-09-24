@@ -22,3 +22,19 @@ button, .mat-form-field{
     width: 25%;
   }
   
+
+  .selectionne{
+    background-color: lightgrey !important;
+  }
+  
+  .mat-row:hover{
+    background-color: rgb(245, 245, 245);
+  }
+
+  .hideBG{
+    background: inherit;
+  }
+
+/deep/ button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover {
+    background-color: transparent;
+}
