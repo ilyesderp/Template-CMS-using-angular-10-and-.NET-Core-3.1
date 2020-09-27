@@ -49,6 +49,7 @@ import { ModifierCategorieComponent } from './modifier-produits-et-services/cate
 import { ModifierCategorieListComponent } from './modifier-produits-et-services/categorie/modifier-categorie-list/modifier-categorie-list.component';
 import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { SuppressionCategorieComponent } from './modifier-produits-et-services/categorie/suppression-categorie/suppression-categorie.component';
 
 
 
@@ -70,7 +71,8 @@ const adminRoutes: Routes = [
             {path: 'ajouter-produit', component: AjoutProduitComponent},
             {path: 'modifier-categorie-list', component: ModifierCategorieListComponent},
             {path: 'ajouter-categorie', component: AjoutCategorieComponent},
-            {path: 'modifier-categorie', component: ModifierCategorieComponent}
+            {path: 'modifier-categorie', component: ModifierCategorieComponent},
+            {path: 'supprimer-categorie', component: SuppressionCategorieComponent}
         ]}
     ]}  
 ]
@@ -99,7 +101,8 @@ const adminRoutes: Routes = [
         AjoutProduitComponent,
         AjoutCategorieComponent,
         ModifierCategorieComponent,
-        ModifierCategorieListComponent
+        ModifierCategorieListComponent,
+        SuppressionCategorieComponent
     ],
     imports: [
         CommonModule,
