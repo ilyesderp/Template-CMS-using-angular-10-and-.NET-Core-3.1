@@ -88,8 +88,7 @@ selectedCateg: {
 
     this.isSelected = true;
     this.rowIndex = row.id;
-    console.log(row);
-
+    
     this.selectedCateg = row;
   }
 

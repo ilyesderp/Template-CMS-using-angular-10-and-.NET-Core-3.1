@@ -207,4 +207,9 @@ export class DataSotrageService{
           }[]>(`https://localhost:44324/api/Produit/${ids}`);
     }
 
+
+    deleteCategory(ids: string[]){
+        return this.http.delete(`https://localhost:44324/api/Categorie/${ids}`, {responseType: 'text'});
+    }
+
 }

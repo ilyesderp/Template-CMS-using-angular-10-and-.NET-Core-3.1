@@ -239,5 +239,77 @@ namespace API.Controllers
             return Ok(categories);
         }
 
+
+        [HttpDelete("{ids}")]
+        public IActionResult DeleteCategorie(string ids)
+        {
+            try
+            {
+                string[] idsArray = ids.Split(',');
+
+                foreach (var id in idsArray)
+                {
+                    int idConverted;
+                    Int32.TryParse(id, out idConverted);
+
+                    var dbCategorie = _context.Categories.FirstOrDefault(c => c.Id.Equals(idConverted));
+
+                    if(dbCategorie != null)
+                    {
+                        var verifMiniatureExistanceInCateg = _context.Categories.Where(c => c.Miniature == dbCategorie.Miniature).Count();
+                        var verifMiniatureExistanceInProd = _context.Produits.Where(c => c.Miniature == dbCategorie.Miniature).Count();
+
+                        var verifEnteteExistanceInCateg = _context.Categories.Where(c => c.Entete == dbCategorie.Entete).Count();//needs to be at least 2 to not delete
+                        var verifEnteteExistanceInProd = _context.Produits.Where(c => c.Entete == dbCategorie.Entete).Count();//needs to be at least 2 to not delete
+                        var verifEnteteExistanceInImages = _context.Images.Where(i => i.ImagePath == dbCategorie.Entete).Count();//needs to be just 1 to not delete
+
+
+                        if (System.IO.File.Exists(dbCategorie.Miniature) && (verifMiniatureExistanceInCateg < 2 && verifMiniatureExistanceInProd < 2)) //delete image from wwwroot
+                        {
+                            System.IO.File.Delete(dbCategorie.Miniature);
+                        }
+                        if (System.IO.File.Exists(dbCategorie.Entete) && (verifEnteteExistanceInCateg < 2 && verifEnteteExistanceInProd < 2 && verifEnteteExistanceInImages < 1)) //delete image from wwwroot
+                        {
+                            System.IO.File.Delete(dbCategorie.Entete);
+                        }
+                        // besoin d'ajout condition pour supprimer les categ de leurs parent
+
+                        if(dbCategorie.Parent != "none")
+                        {
+                            var dbParent = _context.Categories.FirstOrDefault(c => c.Titre.Equals(dbCategorie.Parent) && c.Etiquette1.Equals(dbCategorie.Etiquette1) && c.Etiquette2.Equals(dbCategorie.Etiquette2));
+                            
+                            if(dbParent != null)
+                            {
+                                dbParent.Children = dbParent.Children.Replace(";" + dbCategorie.Titre, "");
+                            }
+                            else
+                            {
+                                Ok("Erreur, Parent non trouvé!");
+                            }
+                        }
+
+
+                        if (dbCategorie.Produits != "")
+                        {
+                            return Ok("has products");
+                        }
+                        else
+                        {
+                            _context.Categories.Remove(dbCategorie);
+                            _context.SaveChanges();
+                            
+                        }
+                        
+                    }
+                    
+                }
+                return Ok("Suppression réussie!");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, $"Erreurlors de la suppresion de la catégorie: {e}");
+            }
+            
+        }
     }
 }

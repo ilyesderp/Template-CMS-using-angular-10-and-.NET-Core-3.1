@@ -18,18 +18,17 @@ button, .mat-form-field{
   }
 
   
-  td, th {
-    width: 25%;
-  }
   
 
-  .selectionne{
+  
+
+  /*.selectionne{
     background-color: lightgrey !important;
   }
   
   .mat-row:hover{
     background-color: rgb(245, 245, 245);
-  }
+  }*/
 
   .hideBG{
     background: inherit;
