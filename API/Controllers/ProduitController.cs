@@ -137,6 +137,22 @@ namespace API.Controllers
             return Ok(dbProduct);
         }
 
+        
+        [Route("[action]/{id}")]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Produit>>> GetProductById(string id)
+        {
+            int idConverted;
+            Int32.TryParse(id, out idConverted);
+
+            var dbProduct = await _context.Produits.FirstOrDefaultAsync(i => i.Id.Equals(idConverted));
+
+            //var products = await _context.Produits.ToListAsync();
+
+            return Ok(dbProduct);
+        }
+
+
 
         [HttpGet("{ids}")]
         public async Task<ActionResult<List<Produit>>> GetAutresProducts(string ids)

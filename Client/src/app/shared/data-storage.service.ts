@@ -212,4 +212,21 @@ export class DataSotrageService{
         return this.http.delete(`https://localhost:44324/api/Categorie/${ids}`, {responseType: 'text'});
     }
 
+    getProductById(id: string){
+        return this.http.get<{
+            id: any;
+            titre: string;
+            entete: string;
+            miniature: string;
+            categorie: string;
+            onglet1: string;
+            onglet2: string;
+            onglet3: string;
+            onglet4: string;
+            etiquette1: string;
+            etiquette2: string;
+            state: string;
+        }>(`https://localhost:44324/api/Produit/GetProductById/${id}`);
+    }
+
 }

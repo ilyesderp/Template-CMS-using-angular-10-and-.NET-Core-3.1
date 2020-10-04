@@ -1,1 +1,173 @@
-<p>modifier-produit works!</p>
+
+<div class="container">
+    <div class="row">
+        <br><br>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <br>
+            <h1 style="font-weight: bold; text-align: center; color: #4a4a4a;">Modification Produit</h1>
+            <br><br>
+
+            <button mat-raised-button color="primary" id="btnModifier" [disabled]="!toggleModifierBtn" (click)="modifier()" >Modifier</button>
+            <button mat-raised-button id="btnAnnuler" [disabled]="toggleModifierBtn" (click)="annuler()">Annuler</button>
+
+            <br><br>
+            <div class="alert alert-warning" role="alert" *ngIf="!productForm.valid && productForm.touched" style="text-align: center;">Veuillez remplir tout les champs ayant "*"</div>
+            
+            
+            <form style="text-align: left; display: inline-block; min-width: 500px;" (ngSubmit)="onSubmitProduit()" #productForm="ngForm">
+
+              
+                <mat-form-field>
+                    <mat-label>Titre</mat-label>
+                    <input matInput type="text" name="titre" class="form-control" pattern="[a-zA-Z0-9éèà ]*" minlength="2" maxlength="100" [(ngModel)]="selectedProduct.titre" #titre="ngModel" [disabled]="locked" required>
+                </mat-form-field>
+                <div class="alert alert-danger" role="alert" *ngIf="!titre.valid && titre.touched">Le titre doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
+                
+            
+                 <br>
+
+                 <mat-form-field style="width: 400px;">
+                     <mat-label>J'en Profite</mat-label>
+                     <input matInput type="text" name="jenProfite" pattern="[a-zA-Z0-9éèà' ]*" minlength="2" maxlength="300" ngModel #jenProfite="ngModel" [disabled]="locked" required>
+                 </mat-form-field>
+                 <div class="alert alert-danger" role="alert" *ngIf="!jenProfite.valid && jenProfite.touched" style="width: 580px;">Ce champs doit avoir une longueur de 2 caractères ou plus et pas de caractères spéciaux</div>
+ 
+                 <br>
+                 <br>
+
+                <div>
+                  <img [src]="formatImagePath(selectedProduct.entete)" width="250px">
+                </div>
+                <mat-form-field class="image">
+                    <mat-label>Image Entete</mat-label>
+                    <ngx-mat-file-input [disabled]="locked" placeholder="Chargez une image" (change)="fileProgressEntete($event)" name="entete" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
+                    <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+
+                <br>
+                <br>
+
+                
+                <div>
+                  <img [src]="formatImagePath(selectedProduct.miniature)" width="150px">
+                </div>
+                <mat-form-field class="image">
+                    <mat-label>Image Miniature</mat-label>
+                    <ngx-mat-file-input [disabled]="locked" placeholder="Chargez une image" (change)="fileProgressMiniature($event)" name="miniature" [accept]="'.jpg, .png, .jpeg'"></ngx-mat-file-input>
+                    <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <br>
+            
+                <p style="color: #5a5959; font-size: larger;">Veuillez choisir les autres produits, s'il y en a aucun selectionnez "Aucun": </p>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Autre Produit 1</mat-label>
+                    <mat-select ngModel name="autre1" [(value)]="autre1" #autreN1>
+                        <mat-option [value]="''">
+                            Aucun
+                        </mat-option>
+                      <mat-option *ngFor="let prod of allProducts" [value]="prod.id">
+                        {{ prod.titre }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Autre Produit 2</mat-label>
+                    <mat-select ngModel name="autre2" [(value)]="autre2" #autreN2>
+                        <mat-option [value]="''">
+                            Aucun
+                        </mat-option>
+                      <mat-option *ngFor="let prod of allProducts" [value]="prod.id">
+                        {{ prod.titre }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Autre Produit 3</mat-label>
+                    <mat-select ngModel name="autre3" [(value)]="autre3" #autreN3>
+                        <mat-option [value]="''">
+                            Aucun
+                        </mat-option>
+                      <mat-option *ngFor="let prod of allProducts" [value]="prod.id">
+                        {{ prod.titre }}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <mat-form-field appearance="fill" style="width: 400px;">
+                    <mat-label>Autre Produit 4</mat-label>
+                    <mat-select ngModel name="autre4" [(value)]="autre4" #autreN4>
+                        <mat-option [value]="''">
+                            Aucun
+                        </mat-option>
+                        <mat-option *ngFor="let prod of allProducts" [value]="prod.id">
+                        {{ prod.titre }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <br>
+                <br>
+                <br>
+                <br>
+            
+                <p style="color: #5a5959; font-size: larger;">Veuillez remplir le contenu des onglets: </p>
+                  <br>
+                  <label for="onglet1" style="color: #0f6dbf;">Onglet "Qu’est-ce que c’est ?" :</label>
+                  <br>
+                  <tinymce [(ngModel)]="onglet1" #tiny1="ngModel" [config]="config" name="onglet1" (ngModelChange)="validateTinymce1($event)"></tinymce>
+                  <br>
+                  <div class="alert alert-danger" role="alert" *ngIf="!tiny1.valid" style="text-align: center;">Longueur du contenu maximale dépassée! Vous devez réduire la taille du contenu pour pouvoir valider</div>
+                  <br>
+                  <br>
+            
+                  <label for="onglet2" style="color: #0f6dbf;">Onglet "Pourquoi souscrire ?" :</label>
+                  <br>
+                  <tinymce [(ngModel)]="onglet2" #tiny2="ngModel" [config]="config" name="onglet2" (ngModelChange)="validateTinymce2($event)"></tinymce>
+                  <br>
+                  <div class="alert alert-danger" role="alert" *ngIf="!tiny2.valid" style="text-align: center;">Longueur du contenu maximale dépassée! Vous devez réduire la taille du contenu pour pouvoir valider</div>
+                  <br>
+                  <br>
+            
+                  <label for="onglet3" style="color: #0f6dbf;">Onglet "Comment ça marche ?" :</label>
+                  <br>
+                  <tinymce [(ngModel)]="onglet3" #tiny3="ngModel" [config]="config" name="onglet3" (ngModelChange)="validateTinymce3($event)"></tinymce>
+                  <br>
+                  <div class="alert alert-danger" role="alert" *ngIf="!tiny3.valid" style="text-align: center;">Longueur du contenu maximale dépassée! Vous devez réduire la taille du contenu pour pouvoir valider</div>
+                  
+                  <br>
+                  <br>
+            
+                  <label for="onglet4" style="color: #0f6dbf;">Onglet "FAQ" :</label>
+                  <br>
+                  <tinymce [(ngModel)]="onglet4" #tiny4="ngModel" [config]="config" name="onglet4" (ngModelChange)="validateTinymce4($event)"></tinymce>
+                  <br>
+                  <div class="alert alert-danger" role="alert" *ngIf="!tiny4.valid" style="text-align: center;">Longueur du contenu maximale dépassée! Vous devez réduire la taille du contenu pour pouvoir valider</div>
+                  
+                  <br>
+                  <br>
+
+                
+
+                  <button mat-raised-button [disabled]="!productForm.form.valid || locked" color="accent" type="submit">Enregistrer</button>
+                  <br>
+                  <br>
+                  <br>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+  

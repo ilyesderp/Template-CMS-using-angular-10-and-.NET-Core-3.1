@@ -1,0 +1,25 @@
+mat-form-field{
+    width: 100%;
+}
+
+.image{
+    width: 40%;
+}
+
+.readonly-wrapper {
+    cursor: not-allowed;
+}
+
+.readonly-wrapper .readonly-block {
+    pointer-events: none;
+}
+
+#btnAnnuler{
+    background: lightgrey;
+    margin-left: 10px;
+}
+
+
+.mat-sort-header-button{
+    background: red !important;
+}
